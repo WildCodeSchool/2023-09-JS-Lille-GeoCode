@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+$colorPrimary: #21a89a;
+$colorSecondary: #7cd858;
+$colorDark: #525b5a;
+$colorLight: #e5e9e7;
+$gradient90deg: linear-gradient(
+  90deg,
+  rgba(33, 168, 154, 1) 0%,
+  rgba(124, 216, 88, 1) 100%
+);
+$gradient180deg: linear-gradient(
+  180deg,
+  rgba(33, 168, 154, 1) 0%,
+  rgba(124, 216, 88, 1) 100%
+);
+$fontFamily: "Familjen Grotesk";

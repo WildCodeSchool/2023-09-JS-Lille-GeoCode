@@ -3,12 +3,27 @@ import ReactDOM from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from "./App";
+import Home from "./pages/Home/Home";
+import Map from "./pages/Map/Map";
+import Connection from "./pages/Connection/Connection";
+import Subscribe from "./pages/Subscribe/Subscribe";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
+  },
+  {
+    path: "/map",
+    element: <Map />,
+  },
+  {
+    path: "/connection",
+    element: <Connection />,
+  },
+  {
+    path: "/subscribe",
+    element: <Subscribe />,
   },
 ]);
 

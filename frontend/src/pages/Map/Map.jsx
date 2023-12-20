@@ -3,7 +3,7 @@ import "./Map.scss";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import plugGreen from "../../assets/plug-icon-green.png";
-import { L, Icon } from "leaflet";
+import { Icon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { PlaceKit } from "@placekit/autocomplete-react";
 import "@placekit/autocomplete-js/dist/placekit-autocomplete.css";

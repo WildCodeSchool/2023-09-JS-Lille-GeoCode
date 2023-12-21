@@ -1,65 +1,85 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
 import "./Subscribe.scss";
+import BackButton from "../../components/BackButton/BackButton";
+import addPicture from "../../assets/addPicture.svg";
 
 function Subscribe() {
   const {
     handleSubmit,
     register,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const pwd = watch("password");
+
   function onSubmit(data) {
-    console.info(data);
+    console.info(JSON.stringify(data));
   }
 
   return (
-    <div className="background">
-      <div>
+    <section className="background">
+      <aside className="contentAside">
         <h1 className="titleSubscribe">S'enregistrer</h1>
-      </div>
+        <BackButton />
+      </aside>
       <form className="subscribeForm" onSubmit={handleSubmit(onSubmit)}>
-        <div className="lastName">
-          <label className="labelSubscribe" htmlFor="lastName">
-            {" "}
-            Nom de famille :{" "}
-          </label>
-          <input
-            className="inputSubscribe"
-            type="text"
-            id="lastName"
-            {...register("lastName", { required: true, minLength: 1 })}
-          />
-          {errors.lastName && <p>Le Nom de famille est obligatoire.</p>}
-        </div>
-        <div className="firstName">
-          <label className="labelSubscribe" htmlFor="firstName">
-            {" "}
-            Prénom :{" "}
-          </label>
-          <input
-            className="inputSubscribe"
-            type="text"
-            id="firstName"
-            {...register("firstName", { required: true, minLength: 1 })}
-          />
-          {errors.firstName && <p>Le Prénom est obligatoire.</p>}
-        </div>
-        <div className="pictureProfil">
-          <label className="labelSubscribe" htmlFor="pictureProfil">
-            {" "}
-            Photo de profil :{" "}
-          </label>
-          <input
-            className="inputPictureProfil"
-            type="file"
-            id="pictureProfil"
-            {...register("image")}
-          />
-        </div>
-        <div className="email">
+        <article className="group-picture">
+          <article className="NamesElements">
+            <fieldset className="lastName">
+              <label className="labelSubscribe" htmlFor="lastName">
+                Nom de famille :
+              </label>
+              <input
+                className="inputSubscribe"
+                type="text"
+                id="lastName"
+                {...register("lastName", { required: true, minLength: 1 })}
+              />
+              {errors.lastName && (
+                <p className="error">Le nom de famille est obligatoire.</p>
+              )}
+            </fieldset>
+            <fieldset className="firstName">
+              <label className="labelSubscribe" htmlFor="firstName">
+                Prénom :
+              </label>
+              <input
+                className="inputSubscribe"
+                type="text"
+                id="firstName"
+                {...register("firstName", { required: true, minLength: 1 })}
+              />
+              {errors.firstName && (
+                <p className="error">Le prénom est obligatoire.</p>
+              )}
+            </fieldset>
+          </article>
+          <article className="PictureElement">
+            <fieldset className="pictureProfil">
+              <label className="labelSubscribe" htmlFor="pictureProfil">
+                Photo de profil :
+              </label>
+              <label htmlFor="pictureProfil" className="labelPicture">
+                <img
+                  className="addPicture"
+                  src={addPicture}
+                  alt="raccourci pour import fichier portrait"
+                />
+              </label>
+              <input
+                className="inputPictureProfil"
+                type="file"
+                id="pictureProfil"
+                {...register("image")}
+              />
+            </fieldset>
+          </article>
+        </article>
+        <fieldset className="email">
           <label className="labelSubscribe" htmlFor="email">
-            {" "}
-            Email :{" "}
+            Email :
           </label>
           <input
             className="inputSubscribe"
@@ -67,12 +87,11 @@ function Subscribe() {
             id="email"
             {...register("email", { required: true, minLength: 1 })}
           />
-          {errors.email && <p>Votre Adresse mail est obligatoire.</p>}
-        </div>
-        <div className="gender">
+          {errors.email && <p className="error">Votre mail est obligatoire.</p>}
+        </fieldset>
+        <fieldset className="gender">
           <label className="labelSubscribe" htmlFor="gender">
-            {" "}
-            Genre :{" "}
+            Genre :
           </label>
           <select name="genre" className="selectGender" id="gender">
             <option>Choisir un genre</option>
@@ -82,11 +101,10 @@ function Subscribe() {
               Ne souhaite pas choisir
             </option>
           </select>
-        </div>
-        <div className="birthdate">
+        </fieldset>
+        <fieldset className="birthdate">
           <label className="labelSubscribe" htmlFor="birthdate">
-            {" "}
-            Date de naissance :{" "}
+            Date de naissance :
           </label>
           <input
             className="inputSubscribe"
@@ -94,12 +112,13 @@ function Subscribe() {
             id="birthdate"
             {...register("birthdate", { required: true })}
           />
-          {errors.birthdate && <p>Votre Date de naissance est obligatoire.</p>}
-        </div>
-        <div className="zipcode">
+          {errors.birthdate && (
+            <p className="error">Votre Date de naissance est obligatoire.</p>
+          )}
+        </fieldset>
+        <fieldset className="zipcode">
           <label className="labelSubscribe" htmlFor="zipcode">
-            {" "}
-            Code postal :{" "}
+            Code postal :
           </label>
           <input
             className="inputSubscribe"
@@ -111,12 +130,13 @@ function Subscribe() {
               maxLength: 5,
             })}
           />
-          {errors.zipcode && <p>Votre Code postal est obligatoire.</p>}
-        </div>
-        <div className="city">
+          {errors.zipcode && (
+            <p className="error">Votre Code postal est obligatoire.</p>
+          )}
+        </fieldset>
+        <fieldset className="city">
           <label className="labelSubscribe" htmlFor="city">
-            {" "}
-            Ville :{" "}
+            Ville :
           </label>
           <input
             className="inputSubscribe"
@@ -128,12 +148,11 @@ function Subscribe() {
               maxLength: 5,
             })}
           />
-          {errors.city && <p>Votre ville est obligatoire.</p>}
-        </div>
-        <div className="password">
+          {errors.city && <p className="error">Votre ville est obligatoire.</p>}
+        </fieldset>
+        <fieldset className="password">
           <label className="labelSubscribe" htmlFor="password">
-            {" "}
-            Mot de passe :{" "}
+            Mot de passe :
           </label>
           <input
             className="inputSubscribe"
@@ -142,35 +161,37 @@ function Subscribe() {
             {...register("password", { required: true, minLength: 5 })}
           />
           {errors.password && (
-            <p>
+            <p className="error">
               Votre Mot de passe est obligatoire, doit contenir un minimu de 5
-              caractères svp.{" "}
+              caractères svp.
             </p>
           )}
-        </div>
-        <div className="confirmPassword">
+        </fieldset>
+        <article className="confirmPassword">
           <label className="labelSubscribe" htmlFor="confirmPassword">
-            {" "}
-            Confirmation du mot de passe :{" "}
+            Confirmation du mot de passe :
           </label>
           <input
             className="inputSubscribe"
             type="password"
             id="confirmPassword"
-            {...register("confirmPassword", { required: true, minLength: 5 })}
+            {...register("confirmPassword", {
+              required: true,
+              minLength: 5,
+              validate: (value) => value === pwd || "The password do not match",
+            })}
           />
           {errors.confirmPassword && (
-            <p>
-              La Confirmation de votre Mot de passe est obligatoire, doit
-              contenir un minimu de 5 caractères svp.
-            </p>
+            <p className="error">{errors.confirmPassword.message}</p>
           )}
-        </div>
-        <button className="submit" type="submit">
-          Envoyer
-        </button>
+        </article>
+        <footer className="containerSubmit">
+          <button className="submit" type="submit">
+            Envoyer
+          </button>
+        </footer>
       </form>
-    </div>
+    </section>
   );
 }
 

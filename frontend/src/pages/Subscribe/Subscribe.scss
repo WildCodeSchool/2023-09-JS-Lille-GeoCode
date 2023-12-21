@@ -6,26 +6,33 @@
 
 .background {
   display: flex;
-  justify-content: end;
-  align-items: center;
   background: $gradient180deg;
   height: 100vh;
   width: 100%;
 }
 .titleSubscribe {
+  display: flex;
   writing-mode: vertical-lr;
-  text-orientation: mixed;
   color: $colorLight;
   transform: rotate(-180deg);
   font-size: 3rem;
   font-family: $fontFamily;
-  margin-bottom: 870%;
-  margin-block: 0;
+  margin-top: 1.5vh;
+}
+
+.contentAside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.test {
+  display: inline;
+  background-color: yellowgreen;
 }
 .subscribeForm {
   display: flex;
   flex-direction: column;
-  justify-content: start;
   background-color: $colorLight;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
@@ -33,6 +40,7 @@
   font-family: $fontFamily;
   padding-left: 1rem;
   height: 100%;
+  width: clamp(0rem, 95vw + 2rem, 100rem);
 }
 
 .labelSubscribe {
@@ -40,12 +48,14 @@
   margin-bottom: 0.1rem;
 }
 .inputSubscribe {
-  padding: 0.5rem;
+  padding: 0.4rem;
   border: double 1.5px transparent;
   border-radius: 30px;
   background-image: linear-gradient($colorLight, $colorLight), $gradient180deg;
   background-origin: border-box;
   background-clip: padding-box, border-box;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
+  height: 0.8vh;
 }
 
 .lastName,
@@ -58,6 +68,9 @@
 .city,
 .password,
 .confirmPassword {
+  border: none;
+  margin: 0;
+  padding: 0;
   color: $colorDark;
   display: flex;
   align-items: left;
@@ -72,9 +85,51 @@
   height: 3rem;
   text-align: center;
   font-size: 1.2rem;
-  border: 8rem;
+  border: 7rem;
   border-color: $colorDark;
   border-radius: 83% 30% 96% 30% / 0% 100% 0% 100%;
-  margin-top: 3rem;
-  margin-left: 11.5rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
+}
+
+.containerSubmit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3vh;
+  margin-right: 4vw;
+}
+
+.error {
+  color: red;
+  font-family: $fontFamily;
+  font-size: 0.65rem;
+  margin-top: 0.6vh;
+  margin-left: 1vw;
+}
+
+.backButton_subscribe {
+  position: fixed;
+  bottom: 1rem;
+}
+
+.addPicture {
+  width: 6rem;
+  height: auto;
+}
+
+.inputPictureProfil {
+  display: none;
+  visibility: none;
+  cursor: pointer;
+}
+
+.labelPicture {
+  margin: 0;
+  width: 0.1rem;
+}
+
+.group-picture {
+  display: flex;
+}
+.NamesElements {
+  width: 85%;
 }

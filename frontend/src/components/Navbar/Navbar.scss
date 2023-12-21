@@ -10,7 +10,7 @@
   height: 4rem;
   width: 18rem;
   border-radius: 24px;
-  border: 2px solid $colorDark;
+  border: $borderDark;
   box-shadow: $boxShadow;
   position: fixed;
   bottom: 5%;
@@ -37,8 +37,8 @@
 }
 
 .navbar_element_middle {
-  border-left: 2px solid $colorDark;
-  border-right: 2px solid $colorDark;
+  border-left: $borderDark;
+  border-right: $borderDark;
 }
 
 .navbar_img {
@@ -65,7 +65,7 @@
   max-height: 85vh;
   padding: 25px;
   background-color: $colorLight;
-  border: 2px solid $colorDark;
+  border: $borderDark;
   border-radius: 10px;
   box-shadow: $boxShadow;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);

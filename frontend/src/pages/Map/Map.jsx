@@ -40,17 +40,22 @@ function Map() {
 
   useEffect(() => {
     if (coords && map.current) {
-      map.current.setView(coords.lat, coords.long, 13);
+      map.current.setView([coords.lat, coords.long], 13);
     }
   }, [coords, map]);
 
   const handlePick = useCallback((_, item) => {
-    const [lat, lng] = item.coordinates.split(",");
-    setCoords([lat, lng]);
-  }, []);
+    setCoords({
+      lat: item.lat,
+      long: item.lng,
+    });
+  });
 
   const handleGeolocation = useCallback((_, pos) => {
-    setCoords([pos.coords.latitude, pos.coords.longitude]);
+    setCoords({
+      lat: pos.coords.latitude,
+      long: pos.coords.longitude,
+    });
   }, []);
 
   useEffect(() => {
@@ -69,8 +74,7 @@ function Map() {
     navigator.geolocation.getCurrentPosition(getPosition);
   }, []);
 
-  const hasValidPosition =
-    coords.lat !== 0 && coords.long !== 0 && coords.accuracy < 2000;
+  const hasValidPosition = coords.lat !== 0 && coords.long !== 0;
 
   return (
     <>
@@ -85,8 +89,8 @@ function Map() {
       {hasValidPosition && (
         <MapContainer ref={map} center={[coords.lat, coords.long]} zoom={13}>
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
           />
           <MarkerClusterGroup>
             {markers.map((marker) => (

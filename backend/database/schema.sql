@@ -52,3 +52,36 @@ more_info VARCHAR(200),
 update_date DATE,
 station_id INT ,
 FOREIGN KEY (station_id) REFERENCES station(id));
+
+CREATE TABLE form(
+id INT PRIMARY KEY AUTO_INCREMENT,
+firstname VARCHAR(80),
+lastname VARCHAR(80),
+email VARCHAR(160),
+date DATE,
+type VARCHAR(80),
+title VARCHAR(80),
+content VARCHAR(160),
+user_id INT,
+FOREIGN KEY (user_id) REFERENCES user(user_id));
+
+CREATE TABLE booking_list(
+id INT PRIMARY KEY AUTO_INCREMENT,
+date DATE,
+charge_point_id INT,
+car_id INT,
+user_id INT,
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (car_id) REFERENCES car(id),
+FOREIGN KEY (charge_point_id) REFERENCES charge_point(id));
+
+CREATE TABLE type(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(80));
+
+CREATE TABLE list_type(
+id INT PRIMARY KEY AUTO_INCREMENT,
+charge_point_id INT,
+type_id INT,
+FOREIGN KEY (charge_point_id) REFERENCES charge_point(id),
+FOREIGN KEY (type_id) REFERENCES type(id));

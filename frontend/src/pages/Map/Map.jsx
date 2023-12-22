@@ -60,14 +60,10 @@ function Map() {
 
   useEffect(() => {
     const getPosition = (position) => {
-      const lat = position.coords.latitude;
-      const long = position.coords.longitude;
-      const { accuracy } = position.coords;
-      const currentPosition = { lat, long, accuracy };
       setCoords({
-        lat: currentPosition.lat,
-        long: currentPosition.long,
-        accuracy: currentPosition.accuracy,
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+        accuracy: position.coords.accuracy,
       });
     };
 

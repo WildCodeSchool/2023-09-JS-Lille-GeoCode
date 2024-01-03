@@ -7,10 +7,10 @@ function Home() {
   return (
     <>
       <img className="logo" src={GeoCode} alt="logo de l'application" />
-      <section className="buttons_home">
+      <section className="buttons-home">
         <NavigationButton destination="/subscribe" text="s'enregistrer" />
         <NavigationButton destination="/connection" text="Se connecter" />
-        <p className="consul_s_inscription">
+        <p className="consul-s-inscription">
           <NavigationButton
             destination="/map"
             text="Consulter sans inscription"

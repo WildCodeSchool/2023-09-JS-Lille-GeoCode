@@ -4,9 +4,11 @@ import "./NavigationButton.scss";
 
 function NavigationButton({ text, destination }) {
   return (
-    <div className="styleButton">
-      <Link to={destination}> {text} </Link>
-    </div>
+    <section className="style-button">
+      <Link to={destination}>
+        <button type="button">{text}</button>
+      </Link>
+    </section>
   );
 }
 

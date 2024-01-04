@@ -56,14 +56,13 @@
 
 .dialogContent {
   position: fixed;
-  bottom: 20%;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   width: 80vw;
-  height: 60vh;
-  max-width: 450px;
-  max-height: 85vh;
-  padding: 25px;
+  height: 65vh;
+  max-width: 28rem;
+  padding: 1.5rem;
   background-color: $colorLight;
   border: $borderDark;
   border-radius: 10px;
@@ -72,6 +71,11 @@
 }
 .dialogContent:focus {
   outline: none;
+}
+
+.station_mc_container {
+  max-height: 61vh;
+  overflow: scroll;
 }
 
 @keyframes overlayShow {

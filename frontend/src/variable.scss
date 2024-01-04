@@ -15,5 +15,6 @@ $gradient180deg: linear-gradient(
   rgba(124, 216, 88, 1) 100%
 );
 $fontFamily: "Atkinson Hyperlegible";
-$boxShadow: 0px 5px 6px 0px $colorDark;
+$boxShadow: 4px 5px 6px 0px $colorDark;
+$boxShadow_inv: -4px 5px 6px 0px $colorDark;
 $borderDark: 2px solid $colorDark;

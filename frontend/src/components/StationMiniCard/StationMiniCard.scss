@@ -1,5 +1,9 @@
 @import "../../variable.scss";
 
+.dialogContent ul {
+  all: unset;
+}
+
 .station_mc {
   box-sizing: border-box;
   height: 5rem;
@@ -32,7 +36,7 @@
   justify-self: center;
 }
 
-.station_mc h1 {
+.station_mc h2 {
   grid-area: 1 / 2 / 2 / 4;
   margin: 0;
   align-self: end;

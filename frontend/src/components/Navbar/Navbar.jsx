@@ -82,11 +82,11 @@ function Navbar() {
             <Dialog.Portal>
               <Dialog.Overlay className="dialogOverlay" />
               <Dialog.Content className="dialogContent">
-                <Dialog.Description className="station_mc_container">
+                <ul>
                   {stations.map((station) => (
                     <StationMiniCard key={station.id} stations={station} />
                   ))}
-                </Dialog.Description>
+                </ul>
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>

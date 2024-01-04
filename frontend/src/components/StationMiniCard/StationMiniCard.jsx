@@ -4,14 +4,14 @@ import "./StationMiniCard.scss";
 
 function StationMiniCard({ stations }) {
   return (
-    <article className="station_mc">
+    <li className="station_mc">
       <img
         className="station_mc_logo"
         src={NavbarStations}
         draggable="false"
         alt="logo prise de recharge"
       />
-      <h1>{stations.name}</h1>
+      <h2>{stations.name}</h2>
       <p className="station_mc_distance">à {stations.distance} km</p>
       <p className="station_mc_plugtype">{stations.plugType}</p>
       <img
@@ -20,7 +20,7 @@ function StationMiniCard({ stations }) {
         draggable="false"
         alt="logo type de prise"
       />
-    </article>
+    </li>
   );
 }
 

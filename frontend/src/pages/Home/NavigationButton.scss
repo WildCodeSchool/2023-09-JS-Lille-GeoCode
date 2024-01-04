@@ -1,0 +1,15 @@
+@import "../../variable.scss";
+
+.style-button {
+  border: 2.4px solid $colorDark;
+  border-radius: 8px 48px;
+  box-shadow: 0px 4px 4px 0px $colorDark;
+  margin-bottom: 3%;
+  width: 70vw;
+  height: 12vh;
+  font-size: 3rem;
+  background: $colorLight;
+  color: $colorDark;
+  font-size: 1.6rem;
+  align-items: center;
+}

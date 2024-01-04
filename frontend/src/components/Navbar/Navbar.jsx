@@ -65,7 +65,7 @@ function Navbar() {
               className="navbar_img"
               src={NavbarMap}
               draggable="false"
-              alt="map logo"
+              alt="logo de carte"
             />
           </Link>
         </li>
@@ -76,7 +76,7 @@ function Navbar() {
                 className="navbar_img"
                 src={NavbarStations}
                 draggable="false"
-                alt="map logo"
+                alt="logo de station"
               />
             </Dialog.Trigger>
             <Dialog.Portal>
@@ -97,7 +97,7 @@ function Navbar() {
               className="navbar_img"
               src={NavbarUserPage}
               draggable="false"
-              alt="map logo"
+              alt="logo de profil"
             />
           </Link>
         </li>

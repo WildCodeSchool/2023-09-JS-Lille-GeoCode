@@ -8,14 +8,16 @@
   box-sizing: border-box;
   height: 5rem;
   margin-bottom: 1.5rem;
-  background-color: $colorLight;
-  border: $borderDark;
   border-radius: 10px;
   box-shadow: $boxShadow_inv;
   display: grid;
   grid-template-columns: 25% 30% 1fr 15%;
   grid-template-rows: 1fr 55%;
   align-items: center;
+  border: double 1.5px transparent;
+  background-image: linear-gradient($colorLight, $colorLight), $gradient180deg;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 .station_mc_logo {

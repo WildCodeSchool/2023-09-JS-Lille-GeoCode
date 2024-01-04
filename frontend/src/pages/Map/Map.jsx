@@ -75,11 +75,15 @@ function Map() {
   return (
     <>
       <form role="search" className="searchBar">
+        <label htmlFor="searchLabel" className="searhcLabel">
+          Adresse
+        </label>
         <PlaceKit
           apiKey={import.meta.env.VITE_API_KEY}
           onPick={handlePick}
           onGeolocation={handleGeolocation}
           placeholder="Rechercher une adresse..."
+          id="searchLabel"
         />
       </form>
       {hasValidPosition && (

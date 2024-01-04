@@ -61,7 +61,6 @@
   transform: translateX(-50%);
   width: 80vw;
   height: 65vh;
-  max-width: 28rem;
   padding: 1.5rem;
   background-color: $colorLight;
   border: $borderDark;
@@ -89,5 +88,11 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .dialogContent {
+    width: 40vw;
   }
 }

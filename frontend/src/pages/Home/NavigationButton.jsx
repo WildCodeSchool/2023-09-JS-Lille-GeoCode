@@ -1,14 +1,17 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./NavigationButton.scss";
 
 function NavigationButton({ text, destination }) {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate(destination);
+  };
   return (
-    <section className="style-button">
-      <Link to={destination}>
-        <button type="button">{text}</button>
-      </Link>
-    </section>
+    <button className="style-button" type="button" onClick={handleButtonClick}>
+      {text}
+    </button>
   );
 }
 

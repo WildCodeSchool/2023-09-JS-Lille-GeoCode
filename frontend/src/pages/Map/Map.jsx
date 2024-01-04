@@ -7,6 +7,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { PlaceKit } from "@placekit/autocomplete-react";
 import plugGreen from "../../assets/plug-icon-green.png";
 import "@placekit/autocomplete-js/dist/placekit-autocomplete.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Map() {
   const markers = [
@@ -106,6 +107,7 @@ function Map() {
               </Popup>
             </Marker>
           )}
+          <Navbar />
         </MapContainer>
       )}
     </>

@@ -1,18 +1,18 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import arrow from "../../assets/arrowBackLight.svg";
 import "./BackButton.scss";
 
-function Redirection() {
+function BackButton() {
   const navigate = useNavigate();
 
   return (
-    <Link to={navigate(-1)}>
+    <button className="backButton" type="button" onClick={() => navigate(-1)}>
       <img
         src={arrow}
         alt="fleche de retour à la page précedente"
-        className="backButton"
+        className="backButtonImg"
       />
-    </Link>
+    </button>
   );
 }
-export default Redirection;
+export default BackButton;

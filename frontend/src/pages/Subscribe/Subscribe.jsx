@@ -1,197 +1,152 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
+import Joi from "joi";
+import { joiResolver } from "@hookform/resolvers/joi";
 import "./Subscribe.scss";
-import BackButton from "../../components/BackButton/BackButton";
-import addPicture from "../../assets/addPicture.svg";
+import BackgroundAsideType from "../../components/BackgroundAsideType/BackgroundAsideType";
+import FormLabel from "../../components/FormLabel/FormLabel";
 
 function Subscribe() {
+  const validationSchema = Joi.object({
+    lastName: Joi.string().min(1).max(255).required().messages({
+      "string.empty": "Votre nom est requis",
+      "string.min": "Le nom doit contenir au moins {#limit} caractères",
+      "string.max": "Le nom ne doit pas dépasser {#limit} caractères",
+    }),
+    firstName: Joi.string().min(1).max(255).required().messages({
+      "string.empty": "Votre prénom est requis",
+      "string.min": "Le prénom doit contenir au moins {#limit} caractères",
+      "string.max": "Le prénom ne doit pas dépasser {#limit} caractères",
+    }),
+    image: Joi.any(),
+    email: Joi.string().email({ tlds: false }).max(255).required().messages({
+      "string.empty": "Votre email est requis",
+      "string.email": "L'email doit être valide",
+      "string.max": "L'email ne doit pas dépasser {#limit} caractères",
+    }),
+    gender: Joi.string().min(1).max(255).required().messages({
+      "string.empty": "Le genre est requis",
+    }),
+    birthdate: Joi.string().min(1).max(255).required().messages({
+      "string.empty": "La date de naissance est requise",
+    }),
+    zipcode: Joi.string()
+      .pattern(/^\d{5}$/)
+      .required()
+      .messages({
+        "string.empty": "Le code postal est requis",
+        "string.pattern.base":
+          "Le code postal doit contenir exactement 5 chiffres",
+      }),
+    city: Joi.string().min(1).max(255).required().messages({
+      "string.empty": "La ville est requise",
+    }),
+    password: Joi.string().min(5).max(255).required().messages({
+      "string.empty": "Le mot de passe est requis",
+      "string.min":
+        "Le mot de passe doit contenir au moins {#limit} caractères",
+    }),
+    confirmPassword: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .valid(Joi.ref("password"))
+      .messages({
+        "string.empty": "La confirmation du mot de passe est requise",
+        "string.min":
+          "La confirmation du mot de passe doit contenir au moins {#limit} caractères",
+        "any.only":
+          "La confirmation du mot de passe doit correspondre au mot de passe",
+      }),
+  }).required();
+
   const {
     handleSubmit,
     register,
-    watch,
     formState: { errors },
-  } = useForm();
-
-  const pwd = watch("password");
+  } = useForm({ resolver: joiResolver(validationSchema) });
 
   function onSubmit(data) {
     console.info(JSON.stringify(data));
   }
 
   return (
-    <section className="background">
-      <aside className="contentAside">
-        <h1 className="titleSubscribe">S'enregistrer</h1>
-        <BackButton />
-      </aside>
+    <BackgroundAsideType title="S'enregistrer">
       <form className="subscribeForm" onSubmit={handleSubmit(onSubmit)}>
-        <article className="group-picture">
-          <article className="NamesElements">
-            <fieldset className="lastName">
-              <label className="labelSubscribe" htmlFor="lastName">
-                Nom de famille :
-              </label>
-              <input
-                className="inputSubscribe"
-                type="text"
-                id="lastName"
-                {...register("lastName", { required: true, minLength: 1 })}
-              />
-              {errors.lastName && (
-                <p className="error">Le nom de famille est obligatoire.</p>
-              )}
-            </fieldset>
-            <fieldset className="firstName">
-              <label className="labelSubscribe" htmlFor="firstName">
-                Prénom :
-              </label>
-              <input
-                className="inputSubscribe"
-                type="text"
-                id="firstName"
-                {...register("firstName", { required: true, minLength: 1 })}
-              />
-              {errors.firstName && (
-                <p className="error">Le prénom est obligatoire.</p>
-              )}
-            </fieldset>
-          </article>
-          <article className="PictureElement">
-            <fieldset className="pictureProfil">
-              <label className="labelSubscribe" htmlFor="pictureProfil">
-                Photo de profil :
-              </label>
-              <label htmlFor="pictureProfil" className="labelPicture">
-                <img
-                  className="addPicture"
-                  src={addPicture}
-                  alt="raccourci pour import fichier portrait"
-                />
-              </label>
-              <input
-                className="inputPictureProfil"
-                type="file"
-                id="pictureProfil"
-                {...register("image")}
-              />
-            </fieldset>
-          </article>
-        </article>
-        <fieldset className="email">
-          <label className="labelSubscribe" htmlFor="email">
-            Email :
-          </label>
-          <input
-            className="inputSubscribe"
-            type="email"
-            id="email"
-            {...register("email", { required: true, minLength: 1 })}
-          />
-          {errors.email && <p className="error">Votre mail est obligatoire.</p>}
-        </fieldset>
-        <fieldset className="gender">
-          <label className="labelSubscribe" htmlFor="gender">
-            Genre :
-          </label>
-          <select name="genre" className="selectGender" id="gender">
-            <option>Choisir un genre</option>
-            <option value="Homme">Homme</option>
-            <option value="Femme">Femme</option>
-            <option value="Ne souhaite pas choisir">
-              Ne souhaite pas choisir
-            </option>
-          </select>
-        </fieldset>
-        <fieldset className="birthdate">
-          <label className="labelSubscribe" htmlFor="birthdate">
-            Date de naissance :
-          </label>
-          <input
-            className="inputSubscribe"
-            type="date"
-            id="birthdate"
-            {...register("birthdate", { required: true })}
-          />
-          {errors.birthdate && (
-            <p className="error">Votre Date de naissance est obligatoire.</p>
-          )}
-        </fieldset>
-        <fieldset className="zipcode">
-          <label className="labelSubscribe" htmlFor="zipcode">
-            Code postal :
-          </label>
-          <input
-            className="inputSubscribe"
-            type="text"
-            id="zipcode"
-            {...register("zipcode", {
-              required: true,
-              minLength: 5,
-              maxLength: 5,
-            })}
-          />
-          {errors.zipcode && (
-            <p className="error">Votre Code postal est obligatoire.</p>
-          )}
-        </fieldset>
-        <fieldset className="city">
-          <label className="labelSubscribe" htmlFor="city">
-            Ville :
-          </label>
-          <input
-            className="inputSubscribe"
-            type="text"
-            id="city"
-            {...register("city", {
-              required: true,
-              minLength: 5,
-              maxLength: 5,
-            })}
-          />
-          {errors.city && <p className="error">Votre ville est obligatoire.</p>}
-        </fieldset>
-        <fieldset className="password">
-          <label className="labelSubscribe" htmlFor="password">
-            Mot de passe :
-          </label>
-          <input
-            className="inputSubscribe"
-            type="password"
-            id="password"
-            {...register("password", { required: true, minLength: 5 })}
-          />
-          {errors.password && (
-            <p className="error">
-              Votre Mot de passe est obligatoire, doit contenir un minimu de 5
-              caractères svp.
-            </p>
-          )}
-        </fieldset>
-        <article className="confirmPassword">
-          <label className="labelSubscribe" htmlFor="confirmPassword">
-            Confirmation du mot de passe :
-          </label>
-          <input
-            className="inputSubscribe"
-            type="password"
-            id="confirmPassword"
-            {...register("confirmPassword", {
-              required: true,
-              minLength: 5,
-              validate: (value) => value === pwd || "The password do not match",
-            })}
-          />
-          {errors.confirmPassword && (
-            <p className="error">{errors.confirmPassword.message}</p>
-          )}
-        </article>
+        <FormLabel
+          label="lastName"
+          labelTitle="Nom"
+          register={register}
+          errors={errors}
+          placeholder="Tapez votre nom ici"
+        />
+        <FormLabel
+          label="firstName"
+          labelTitle="Prénom"
+          register={register}
+          errors={errors}
+          placeholder="Tapez votre prénom ici"
+        />
+        <FormLabel
+          label="pictureProfil"
+          labelTitle="Photo de Profil"
+          register={register}
+          errors={errors}
+        />
+        <FormLabel
+          label="email"
+          labelTitle="Email"
+          register={register}
+          errors={errors}
+          placeholder="Tapez votre email ici"
+        />
+        <FormLabel
+          label="gender"
+          labelTitle="Genre"
+          register={register}
+          errors={errors}
+        />
+        <FormLabel
+          label="birthdate"
+          labelTitle="Date de naissance"
+          register={register}
+          errors={errors}
+        />
+        <FormLabel
+          label="zipcode"
+          labelTitle="Code Postal"
+          register={register}
+          errors={errors}
+          placeholder="Tapez votre code postal ici"
+        />
+        <FormLabel
+          label="city"
+          labelTitle="Ville"
+          register={register}
+          errors={errors}
+          placeholder="Tapez votre ville ici"
+        />
+        <FormLabel
+          label="password"
+          labelTitle="Mot de passe"
+          register={register}
+          errors={errors}
+          placeholder="Tapez votre mot de passe ici"
+        />
+        <FormLabel
+          label="confirmPassword"
+          labelTitle="Confirmer le mot de passe"
+          register={register}
+          errors={errors}
+          placeholder="Retapez votre mot de passe ici"
+        />
         <footer className="containerSubmit">
           <button className="submit" type="submit">
             Envoyer
           </button>
         </footer>
       </form>
-    </section>
+    </BackgroundAsideType>
   );
 }
 

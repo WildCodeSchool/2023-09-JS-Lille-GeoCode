@@ -9,7 +9,7 @@ function BackButton() {
     <button className="backButton" type="button" onClick={() => navigate(-1)}>
       <img
         src={arrow}
-        alt="fleche de retour à la page précedente"
+        alt="flèche de retour à la page précédente"
         className="backButtonImg"
       />
     </button>

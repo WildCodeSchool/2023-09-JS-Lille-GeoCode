@@ -67,13 +67,19 @@ function FormLabel({ label, labelTitle, register, errors, placeholder }) {
   return (
     <>
       {label === "pictureProfil" ? (
-        pictureProfil
+        <>
+          {inputField}
+          {pictureProfil}
+        </>
       ) : (
-        <label className="labelSubscribe" htmlFor={label}>
-          {labelTitle}
-        </label>
+        <>
+          <label className="labelSubscribe" htmlFor={label}>
+            {labelTitle}
+          </label>
+          {inputField}
+        </>
       )}
-      {inputField}
+
       {errors[label] && (
         <p className={`error error${label}`}>{errors[label].message}</p>
       )}

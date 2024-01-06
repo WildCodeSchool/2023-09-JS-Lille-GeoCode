@@ -4,13 +4,13 @@ import "./BackgroundAsideType.scss";
 
 function BackgroundAsideType({ title, children }) {
   return (
-    <article className="background">
-      <aside className="contentAside">
+    <section className="background">
+      <header className="contentAside">
         <h1 className="titleSubscribe">{title}</h1>
         <BackButton />
-      </aside>
+      </header>
       <main className="mainContent">{children}</main>
-    </article>
+    </section>
   );
 }
 

@@ -7,6 +7,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { PlaceKit } from "@placekit/autocomplete-react";
 import plugGreen from "../../assets/plug-icon-green.png";
 import "@placekit/autocomplete-js/dist/placekit-autocomplete.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Map() {
   const markers = [
@@ -40,53 +41,57 @@ function Map() {
 
   useEffect(() => {
     if (coords && map.current) {
-      map.current.setView(coords.lat, coords.long, 13);
+      map.current.setView([coords.lat, coords.long], 13);
     }
   }, [coords, map]);
 
   const handlePick = useCallback((_, item) => {
-    const [lat, lng] = item.coordinates.split(",");
-    setCoords([lat, lng]);
-  }, []);
+    setCoords({
+      lat: item.lat,
+      long: item.lng,
+    });
+  });
 
   const handleGeolocation = useCallback((_, pos) => {
-    setCoords([pos.coords.latitude, pos.coords.longitude]);
+    setCoords({
+      lat: pos.coords.latitude,
+      long: pos.coords.longitude,
+    });
   }, []);
 
   useEffect(() => {
     const getPosition = (position) => {
-      const lat = position.coords.latitude;
-      const long = position.coords.longitude;
-      const { accuracy } = position.coords;
-      const currentPosition = { lat, long, accuracy };
       setCoords({
-        lat: currentPosition.lat,
-        long: currentPosition.long,
-        accuracy: currentPosition.accuracy,
+        lat: position.coords.latitude,
+        long: position.coords.longitude,
+        accuracy: position.coords.accuracy,
       });
     };
 
     navigator.geolocation.getCurrentPosition(getPosition);
   }, []);
 
-  const hasValidPosition =
-    coords.lat !== 0 && coords.long !== 0 && coords.accuracy < 2000;
+  const hasValidPosition = coords.lat !== 0 && coords.long !== 0;
 
   return (
     <>
       <form role="search" className="searchBar">
+        <label htmlFor="searchLabel" className="searhcLabel">
+          Adresse
+        </label>
         <PlaceKit
           apiKey={import.meta.env.VITE_API_KEY}
           onPick={handlePick}
           onGeolocation={handleGeolocation}
           placeholder="Rechercher une adresse..."
+          id="searchLabel"
         />
       </form>
       {hasValidPosition && (
         <MapContainer ref={map} center={[coords.lat, coords.long]} zoom={13}>
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png"
           />
           <MarkerClusterGroup>
             {markers.map((marker) => (
@@ -102,6 +107,7 @@ function Map() {
               </Popup>
             </Marker>
           )}
+          <Navbar />
         </MapContainer>
       )}
     </>

@@ -6,27 +6,29 @@ USE geocode;
 
 CREATE TABLE person(
 id INT PRIMARY KEY AUTO_INCREMENT,
-firstname VARCHAR(80),
 lastname VARCHAR(80),
-gender VARCHAR(80),
+firstname VARCHAR(80),
 email VARCHAR(200),
+gender VARCHAR(80),
 birthday DATE,
 city VARCHAR(80),
-postcode INT,
 zipcode INT,
 password VARCHAR(80),
-status VARCHAR(80));
+is_admin BOOLEAN DEFAULT FALSE;
 
 CREATE TABLE admin(
-user_id INT PRIMARY KEY,
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+user_id INT NOT NULL,
 FOREIGN KEY (user_id) REFERENCES person(id));
 
 CREATE TABLE visitor(
-user_id INT PRIMARY KEY,
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+user_id INT,
 FOREIGN KEY (user_id) REFERENCES person(id));
 
 CREATE TABLE user(
-user_id INT PRIMARY KEY,
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+user_id INT,
 FOREIGN KEY (user_id) REFERENCES person(id));
 
 CREATE TABLE car(
@@ -37,20 +39,19 @@ plug_type VARCHAR(80));
 
 CREATE TABLE station(
 id INT PRIMARY KEY AUTO_INCREMENT,
-operator_name VARCHAR(80),
-stationv_name VARCHAR(80),
-adress VARCHAR(80),
-latitude DECIMAL(10, 8),
-longitude DECIMAL(11, 8));
+station_name VARCHAR(80),
+adress VARCHAR(255),
+y_latitude DECIMAL(10, 8),
+x_longitude DECIMAL(11, 8)),
+station_id_fr VARCHAR(80);
 
 CREATE TABLE charge_point(
 id INT  PRIMARY KEY AUTO_INCREMENT,
-compagny_name VARCHAR(80),
+operator_name VARCHAR(80),
 max_power INT,
 accessibility VARCHAR(80),
-more_info VARCHAR(200),
-update_date DATE,
 station_id INT ,
+charge_point_id_fr VARCHAR(80),
 FOREIGN KEY (station_id) REFERENCES station(id));
 
 CREATE TABLE form(

@@ -3,13 +3,35 @@ import "./Profil.scss";
 
 function Profil() {
   return (
-    <section>
-      <NavigationButton destination="/subscribe" text="S'enregistrer" />
-      <NavigationButton destination="/connection" text="Se connecter" />
-      <NavigationButton destination="/advice" text="Conseils" />
-      <NavigationButton destination="/news" text="Actualités" />
-      <NavigationButton destination="/contact" text="Nous contacter" />
-    </section>
+    <main className="fullViewport">
+      <section className="profil">
+        <NavigationButton
+          destination="/subscribe"
+          text="S'enregistrer"
+          className="style-button2"
+        />
+        <NavigationButton
+          destination="/connection"
+          text="Se connecter"
+          className="style-button2"
+        />
+        <NavigationButton
+          destination="/advice"
+          text="Conseils"
+          className="style-button2"
+        />
+        <NavigationButton
+          destination="/news"
+          text="Actualités"
+          className="style-button2"
+        />
+        <NavigationButton
+          destination="/contact"
+          text="Nous contacter"
+          className="style-button2"
+        />
+      </section>
+    </main>
   );
 }
 

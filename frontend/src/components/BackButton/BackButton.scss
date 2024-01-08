@@ -1,0 +1,13 @@
+.backButton {
+  all: unset;
+}
+
+.backButtonImg {
+  width: 9vw;
+}
+
+@media screen and (min-width: 600px) {
+  .backButtonImg {
+    width: 4vw;
+  }
+}

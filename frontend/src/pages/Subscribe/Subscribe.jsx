@@ -140,11 +140,9 @@ function Subscribe() {
           errors={errors}
           placeholder="Retapez votre mot de passe ici"
         />
-        <footer className="containerSubmit">
-          <button className="submit" type="submit">
-            Envoyer
-          </button>
-        </footer>
+        <button className="submit" type="submit">
+          Envoyer
+        </button>
       </form>
     </BackgroundAsideType>
   );

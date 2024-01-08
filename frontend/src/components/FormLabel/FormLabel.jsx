@@ -38,9 +38,9 @@ function FormLabel({ label, labelTitle, register, errors, placeholder }) {
     inputField = (
       <select className="selectGender" id={label} {...register(label)}>
         <option value="">Choisir un genre</option>
-        <option value="Homme">Homme</option>
-        <option value="Femme">Femme</option>
-        <option value="Ne souhaite pas choisir">Ne souhaite pas choisir</option>
+        <option value="men">Homme</option>
+        <option value="women">Femme</option>
+        <option value="notChoosing">Ne souhaite pas choisir</option>
       </select>
     );
   } else {
@@ -57,7 +57,7 @@ function FormLabel({ label, labelTitle, register, errors, placeholder }) {
         autoComplete={
           label === "password" || label === "confirmPassword"
             ? "new-password"
-            : ""
+            : null
         }
         {...register(label)}
       />

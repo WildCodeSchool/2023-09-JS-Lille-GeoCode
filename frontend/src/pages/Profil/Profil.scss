@@ -6,24 +6,17 @@
   font-size: $font-size;
   margin-bottom: $margin-bottom;
 }
-
 * {
   font-family: $fontFamily;
 }
-
-.fullViewport {
-  margin: -0.5em;
-  background-color: $colorLight;
-  padding-top: 7vh;
-  padding-bottom: 50vh;
-}
-
 .profil {
+  background-color: $colorLight;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
-
 .style-button2 {
   @include style1($gradient90deg, 80vw, 6vh, 1.6rem, 6%);
   border: 2.4px solid $colorDark;

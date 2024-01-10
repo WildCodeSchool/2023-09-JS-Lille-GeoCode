@@ -9,7 +9,7 @@ function NavigationButton({ text, destination, buttonStilization }) {
   };
   return (
     <button
-      className={`style-button, style-button2 ${buttonStilization}`}
+      className={` ${buttonStilization}`}
       type="button"
       onClick={handleButtonClick}
     >

@@ -70,13 +70,7 @@ function Map() {
         accuracy: position.coords.accuracy,
       });
     };
-    const refusedPosition = () => {
-      setCoords({
-        lat: 50.633333,
-        long: 3.066667,
-      });
-    };
-    navigator.geolocation.getCurrentPosition(getPosition, refusedPosition);
+    navigator.geolocation.getCurrentPosition(getPosition);
   }, []);
 
   const hasValidPosition = coords.lat !== 0 && coords.long !== 0;

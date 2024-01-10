@@ -1,9 +1,9 @@
-import VisitorProfil from "./VisitorProfile";
-import ConnectedProfil from "./ConnectedProfile";
+import VisitorProfile from "./VisitorProfile";
+import ConnectedProfile from "./ConnectedProfile";
 
 function Profile() {
   const isConnected = false;
-  return isConnected ? <ConnectedProfil /> : <VisitorProfil />;
+  return isConnected ? <ConnectedProfile /> : <VisitorProfile />;
 }
 
 export default Profile;

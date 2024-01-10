@@ -1,9 +1,9 @@
 import NavigationButton from "../Home/NavigationButton";
-import "./Profil.scss";
+import "./VisitorProfile.scss";
 
-function Profil() {
+function VisitorProfile() {
   return (
-    <section className="profil">
+    <section className="profile">
       <NavigationButton
         destination="/subscribe"
         text="S'enregistrer"
@@ -15,16 +15,6 @@ function Profil() {
         className="style-button2"
       />
       <NavigationButton
-        destination="/advice"
-        text="Conseils"
-        className="style-button2"
-      />
-      <NavigationButton
-        destination="/news"
-        text="Actualités"
-        className="style-button2"
-      />
-      <NavigationButton
         destination="/contact"
         text="Nous contacter"
         className="style-button2"
@@ -33,4 +23,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default VisitorProfile;

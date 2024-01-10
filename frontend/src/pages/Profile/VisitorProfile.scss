@@ -6,10 +6,16 @@
   font-size: $font-size;
   margin-bottom: $margin-bottom;
 }
+
+@mixin style2($width, $heigth) {
+  width: $width;
+  height: $heigth;
+}
+
 * {
   font-family: $fontFamily;
 }
-.profil {
+.profile {
   background-color: $colorLight;
   height: 100vh;
   display: flex;
@@ -24,4 +30,7 @@
   box-shadow: 0px 4px 4px 0px $colorDark;
   color: $colorDark;
   align-items: center;
+  @media screen and (min-width: 600px) {
+    @include style2(50vw, 10vh);
+  }
 }

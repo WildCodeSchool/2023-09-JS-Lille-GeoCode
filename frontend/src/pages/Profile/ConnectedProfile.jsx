@@ -13,22 +13,22 @@ function Profile() {
         <NavigationButton
           destination="/"
           text="Mes informations"
-          className="style-button2"
+          buttonStilization="style-button2"
         />
         <NavigationButton
           destination="/"
           text="Véhicules"
-          className="style-button2"
+          buttonStilization="style-button2"
         />
         <NavigationButton
           destination="/"
           text="Mes réservations"
-          className="style-button2"
+          buttonStilization="style-button2"
         />
         <NavigationButton
           destination="/contact"
           text="Nous contacter"
-          className="style-button2"
+          buttonStilization="style-button2"
         />
       </section>
     </main>

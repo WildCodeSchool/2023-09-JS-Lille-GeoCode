@@ -10,17 +10,17 @@ function Home() {
         <NavigationButton
           destination="/subscribe"
           text="S'enregistrer"
-          className="style-button"
+          buttonStilization="style-button"
         />
         <NavigationButton
           destination="/connection"
           text="Se connecter"
-          className="style-button"
+          buttonStilization="style-button"
         />
         <NavigationButton
           destination="/map"
           text="Consulter sans inscription"
-          className="style-button"
+          buttonStilization="style-button"
         />
       </section>
     </>

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from "prop-types";
-import addPicture from "../../assets/AddPicture.svg";
+import addPicture from "../../assets/addPicture.svg";
 
 function FormLabel({ label, labelTitle, register, errors, placeholder }) {
   const pictureProfil = (

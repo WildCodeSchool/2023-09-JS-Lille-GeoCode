@@ -56,7 +56,7 @@ function ChargepointBook() {
           Puisssance de la borne : {station.powerPlug} kW
         </p>
         <p>Accessibilité : {station.accessibility}</p>
-        <section>
+        <section className="bookContainer">
           <button type="button" className="book">
             Réserver
           </button>

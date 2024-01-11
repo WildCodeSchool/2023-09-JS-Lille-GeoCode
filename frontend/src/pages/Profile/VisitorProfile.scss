@@ -1,5 +1,11 @@
 @import "../../variable.scss";
-@mixin style1($color, $width, $height, $font-size, $margin-bottom) {
+@mixin navigationButtonGradient90(
+  $color,
+  $width,
+  $height,
+  $font-size,
+  $margin-bottom
+) {
   background: $color;
   width: $width;
   height: $height;
@@ -7,7 +13,7 @@
   margin-bottom: $margin-bottom;
 }
 
-@mixin style2($width, $heigth) {
+@mixin navigationButtonMargin($width, $heigth) {
   width: $width;
   height: $heigth;
 }

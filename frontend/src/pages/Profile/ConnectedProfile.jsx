@@ -9,7 +9,7 @@ function Profile() {
         <img className="profilePict" src={profilePict} alt="vue du profil" />
         <h2 className="titleSize">Photo du profil</h2>
       </section>
-      <section className="profile">
+      <nav className="profile">
         <NavigationButton
           destination="/"
           text="Mes informations"
@@ -30,7 +30,7 @@ function Profile() {
           text="Nous contacter"
           buttonStylization="style-button2"
         />
-      </section>
+      </nav>
     </main>
   );
 }

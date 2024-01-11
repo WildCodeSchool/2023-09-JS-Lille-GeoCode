@@ -2,7 +2,7 @@ import VisitorProfile from "./VisitorProfile";
 import ConnectedProfile from "./ConnectedProfile";
 
 function Profile() {
-  const isConnected = false;
+  const isConnected = true;
   return isConnected ? <ConnectedProfile /> : <VisitorProfile />;
 }
 

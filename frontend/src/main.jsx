@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Map from "./pages/Map/Map";
 import Connection from "./pages/Connection/Connection";
 import Subscribe from "./pages/Subscribe/Subscribe";
+import UserInformations from "./pages/UserInformations/UserInformations";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/subscribe",
     element: <Subscribe />,
+  },
+  {
+    path: "/userinformations",
+    element: <UserInformations />,
   },
 ]);
 

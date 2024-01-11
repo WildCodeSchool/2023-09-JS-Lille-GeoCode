@@ -7,17 +7,17 @@ function VisitorProfile() {
       <NavigationButton
         destination="/subscribe"
         text="S'enregistrer"
-        buttonStilization="style-button2"
+        buttonStylization="style-button2"
       />
       <NavigationButton
         destination="/connection"
         text="Se connecter"
-        buttonStilization="style-button2"
+        buttonStylization="style-button2"
       />
       <NavigationButton
         destination="/contact"
         text="Nous contacter"
-        buttonStilization="style-button2"
+        buttonStylization="style-button2"
       />
     </section>
   );

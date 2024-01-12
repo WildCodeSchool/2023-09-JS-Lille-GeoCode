@@ -17,7 +17,11 @@ router.get("/items/:id", itemControllers.read);
 
 // Route to add a new item
 router.post("/items", itemControllers.add);
+// Route to get charge point
 
+const chargePointControllers = require("./controllers/chargePointControllers");
+
+router.get("/chargepoint", chargePointControllers.browse);
 /* ************************************************************************* */
 
 module.exports = router;

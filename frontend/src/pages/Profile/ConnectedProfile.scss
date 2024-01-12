@@ -1,0 +1,73 @@
+@import "../../variable.scss";
+
+@mixin navigationButtonGradient90(
+  $color,
+  $width,
+  $height,
+  $font-size,
+  $margin-bottom
+) {
+  background: $color;
+  width: $width;
+  height: $height;
+  font-size: $font-size;
+  margin-bottom: $margin-bottom;
+}
+
+@mixin navigationButtonMargin($width, $heigth, $margin-top) {
+  width: $width;
+  height: $heigth;
+  margin-top: $margin-top;
+}
+
+* {
+  font-family: $fontFamily;
+}
+
+.headband {
+  display: flex;
+  align-items: center;
+  box-shadow: $boxShadow;
+  border-bottom: $borderDark;
+  position: relative;
+  z-index: 10;
+
+  .profilePict {
+    height: 20vh;
+    margin: 1rem;
+    filter: drop-shadow(0px 0px 3px black);
+  }
+
+  .titleSize {
+    font-size: 1.5rem;
+    color: $colorLight;
+    text-shadow: $textShadow;
+  }
+}
+
+.profile {
+  background-color: $colorLight;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.style-button2 {
+  @include navigationButtonGradient90($gradient90deg, 80vw, 6vh, 1.6rem, 8vh);
+  border: 2.4px solid $colorDark;
+  border-radius: 8px 48px;
+  box-shadow: 0px 4px 4px 0px $colorDark;
+  color: $colorLight;
+  align-items: flex-end;
+
+  @media screen and (min-width: 600px) {
+    @include navigationButtonMargin(30vw, 8vh, 2vh);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .headband {
+    display: flex;
+    justify-content: center;
+  }
+}

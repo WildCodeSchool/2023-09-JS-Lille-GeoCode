@@ -3,7 +3,7 @@ import "./VisitorProfile.scss";
 
 function VisitorProfile() {
   return (
-    <section className="profile">
+    <nav className="profile">
       <NavigationButton
         destination="/subscribe"
         text="S'enregistrer"
@@ -19,7 +19,7 @@ function VisitorProfile() {
         text="Nous contacter"
         buttonStylization="style-button2"
       />
-    </section>
+    </nav>
   );
 }
 

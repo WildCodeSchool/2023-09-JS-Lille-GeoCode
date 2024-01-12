@@ -4,26 +4,24 @@ import NavigationButton from "./NavigationButton";
 
 function Home() {
   return (
-    <>
+    <section className="buttons-home">
       <img className="logo" src={GeoCode} alt="logo de l'application" />
-      <section className="buttons-home">
-        <NavigationButton
-          destination="/subscribe"
-          text="S'enregistrer"
-          buttonStylization="style-button"
-        />
-        <NavigationButton
-          destination="/connection"
-          text="Se connecter"
-          buttonStylization="style-button"
-        />
-        <NavigationButton
-          destination="/map"
-          text="Consulter sans inscription"
-          buttonStylization="style-button"
-        />
-      </section>
-    </>
+      <NavigationButton
+        destination="/subscribe"
+        text="S'enregistrer"
+        buttonStylization="style-button"
+      />
+      <NavigationButton
+        destination="/connection"
+        text="Se connecter"
+        buttonStylization="style-button"
+      />
+      <NavigationButton
+        destination="/map"
+        text="Consulter sans inscription"
+        buttonStylization="style-button"
+      />
+    </section>
   );
 }
 

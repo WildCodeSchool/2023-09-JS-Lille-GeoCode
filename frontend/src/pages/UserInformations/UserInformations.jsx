@@ -22,28 +22,16 @@ const users = {
 function UserInformations() {
   return (
     <section className="viewport_userinformations">
-      <img className="userpicture" alt="utilisateur" src={userPicturePath} />
+      <img className="userpicture" alt="" src={userPicturePath} />
       <p className="username firstname">{users.firstname}</p>
       <p className="username lastname">{users.lastname}</p>
-      <img
-        className="icon birthdate_icon"
-        alt="gateau d'anniversaire"
-        src={BirthdayIcon}
-      />
+      <img className="icon birthdate_icon" alt="" src={BirthdayIcon} />
       <p className="userinfo birthdate">{users.birthdate}</p>
-      <img
-        className="icon gender_icon"
-        alt="symbole masculin-féminin"
-        src={GenderIcon}
-      />
+      <img className="icon gender_icon" alt="" src={GenderIcon} />
       <p className="userinfo gender">{users.gender}</p>
-      <img className="icon email_icon" alt="enveloppe" src={EmailIcon} />
+      <img className="icon email_icon" alt="" src={EmailIcon} />
       <p className="userinfo email">{users.email}</p>
-      <img
-        className="icon address_icon"
-        alt="planète avec marqueur"
-        src={AddressIcon}
-      />
+      <img className="icon address_icon" alt="" src={AddressIcon} />
       <p className="userinfo zipcode">{users.zipcode}</p>
       <p className="userinfo city">{users.city}</p>
       <NavigationButton text="Modifier" />

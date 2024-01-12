@@ -9,12 +9,11 @@ function Home() {
       <img className="logo" src={GeoCode} alt="logo de l'application" />
       <NavigationButton destination="/subscribe" text="s'enregistrer" />
       <NavigationButton destination="/connection" text="Se connecter" />
-      <p className="consul-s-inscription">
-        <NavigationButton
-          destination="/map"
-          text="Consulter sans inscription"
-        />
-      </p>
+      <NavigationButton
+        className="consul-s-inscription"
+        destination="/map"
+        text="Consulter sans inscription"
+      />
     </section>
   );
 }

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import CarShow from "../../components/CarShow/CarShow";
+import DeleteCarConfirmationModal from "../../components/CarShow/DeleteCarConfirmationModal/DeleteCarConfirmationModal";
 import "./Car.scss";
 import Teslamodel3 from "../../assets/cars/teslaModel3.png";
 import PeugeotE208 from "../../assets/cars/PeugeotE208.png";
+import AddCarModal from "../../components/CarShow/AddCarModal/AddCarModal";
 
 function Car() {
   const [counterCar, setcounterCar] = useState(0);
@@ -42,42 +43,8 @@ function Car() {
         counterCar={counterCar}
         setcounterCar={setcounterCar}
       />
-      <button type="button" className="addCar">
-        Ajouter une autre voiture
-      </button>
-
-      <AlertDialog.Root>
-        <AlertDialog.Trigger asChild>
-          {user.car && (
-            <button type="button" className="addCar">
-              Supprimé La voiture
-            </button>
-          )}
-        </AlertDialog.Trigger>
-        <AlertDialog.Portal>
-          <AlertDialog.Overlay className="AlertDialogOverlay" />
-          <AlertDialog.Content className="AlertDialogContent">
-            <AlertDialog.Title className="AlertDialogTitle">
-              Êtes vous vraiment sur de vouloir supprimé cette voiture ?
-            </AlertDialog.Title>
-            <AlertDialog.Description className="AlertDialogDescription">
-              Cette action va supprimé votre voiture définitivement.
-            </AlertDialog.Description>
-            <footer className="chooseButton">
-              <AlertDialog.Cancel asChild>
-                <button type="button" className="carButtonDelete">
-                  Annuler
-                </button>
-              </AlertDialog.Cancel>
-              <AlertDialog.Action asChild>
-                <button type="button" className="carButtonDelete">
-                  Oui
-                </button>
-              </AlertDialog.Action>
-            </footer>
-          </AlertDialog.Content>
-        </AlertDialog.Portal>
-      </AlertDialog.Root>
+      <AddCarModal />
+      <DeleteCarConfirmationModal user={user} />
     </main>
   );
 }

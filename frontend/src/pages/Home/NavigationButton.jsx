@@ -1,15 +1,18 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import "./NavigationButton.scss";
 
-function NavigationButton({ text, destination }) {
+function NavigationButton({ text, destination, buttonStylization }) {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate(destination);
   };
   return (
-    <button className="style-button" type="button" onClick={handleButtonClick}>
+    <button
+      className={`${buttonStylization}`}
+      type="button"
+      onClick={handleButtonClick}
+    >
       {text}
     </button>
   );
@@ -18,6 +21,7 @@ function NavigationButton({ text, destination }) {
 NavigationButton.propTypes = {
   text: PropTypes.string.isRequired,
   destination: PropTypes.string.isRequired,
+  buttonStylization: PropTypes.string.isRequired,
 };
 
 export default NavigationButton;

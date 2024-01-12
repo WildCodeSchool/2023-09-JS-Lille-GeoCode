@@ -8,6 +8,7 @@ import Map from "./pages/Map/Map";
 import Connection from "./pages/Connection/Connection";
 import Subscribe from "./pages/Subscribe/Subscribe";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import Profile from "./pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/editprofile",
     element: <EditProfile />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

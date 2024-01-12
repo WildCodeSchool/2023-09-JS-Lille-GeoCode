@@ -1,4 +1,5 @@
 import "./ChargepointBook.scss";
+import * as Dialog from "@radix-ui/react-dialog";
 import ComboCCSplug from "../../assets/ComboCCSplug.svg";
 import Type2plug from "../../assets/Type2plug.svg";
 
@@ -17,52 +18,57 @@ const station = {
 };
 function ChargepointBook() {
   return (
-    <section className="chargepointBookAll">
-      <p className="stationName">{station.name}</p>
-      <section className="stationInfos">
-        <section className="timeData">
-          <p className="date">Date : {station.date}</p>
-          <p className="time">Horaire : {station.time}</p>
-        </section>
-        <p className="adressStation">Adresse : {station.adress}</p>
-        <section className="plugType">
-          <p>Types de prises :</p>
-          <ul>
-            <li>
-              <section className="typeAndImg">
-                <p>{station.typePlug[0].typeName}</p>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <button className="bookingButton" type="button">
+          Réservez
+        </button>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Content className="chargepointBookAll">
+          <Dialog.Title className="stationName">{station.name}</Dialog.Title>
+          <Dialog.Description className="stationInfos">
+            <p className="date">Date : {station.date}</p>
+            <p className="time">Horaire : {station.time}</p>
+            <adress className="adressStation">
+              Adresse : {station.adress}
+            </adress>
+            <p>Types de prises :</p>
+            <ul className="plugList">
+              <li>
+                <p className="typePlugItem">{station.typePlug[0].typeName}</p>
                 <img
-                  className="imgPlug"
+                  className="imgPlug typePlugItem"
                   src={station.typePlug[0].typeSRC}
                   alt="logo d'une prise electrique de type 2"
                 />
-                <p>{station.typePlug[0].available} x disponible(s)</p>
-              </section>
-            </li>
-            <li>
-              <section className="typeAndImg">
-                <p>{station.typePlug[1].typeName}</p>
+                <p className="typePlugItem">
+                  {station.typePlug[0].available} disponible(s)
+                </p>
+              </li>
+              <li>
+                <p className="typePlugItem">{station.typePlug[1].typeName}</p>
                 <img
-                  className="imgPlug"
+                  className="imgPlug typePlugItem"
                   src={station.typePlug[1].typeSRC}
                   alt="logo d'une prise electrique de type Combo CCS"
                 />
-                <p>{station.typePlug[1].available} x disponible(s)</p>
-              </section>
-            </li>
-          </ul>
-        </section>
-        <p className="powerPlug">
-          Puisssance de la borne : {station.powerPlug} kW
-        </p>
-        <p>Accessibilité : {station.accessibility}</p>
-        <section className="bookContainer">
-          <button type="button" className="book">
-            Réserver
-          </button>
-        </section>
-      </section>
-    </section>
+                <p className="typePlugItem">
+                  {station.typePlug[1].available} disponible(s)
+                </p>
+              </li>
+            </ul>
+            <p>Puisssance de la borne : {station.powerPlug} kW</p>
+            <p>Accessibilité : {station.accessibility}</p>
+          </Dialog.Description>
+          <Dialog.Close asChild>
+            <button type="button" className="book">
+              Réserver
+            </button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 

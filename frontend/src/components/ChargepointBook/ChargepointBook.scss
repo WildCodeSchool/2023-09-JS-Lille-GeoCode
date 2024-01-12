@@ -7,11 +7,11 @@
 .chargepointBookAll {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: $colorLight;
   margin: 4vh 5vw;
-  height: 70vh;
+  padding: 2rem;
   border: 1px $colorDark solid;
   border-radius: 10px;
 }
@@ -26,61 +26,41 @@
   box-shadow: $colorDark 5px 7px 15px 1px;
   border-radius: 10px 50px;
   width: 70vw;
-  height: 5vh;
   text-align: center;
-  padding-top: 1.5vh;
   padding-bottom: 0;
+  margin-bottom: 1vh;
 }
 .stationInfos {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
   background-color: $colorPrimary_trans;
   width: 70vw;
-  height: 48vh;
   border-radius: 10px;
   padding: 1vw 2.5vh;
   font-family: $fontFamily;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 2rem;
-  margin-bottom: 5vh;
+  margin: 2rem;
 }
 
+.date,
 .time {
-  margin-left: 5vw;
-}
-.adressStation {
-  display: flex;
-  flex-direction: row;
+  display: inline-block;
+  margin-right: 2rem;
 }
 
-.available {
-  display: flex;
-  flex-direction: row;
+.adressStation {
+  display: block;
+}
+
+.plugList {
+  padding: 0 1rem;
+}
+.typePlugItem {
+  display: inline-block;
+  margin: 0.1rem;
 }
 .imgPlug {
-  height: 4vh;
-  margin-left: 0.6rem;
-}
-
-.typeAndImg {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 1vh;
-}
-
-.powerPlug,
-.pricesStation {
-  display: flex;
-  flex-direction: row;
-}
-
-.bookContainer {
-  display: flex;
-  justify-content: end;
-  margin-top: 2vh;
+  height: 3vh;
+  margin-bottom: -0.4rem;
 }
 .book {
   font-family: $fontFamily;
@@ -90,44 +70,30 @@
   border: solid $colorDark 2px;
   box-shadow: $colorDark 5px 7px 15px 1px;
   border-radius: 10px 50px;
-  height: 6vh;
   width: 35vw;
   text-shadow: $textDropShadow;
-}
-.timeData {
-  display: flex;
+  align-self: flex-end;
 }
 
 @media screen and (min-width: 600px) {
+  .book {
+    align-self: center;
+    width: 20vw;
+    font-size: 2rem;
+  }
+
   .stationName {
-    width: 32vw;
-    font-size: auto;
+    font-size: 2.5rem;
+    width: 40vw;
   }
 
   .stationInfos {
-    display: flex;
-    align-items: center;
-    line-height: 2.6rem;
-    width: auto;
-    height: auto;
-    font-size: 1.5rem;
-    margin-bottom: 0.7vh;
-  }
-
-  .bookContainer {
-    display: flex;
-    justify-content: end;
-  }
-
-  .book {
-    margin-right: 11vw;
-    margin-top: 3vh;
-    margin: 2vw;
+    font-size: 1.3rem;
+    width: 27vw;
   }
 
   .chargepointBookAll {
-    margin: 4vh 25vw;
-    padding: 1vh;
-    height: 65vh;
+    width: 50vw;
+    margin: auto;
   }
 }

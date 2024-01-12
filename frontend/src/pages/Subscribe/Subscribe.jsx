@@ -1,7 +1,8 @@
 import "./Subscribe.scss";
+import ChargepointBook from "../../components/ChargepointBook/ChargepointBook";
 
 function Subscribe() {
-  return <h1>Subscribe</h1>;
+  return <ChargepointBook />;
 }
 
 export default Subscribe;

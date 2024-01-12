@@ -12,6 +12,7 @@ body {
   height: 50%;
   width: 100%;
   display: inline-block;
+  background: $gradient90deg;
 }
 
 .buttons-home {
@@ -30,7 +31,7 @@ body {
 }
 
 .style-button {
-  @include style($colorLight, 70vw, 12vh, 1.6rem, 3%);
+  @include style($colorLight, 70vw, 12vh, 1.6rem, 3vh);
   border: 2.4px solid $colorDark;
   border-radius: 8px 48px;
   box-shadow: 0px 4px 4px 0px $colorDark;

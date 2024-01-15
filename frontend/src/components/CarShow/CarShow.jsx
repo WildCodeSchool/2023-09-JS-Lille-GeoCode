@@ -33,8 +33,8 @@ function CarShow({ user, counterCar, setcounterCar }) {
           onClick={() => setcounterCar(counterCar + 1)}
         >
           <img className="nextCarButton" src={button} alt="" />
-          <p>Voiture</p>
-          <p>suivante</p>
+          <p className="nextCarText">Voiture</p>
+          <p className="nextCarText">suivante</p>
         </button>
       )}
     </section>

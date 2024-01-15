@@ -5,6 +5,8 @@ import "./Car.scss";
 import Teslamodel3 from "../../assets/cars/teslaModel3.png";
 import PeugeotE208 from "../../assets/cars/PeugeotE208.png";
 import AddCarModal from "../../components/CarShow/AddCarModal/AddCarModal";
+import BackButton from "../../components/BackButton/BackButton";
+import arrowDark from "../../assets/arrowBackDark.svg";
 
 function Car() {
   const [counterCar, setcounterCar] = useState(0);
@@ -47,6 +49,7 @@ function Car() {
         <AddCarModal />
         <DeleteCarConfirmationModal user={user} />
       </footer>
+      <BackButton colorArrow={arrowDark} backButtonStyle="backButtonCar" />
     </main>
   );
 }

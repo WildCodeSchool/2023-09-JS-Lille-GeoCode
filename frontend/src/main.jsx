@@ -7,6 +7,9 @@ import Home from "./pages/Home/Home";
 import Map from "./pages/Map/Map";
 import Connection from "./pages/Connection/Connection";
 import Subscribe from "./pages/Subscribe/Subscribe";
+import UserInformations from "./pages/UserInformations/UserInformations";
+import EditProfile from "./pages/EditProfile/EditProfile";
+import Profile from "./pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +19,20 @@ const router = createBrowserRouter([
   {
     path: "/map",
     element: <Map />,
+    loader: async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/chargepoint`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
   },
   {
     path: "/connection",
@@ -24,6 +41,18 @@ const router = createBrowserRouter([
   {
     path: "/subscribe",
     element: <Subscribe />,
+  },
+  {
+    path: "/editprofile",
+    element: <EditProfile />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/userinformations",
+    element: <UserInformations />,
   },
 ]);
 

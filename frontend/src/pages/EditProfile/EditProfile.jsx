@@ -2,11 +2,11 @@
 import { useForm } from "react-hook-form";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
-import "./Subscribe.scss";
+import "./EditProfile.scss";
 import BackgroundAsideType from "../../components/BackgroundAsideType/BackgroundAsideType";
 import FormLabel from "../../components/FormLabel/FormLabel";
 
-function Subscribe() {
+function EditProfile() {
   const validationSchema = Joi.object({
     lastName: Joi.string().min(1).max(255).required().messages({
       "string.empty": "Votre nom est requis",
@@ -71,7 +71,7 @@ function Subscribe() {
   }
 
   return (
-    <BackgroundAsideType title="S'enregistrer">
+    <BackgroundAsideType title="Modifier Profil">
       <form className="subscribeForm" onSubmit={handleSubmit(onSubmit)}>
         <FormLabel
           label="lastName"
@@ -148,4 +148,4 @@ function Subscribe() {
   );
 }
 
-export default Subscribe;
+export default EditProfile;

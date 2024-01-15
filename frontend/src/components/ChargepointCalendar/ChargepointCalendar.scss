@@ -1,9 +1,5 @@
 @import "../../variable.scss";
 
-.componentElements {
-  display: flex;
-  justify-content: center;
-}
 .allElements {
   display: flex;
   flex-direction: column;
@@ -11,8 +7,15 @@
   background: $colorLight;
   border-radius: 20px;
   width: 85vw;
-  height: auto;
   padding: 3vw;
+  margin: auto;
+  padding-bottom: 3vh;
+}
+
+.allElementsCalendar {
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 .titleCard {
   display: flex;
@@ -30,7 +33,7 @@
   padding: 3vw;
   height: 3vh;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .selectDate,
@@ -46,12 +49,17 @@
 .selectTime,
 .slot,
 .selectVehicle,
-.vehicule {
+.vehicle {
   color: $colorDark;
 }
 .confirmSlot {
   font-family: $fontFamily;
   color: $colorDark;
+}
+
+.selectTime,
+.selectVehicle {
+  display: block;
 }
 .submitButton {
   display: flex;
@@ -64,34 +72,24 @@
   border-radius: 10px 50px;
   text-shadow: $textDropShadow;
   color: $colorLight;
-  margin-top: 3vh;
-  margin-left: 29vw;
+  margin: auto;
   width: auto;
   padding: 3.5vw;
   height: 3vh;
   text-align: center;
   font-size: 1.2rem;
+  margin-top: 2vh;
 }
 @media screen and (min-width: 600px) {
   .allElements {
     font-size: 2.5vw;
     height: auto;
-    padding: 0.8vh;
   }
 
   .titleCard {
-    font-size: 3rem;
+    font-size: 2.5rem;
     width: auto;
     padding: 2vw;
-  }
-
-  .confirmDate,
-  .selectTime,
-  .confirmSlot,
-  .selectDate {
-    color: $colorDark;
-    width: 80vw;
-    margin: 1.5vh;
   }
 
   .slot {
@@ -108,7 +106,7 @@
   }
 
   .submitButton {
-    margin-left: 25vw;
     font-size: 2rem;
+    margin-top: 2vh;
   }
 }

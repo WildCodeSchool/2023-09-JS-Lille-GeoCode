@@ -1,8 +1,8 @@
 import "./Subscribe.scss";
-import ChargepointBook from "../../components/ChargepointBook/ChargepointBook";
+import ChargepointCalendar from "../../components/ChargepointCalendar/ChargepointCalendar";
 
 function Subscribe() {
-  return <ChargepointBook />;
+  return <ChargepointCalendar />;
 }
 
 export default Subscribe;

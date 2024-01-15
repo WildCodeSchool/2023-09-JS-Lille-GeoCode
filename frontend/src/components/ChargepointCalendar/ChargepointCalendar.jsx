@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import Calendar from "react-calendar";
 import "./ChargepointCalendar.scss";
 
@@ -65,74 +66,85 @@ function ChargepointCalendar() {
   };
 
   return (
-    <section className="componentElements">
-      <section className="allElements">
-        <form onSubmit={handleSubmit}>
-          <p className="titleCard">Choisir un créneau</p>
-          <section>
-            <p className="selectDate">Choisir une date :</p>
-            <Calendar
-              className="calendar"
-              onChange={handleDateChange}
-              value={selectedDate}
-            />
-            {selectedDate && (
-              <p className="confirmDate">
-                Votre date sélectionnée : {selectedDate.toDateString()}
-              </p>
-            )}
-          </section>
-
-          {generateTimeSlots()[0] ? (
-            <>
-              <p className="selectTime">Choisir un créneau horaire :</p>
-              <select
-                className="slot"
-                onChange={(e) => handleTimeSelect(new Date(e.target.value))}
-              >
-                <option value="">Sélectionnez un créneau</option>
-                {generateTimeSlots().map((time, index) => (
-                  <option key={index} value={time.toISOString()}>
-                    {time.toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </option>
-                ))}
-              </select>
-
-              {selectedTime && (
-                <p className="confirmSlot">
-                  Votre créneau horaire sélectionné :{" "}
-                  {selectedTime.toLocaleTimeString()}
+    <Dialog.Root>
+      <Dialog.Trigger>
+        <button type="button">cliquer</button>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Content className="allElements">
+          <Dialog.Title className="titleCard">Choisir un créneau</Dialog.Title>
+          <form onSubmit={handleSubmit}>
+            <fieldset className="allElementsCalendar">
+              <legend className="selectDate">Choisir une date :</legend>
+              <Calendar
+                className="calendar"
+                onChange={handleDateChange}
+                value={selectedDate}
+              />
+              {selectedDate && (
+                <p className="confirmDate">
+                  Votre date sélectionnée : {selectedDate.toDateString()}
                 </p>
               )}
+            </fieldset>
 
-              <p className="selectVehicle">Choisir un véhicule :</p>
-              <select
-                className="vehicle"
-                onChange={(e) => handleVehicleSelect(e.target.value)}
-              >
-                <option value="">Sélectionnez votre véhicule</option>
-                {user.vehicle.map((vehicle, index) => (
-                  <option key={index} value={vehicle}>
-                    {vehicle}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <p>Pas de créneaux disponibles</p>
-          )}
+            {generateTimeSlots()[0] ? (
+              <>
+                <label htmlFor="selectTime" className="selectTime">
+                  Choisir un créneau horaire :
+                </label>
+                <select
+                  className="slot"
+                  id="selectTime"
+                  onChange={(e) => handleTimeSelect(new Date(e.target.value))}
+                >
+                  <option value="">Sélectionnez un créneau</option>
+                  {generateTimeSlots().map((time, index) => (
+                    <option key={index} value={time.toISOString()}>
+                      {time.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </option>
+                  ))}
+                </select>
 
-          {isFormValid && (
-            <button type="submit" className="submitButton">
-              Valider la réservation
-            </button>
-          )}
-        </form>
-      </section>
-    </section>
+                {selectedTime && (
+                  <p className="confirmSlot">
+                    Votre créneau horaire sélectionné :{" "}
+                    {selectedTime.toLocaleTimeString()}
+                  </p>
+                )}
+
+                <label htmlFor="selectVehicle" className="selectVehicle">
+                  Choisir un véhicule :
+                </label>
+                <select
+                  className="vehicle"
+                  id="selectVehicle"
+                  onChange={(e) => handleVehicleSelect(e.target.value)}
+                >
+                  <option value="">Sélectionnez votre véhicule</option>
+                  {user.vehicle.map((vehicle, index) => (
+                    <option key={index} value={vehicle}>
+                      {vehicle}
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : (
+              <p>Pas de créneaux disponibles</p>
+            )}
+
+            {isFormValid && (
+              <button type="submit" className="submitButton">
+                Valider la réservation
+              </button>
+            )}
+          </form>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
 

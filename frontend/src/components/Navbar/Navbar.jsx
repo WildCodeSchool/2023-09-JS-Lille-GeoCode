@@ -92,7 +92,7 @@ function Navbar() {
           </Dialog.Root>
         </li>
         <li className="navbar_element">
-          <Link to="/" draggable="false">
+          <Link to="/profile" draggable="false">
             <img
               className="navbar_img"
               src={NavbarUserPage}

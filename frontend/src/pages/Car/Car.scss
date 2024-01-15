@@ -1,7 +1,7 @@
 @import "../../variable.scss";
 .carTopPageTitle {
   color: $colorLight;
-  font-size: 4rem;
+  font-size: 3.3rem;
   font-weight: 400;
   text-shadow: $textShadow;
 }
@@ -27,7 +27,7 @@
 .carModel {
   width: 75vw;
   margin-left: 20vw;
-  margin-top: 2vh;
+  margin-top: 5vh;
 }
 .carMainContent {
   display: flex;
@@ -51,10 +51,10 @@
   padding-top: 2vh;
 }
 .carCardText {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .carCardText2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding-bottom: 2vh;
 }
 .nextCar {
@@ -91,7 +91,7 @@
   .carModel {
     width: 70vw;
     margin-left: 20vw;
-    margin-top: 2vh;
+    margin-top: 0vh;
   }
   .carCardPlug {
     width: 30vw;
@@ -104,6 +104,30 @@
   }
   .addCar {
     padding: 2vw;
+  }
+  .ButtonShowCarContainer {
+    display: flex;
+    justify-content: center;
+    .addCar {
+      margin-left: 0;
+      transform: translate(0%);
+    }
+    gap: 5vw;
+  }
+  .carCardText {
+    font-size: 2rem;
+  }
+  .carCardText2 {
+    font-size: 2rem;
+    padding-bottom: 2vh;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .carModel {
+    width: 45vw;
+    margin-left: 35vw;
+    margin-top: -5vh;
   }
 }
 

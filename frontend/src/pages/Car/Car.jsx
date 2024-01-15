@@ -43,8 +43,10 @@ function Car() {
         counterCar={counterCar}
         setcounterCar={setcounterCar}
       />
-      <AddCarModal />
-      <DeleteCarConfirmationModal user={user} />
+      <footer className="ButtonShowCarContainer">
+        <AddCarModal />
+        <DeleteCarConfirmationModal user={user} />
+      </footer>
     </main>
   );
 }

@@ -13,8 +13,8 @@ function CarShow({ user, counterCar, setcounterCar }) {
           onClick={() => setcounterCar(counterCar - 1)}
         >
           <img className="nextCarButton nextCarMirror" src={button} alt="" />
-          <p>Voiture</p>
-          <p>précédente</p>
+          <p className="nextCarText">Voiture</p>
+          <p className="nextCarText">précédente</p>
         </button>
       )}
       <article className="carCardPlug">

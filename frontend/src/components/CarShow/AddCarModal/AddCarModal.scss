@@ -34,13 +34,13 @@ fieldset {
   margin: 0;
   font-weight: 500;
   color: $colorDark;
-  font-size: 17px;
+  font-size: 1.7rem;
 }
 
 .DialogDescription {
   margin: 10px 0 20px;
   color: $colorDark;
-  font-size: 15px;
+  font-size: 1.2rem;
   line-height: 1.5;
 }
 
@@ -51,7 +51,7 @@ fieldset {
   background: $gradient180deg;
   border-radius: $borderButton;
   padding: 0 15px;
-  font-size: 15px;
+  font-size: 1.2rem;
   line-height: 1;
   font-weight: 500;
   height: 35px;
@@ -73,10 +73,10 @@ fieldset {
   right: 10px;
 }
 .closeButton:hover {
-  background-color: $colorDark;
+  background-color: $colorPrimary;
 }
 .closeButton:focus {
-  box-shadow: 0 0 0 2px $colorDark;
+  box-shadow: 0 0 0 2px $colorPrimary;
 }
 
 .Fieldset {
@@ -87,7 +87,7 @@ fieldset {
 }
 
 .Label {
-  font-size: 15px;
+  font-size: 1.2rem;
   color: $colorDark;
   width: 90px;
   text-align: right;
@@ -100,15 +100,14 @@ fieldset {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  padding: 0 10px;
-  font-size: 15px;
+  padding: 0.2vh 0.5vw;
+  font-size: 1rem;
   line-height: 1;
-  color: var(--violet-11);
-  box-shadow: 0 0 0 1px var(--violet-7);
-  height: 35px;
+  color: $colorDark;
+  box-shadow: 0 0 0 1px $colorDark;
 }
 .Input:focus {
-  box-shadow: 0 0 0 2px var(--violet-8);
+  box-shadow: 0 0 0 2px $colorPrimary;
 }
 .carAddButtonContainer {
   display: flex;

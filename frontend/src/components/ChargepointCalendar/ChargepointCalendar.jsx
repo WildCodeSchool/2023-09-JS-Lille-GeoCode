@@ -83,7 +83,7 @@ function ChargepointCalendar() {
               />
               {selectedDate && (
                 <p className="confirmDate">
-                  Votre date sélectionnée : {selectedDate.toDateString()}
+                  Votre date sélectionnée : {selectedDate.toLocaleDateString()}
                 </p>
               )}
             </fieldset>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import Calendar from "react-calendar";
 import "./ChargepointCalendar.scss";
+import { format } from "date-fns";
 
 function ChargepointCalendar() {
   const booking = { date: "2024-01-10 12:00" };
@@ -32,15 +33,14 @@ function ChargepointCalendar() {
     const currentTime = new Date(startTime);
 
     while (currentTime <= endTime) {
-      if (
-        currentTime.toISOString().slice(0, 16).replace("T", " ") !==
-        booking.date
-      ) {
-        timeSlots.push(new Date(currentTime));
+      const formattedDate = format(currentTime, "yyyy-MM-dd HH:mm", {
+        timeZone: "Europe/Paris",
+      });
+      if (formattedDate !== booking.date) {
+        timeSlots.push(new Date(formattedDate));
       }
       currentTime.setMinutes(currentTime.getMinutes() + 30);
     }
-
     return timeSlots;
   };
 
@@ -100,7 +100,7 @@ function ChargepointCalendar() {
                 >
                   <option value="">Sélectionnez un créneau</option>
                   {generateTimeSlots().map((time, index) => (
-                    <option key={index} value={time.toISOString()}>
+                    <option key={index} value={time}>
                       {time.toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",

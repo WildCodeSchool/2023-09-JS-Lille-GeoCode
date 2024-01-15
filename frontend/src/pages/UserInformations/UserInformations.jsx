@@ -34,7 +34,11 @@ function UserInformations() {
       <img className="icon address_icon" alt="" src={AddressIcon} />
       <p className="userinfo zipcode">{users.zipcode}</p>
       <p className="userinfo city">{users.city}</p>
-      <NavigationButton text="Modifier" />
+      <NavigationButton
+        text="Modifier"
+        buttonStylization="style-button"
+        destination="/editprofile"
+      />
       <BackButton
         colorArrow={arrowDark}
         backButtonStyle="backButton backButtonUserInfo"

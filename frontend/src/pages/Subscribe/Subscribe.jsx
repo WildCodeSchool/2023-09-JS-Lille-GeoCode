@@ -67,7 +67,7 @@ function Subscribe() {
   } = useForm({ resolver: joiResolver(validationSchema) });
 
   function onSubmit(data) {
-    console.info(JSON.stringify(data));
+    console.info(data);
   }
 
   return (

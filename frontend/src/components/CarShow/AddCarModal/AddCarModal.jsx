@@ -38,12 +38,12 @@ function AddCarModal() {
           <Dialog.Description className="DialogDescription">
             Sélectionnez une marque et un modèle de voiture à ajouter:
           </Dialog.Description>
-          <fieldset className="Fieldset">
-            <label className="Label" htmlFor="brand">
+          <fieldset className="fieldsetBrand">
+            <label className="labelBrand" htmlFor="brand">
               Marque
             </label>
             <select
-              className="Input"
+              className="inputBrand"
               id="brand"
               value={selectedBrand}
               onChange={handleBrandChange}
@@ -57,12 +57,12 @@ function AddCarModal() {
             </select>
           </fieldset>
           {selectedBrand && (
-            <fieldset className="Fieldset">
-              <label className="Label" htmlFor="model">
+            <fieldset className="fieldsetModel">
+              <label className="labelModel" htmlFor="model">
                 Modèle
               </label>
               <select
-                className="Input"
+                className="inputModel"
                 id="model"
                 value={selectedModel}
                 onChange={handleModelChange}
@@ -71,15 +71,13 @@ function AddCarModal() {
                 {carData
                   .filter((car) => car.brand === selectedBrand)
                   .map((car) =>
-                    car.model instanceof Array ? (
-                      car.model.map((model) => (
-                        <option key={model} value={model}>
-                          {model}
-                        </option>
-                      ))
-                    ) : (
+                    car.model.length > 0 ? (
                       <option key={car.model} value={car.model}>
                         {car.model}
+                      </option>
+                    ) : (
+                      <option key={car.model} value={car.model}>
+                        Pas de modèle
                       </option>
                     )
                   )}

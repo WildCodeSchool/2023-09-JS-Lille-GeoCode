@@ -6,7 +6,7 @@ import "./Subscribe.scss";
 import BackgroundAsideType from "../../components/BackgroundAsideType/BackgroundAsideType";
 import FormLabel from "../../components/FormLabel/FormLabel";
 
-function Subscribe() {
+export default function Subscribe() {
   const validationSchema = Joi.object({
     lastName: Joi.string().min(1).max(255).required().messages({
       "string.empty": "Votre nom est requis",
@@ -66,9 +66,13 @@ function Subscribe() {
     formState: { errors },
   } = useForm({ resolver: joiResolver(validationSchema) });
 
-  function onSubmit(data) {
-    console.info(JSON.stringify(data));
-  }
+  const onSubmit = async (data) => {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  };
 
   return (
     <BackgroundAsideType title="S'enregistrer">
@@ -147,5 +151,3 @@ function Subscribe() {
     </BackgroundAsideType>
   );
 }
-
-export default Subscribe;

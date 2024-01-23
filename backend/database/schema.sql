@@ -51,18 +51,16 @@ DROP TABLE IF EXISTS `booking_list`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking_list` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
   `charge_point_id` varchar(80) DEFAULT NULL,
   `car_id` int DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
+  `car_type_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
   KEY `car_id` (`car_id`),
   KEY `charge_point_id` (`charge_point_id`),
-  CONSTRAINT `booking_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
-  CONSTRAINT `booking_list_ibfk_3` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `booking_list_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
+  CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +69,7 @@ CREATE TABLE `booking_list` (
 
 LOCK TABLES `booking_list` WRITE;
 /*!40000 ALTER TABLE `booking_list` DISABLE KEYS */;
+INSERT INTO `booking_list` VALUES (1,'2024-02-08 08:00:00','FR3R3E10000849861',1,NULL),(2,'2024-02-08 08:30:00','FR3R3E10000849861',2,NULL);
 /*!40000 ALTER TABLE `booking_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,11 +82,14 @@ DROP TABLE IF EXISTS `car`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `car` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `brand` varchar(80) DEFAULT NULL,
-  `model` varchar(80) DEFAULT NULL,
-  `plug_type` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `car_type_id` int DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `car_ibfk_1` (`user_id`),
+  KEY `car_ibfk_2` (`car_type_id`),
+  CONSTRAINT `car_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `car_ibfk_2` FOREIGN KEY (`car_type_id`) REFERENCES `car_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +98,35 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
+INSERT INTO `car` VALUES (1,1,1),(2,2,1);
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `car_type`
+--
+
+DROP TABLE IF EXISTS `car_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `car_type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `brand` varchar(80) DEFAULT NULL,
+  `model` varchar(80) DEFAULT NULL,
+  `max_power` int DEFAULT NULL,
+  `plug_type` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `car_type`
+--
+
+LOCK TABLES `car_type` WRITE;
+/*!40000 ALTER TABLE `car_type` DISABLE KEYS */;
+INSERT INTO `car_type` VALUES (1,'Tesla','Modele 3',250,'Combo CCS'),(2,'Dacia','Spring',50,'Type 2'),(3,'Renault','Megane E-tech',120,'Combo CCS'),(4,'MG','MG4',130,'Combo CCS'),(5,'Fiat','500e',70,'Combo CCS'),(6,'Peugeot','E-208',110,'Type 2'),(7,'Mini','Cooper SE',150,'Combo CCS'),(8,'Renault','ZOE',80,'Combo CCS'),(9,'Nissan','Leaf',120,'Chademo'),(10,'Kia','Niro',130,'Combo CCS');
+/*!40000 ALTER TABLE `car_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -207,11 +237,11 @@ CREATE TABLE `person` (
   `birthday` date DEFAULT NULL,
   `city` varchar(80) DEFAULT NULL,
   `zipcode` int DEFAULT NULL,
-  `password` varchar(80) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `status` varchar(80) DEFAULT 'user',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,6 +250,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` VALUES (1,'Doe','John','john@example.com','male','1995-05-25','CityName',54321,'$argon2id$v=19$m=19456,t=2,p=1$kDR+OqkCsDijBJRvExPrBA$99v+M8tbuDqs8EnrScmo+pXipo5/JOzwAhyFAeBkPFA','user');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +320,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `person` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,6 +329,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,4 +367,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-10 11:33:08
+-- Dump completed on 2024-01-23 22:32:01

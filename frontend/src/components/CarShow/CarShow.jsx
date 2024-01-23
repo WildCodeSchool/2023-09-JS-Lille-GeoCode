@@ -17,15 +17,15 @@ function CarShow({ user, counterCar, setcounterCar }) {
           <p className="nextCarText">précédente</p>
         </button>
       )}
-      <article className="carCardPlug">
+      <figure className="carCardPlug">
         <img className="carPlugType" src={type2} alt="" />
-        <p className="carCardText">Type 2</p>
-      </article>
-      <article className="carCardPlug">
+        <figcaption className="carCardText">Type 2</figcaption>
+      </figure>
+      <figure className="carCardPlug">
         <img className="carElectricalPower" src={electricalPower} alt="" />
-        <p className="carCardText">Puissance</p>
-        <p className="carCardText2">22 kW</p>
-      </article>
+        <figcaption className="carCardText">Puissance</figcaption>
+        <figcaption className="carCardText2">22 kW</figcaption>
+      </figure>
       {user.car[counterCar + 1] && (
         <button
           className="nextCar"

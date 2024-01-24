@@ -58,18 +58,17 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/editprofile/:id",
+    path: "/editprofile",
     element: (
       <PrivateRoute>
         <EditProfile />
       </PrivateRoute>
     ),
-    loader: async ({ params }) => {
+    loader: async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo/${
-            params.id
-          }`
+          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo`,
+          { method: "get", credentials: "include" }
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -90,18 +89,17 @@ const router = createBrowserRouter([
     element: <Car />,
   },
   {
-    path: "/userinformations/:id",
+    path: "/userinformations",
     element: (
       <PrivateRoute>
         <UserInformations />
       </PrivateRoute>
     ),
-    loader: async ({ params }) => {
+    loader: async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo/${
-            params.id
-          }`
+          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo`,
+          { method: "get", credentials: "include" }
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");

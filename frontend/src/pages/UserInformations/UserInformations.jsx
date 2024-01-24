@@ -12,9 +12,9 @@ import NavigationButton from "../Home/NavigationButton";
 
 function UserInformations() {
   const connectedUser = useLoaderData();
-
-  const formatedBirthday = format(
-    new Date(connectedUser.birthday),
+  console.info(connectedUser);
+  const formatedBirthdate = format(
+    new Date(connectedUser.birthdate),
     "dd/MM/yyyy"
   );
 
@@ -24,7 +24,7 @@ function UserInformations() {
       <p className="username firstname">{connectedUser.firstname}</p>
       <p className="username lastname">{connectedUser.lastname}</p>
       <img className="icon birthdate_icon" alt="" src={BirthdayIcon} />
-      <p className="userinfo birthdate">{formatedBirthday}</p>
+      <p className="userinfo birthdate">{formatedBirthdate}</p>
       <img className="icon gender_icon" alt="" src={GenderIcon} />
       <p className="userinfo gender">{connectedUser.gender}</p>
       <img className="icon email_icon" alt="" src={EmailIcon} />

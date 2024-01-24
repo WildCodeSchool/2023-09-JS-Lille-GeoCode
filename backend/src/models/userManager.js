@@ -1,6 +1,6 @@
 const AbstractManager = require("./AbstractManager");
 
-class userManager extends AbstractManager {
+class UserManager extends AbstractManager {
   constructor() {
     super({ table: "person" });
   }
@@ -40,6 +40,42 @@ class userManager extends AbstractManager {
     );
     return user;
   }
+
+  async getConnectedUserById(userId) {
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} WHERE id = ?`,
+      [userId]
+    );
+
+    return rows[0];
+  }
+
+  async updateUser(user, userId) {
+    console.info(userId);
+    const result = await this.database.query(
+      `UPDATE ${this.table}
+      SET
+      lastname = ?,
+      firstname = ?,
+      email = ?,
+      gender = ?,
+      birthdate = ?,
+      city = ?,
+      zipcode = ?
+       WHERE id= ? `,
+      [
+        user.lastName,
+        user.firstName,
+        user.email,
+        user.gender,
+        user.birthdate,
+        user.city,
+        user.zipcode,
+        userId,
+      ]
+    );
+    return result;
+  }
 }
 
-module.exports = userManager;
+module.exports = UserManager;

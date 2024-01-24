@@ -6,11 +6,13 @@
 const ItemManager = require("./models/ItemManager");
 const ChargePointManager = require("./models/ChargePointManager");
 const userManager = require("./models/userManager");
+const carManager = require("./models/carManager");
 
 const managers = [
   ItemManager,
   ChargePointManager,
   userManager,
+  carManager,
   // Add other managers here
 ];
 

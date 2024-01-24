@@ -31,8 +31,8 @@ router.post("/user", hashPassword, userController.add);
 
 const carControllers = require("./controllers/carControllers");
 
-router.post("/createcar", carControllers.createCar);
+router.post("/car", carControllers.createCar);
 
-router.delete("/deletecar", carControllers.deleteCar);
+router.delete("/car", carControllers.deleteCar);
 
 module.exports = router;

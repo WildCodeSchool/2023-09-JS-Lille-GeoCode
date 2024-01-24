@@ -7,7 +7,7 @@ class bookAvailable extends AbstractManager {
 
   async getAll() {
     const [rows] = await this.database
-      .query(`SELECT date, charge_point_id, car_id,
+      .query(`SELECT date, charge_point_id, car_id
     FROM ${this.table} `);
 
     return rows;

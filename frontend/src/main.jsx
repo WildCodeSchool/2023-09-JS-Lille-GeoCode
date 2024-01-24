@@ -10,6 +10,7 @@ import Subscribe from "./pages/Subscribe/Subscribe";
 import UserInformations from "./pages/UserInformations/UserInformations";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import Profile from "./pages/Profile/Profile";
+import Car from "./pages/Car/Car";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/car",
+    element: <Car />,
   },
   {
     path: "/userinformations",

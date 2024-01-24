@@ -18,7 +18,7 @@ function Profile() {
           buttonStylization="style-button2"
         />
         <NavigationButton
-          destination="/"
+          destination="/car"
           text="Véhicules"
           buttonStylization="style-button2"
         />

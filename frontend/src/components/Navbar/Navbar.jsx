@@ -6,9 +6,9 @@ import StationMiniCard from "../StationMiniCard/StationMiniCard";
 import NavbarMap from "../../assets/navbar_map.svg";
 import NavbarStations from "../../assets/navbar_stations.svg";
 import NavbarUserPage from "../../assets/navbar_user_page.svg";
-import StationPlugType2 from "../../assets/ev-plug-type2.svg";
-import StationPlugType3 from "../../assets/ev-plug-type3.svg";
-import StationPlugCHAdeMO from "../../assets/ev-plug-chademo.svg";
+import StationPlugType2 from "../../assets/plug-type/ev-plug-type2.svg";
+import StationPlugType3 from "../../assets/plug-type/ev-plug-type3.svg";
+import StationPlugCHAdeMO from "../../assets/plug-type/ev-plug-chademo.svg";
 
 const stations = [
   {

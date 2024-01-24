@@ -204,10 +204,10 @@ CREATE TABLE `person` (
   `firstname` varchar(80) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `gender` varchar(80) DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
   `city` varchar(80) DEFAULT NULL,
   `zipcode` int DEFAULT NULL,
-  `password` varchar(80) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `status` varchar(80) DEFAULT 'user',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)

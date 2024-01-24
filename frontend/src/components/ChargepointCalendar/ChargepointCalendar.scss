@@ -1,0 +1,112 @@
+@import "../../variable.scss";
+
+.allElements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $colorLight;
+  border-radius: 20px;
+  width: 85vw;
+  padding: 3vw;
+  margin: auto;
+  padding-bottom: 3vh;
+}
+
+.allElementsCalendar {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.titleCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $fontFamily;
+  background: $gradient180deg;
+  border: solid $colorDark 2px;
+  border-color: $colorDark;
+  box-shadow: $colorDark 5px 7px 15px 1px;
+  border-radius: 10px 50px;
+  text-shadow: $textDropShadow;
+  color: $colorLight;
+  width: auto;
+  padding: 3vw;
+  height: 3vh;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.selectDate,
+.confirmDate,
+.confirmSlot {
+  display: flex;
+  justify-content: center;
+  font-family: $fontFamily;
+  color: $colorDark;
+}
+
+.confirmDate,
+.selectTime,
+.slot,
+.selectVehicle,
+.vehicle {
+  color: $colorDark;
+}
+.confirmSlot {
+  font-family: $fontFamily;
+  color: $colorDark;
+}
+
+.selectTime,
+.selectVehicle {
+  display: block;
+}
+.submitButton {
+  display: flex;
+  align-items: center;
+  font-family: $fontFamily;
+  background: $gradient180deg;
+  border: solid $colorDark 2px;
+  border-color: $colorDark;
+  box-shadow: $colorDark 5px 7px 15px 1px;
+  border-radius: 10px 50px;
+  text-shadow: $textDropShadow;
+  color: $colorLight;
+  margin: auto;
+  width: auto;
+  padding: 3.5vw;
+  height: 3vh;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2vh;
+}
+@media screen and (min-width: 600px) {
+  .allElements {
+    font-size: 2.5vw;
+    height: auto;
+  }
+
+  .titleCard {
+    font-size: 2.5rem;
+    width: auto;
+    padding: 2vw;
+  }
+
+  .slot {
+    margin: 0%;
+  }
+
+  .confirmSlot {
+    display: flex;
+    justify-content: center;
+  }
+
+  .selectVehicle {
+    color: $colorDark;
+  }
+
+  .submitButton {
+    font-size: 2rem;
+    margin-top: 2vh;
+  }
+}

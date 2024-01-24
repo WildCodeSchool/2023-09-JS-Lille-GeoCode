@@ -1,6 +1,8 @@
 import NavigationButton from "../Home/NavigationButton";
+import BackButton from "../../components/BackButton/BackButton";
 import "./ConnectedProfile.scss";
 import profilePict from "../../assets/Louise.png";
+import arrowDark from "../../assets/arrowBackDark.svg";
 
 function Profile() {
   return (
@@ -11,7 +13,7 @@ function Profile() {
       </section>
       <nav className="profile">
         <NavigationButton
-          destination="/"
+          destination="/userinformations"
           text="Mes informations"
           buttonStylization="style-button2"
         />
@@ -29,6 +31,10 @@ function Profile() {
           destination="/contact"
           text="Nous contacter"
           buttonStylization="style-button2"
+        />
+        <BackButton
+          colorArrow={arrowDark}
+          backButtonStyle="backButtonProfile"
         />
       </nav>
     </main>

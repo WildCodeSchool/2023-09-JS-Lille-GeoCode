@@ -24,6 +24,22 @@ class userManager extends AbstractManager {
 
     return rows;
   }
+
+  async getByEmail(email) {
+    const [data] = await this.database.query(
+      "SELECT * FROM person WHERE email = ?",
+      [email]
+    );
+    return data;
+  }
+
+  async getById(id) {
+    const [user] = await this.database.query(
+      "SELECT id, email, status FROM person WHERE id = ?",
+      [id]
+    );
+    return user;
+  }
 }
 
 module.exports = userManager;

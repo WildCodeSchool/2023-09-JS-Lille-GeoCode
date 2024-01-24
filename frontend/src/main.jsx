@@ -1,7 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import PropTypes from "prop-types";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
+import useStore, { AuthProvider } from "./store/AuthProvider";
 
 import Home from "./pages/Home/Home";
 import Map from "./pages/Map/Map";
@@ -37,15 +43,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/connection",
-    element: <Connection />,
+    element: (
+      <PublicRoute>
+        <Connection />
+      </PublicRoute>
+    ),
   },
   {
     path: "/subscribe",
-    element: <Subscribe />,
+    element: (
+      <PublicRoute>
+        <Subscribe />
+      </PublicRoute>
+    ),
   },
   {
     path: "/editprofile",
-    element: <EditProfile />,
+    element: (
+      <PrivateRoute>
+        <EditProfile />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/profile",
@@ -57,14 +75,48 @@ const router = createBrowserRouter([
   },
   {
     path: "/userinformations",
-    element: <UserInformations />,
+    element: (
+      <PrivateRoute>
+        <UserInformations />
+      </PrivateRoute>
+    ),
   },
 ]);
+
+function PrivateRoute({ children, role = "user" }) {
+  const { auth } = useStore();
+
+  if (auth.isLogged) {
+    if (auth.user?.status === role) {
+      return children;
+    }
+    return <Navigate to="/map" />;
+  }
+  return <Navigate to="/connection" />;
+}
+
+function PublicRoute({ children }) {
+  const { auth } = useStore();
+  if (!auth.isLogged) {
+    return children;
+  }
+  return <Navigate to="/map" />;
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
+
+PrivateRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+  role: PropTypes.string.isRequired,
+};
+PublicRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};

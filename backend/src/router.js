@@ -20,6 +20,16 @@ router.get("/items/:id", itemControllers.read);
 // Route to add a new item
 router.post("/items", itemControllers.add);
 // Route to get charge point
+const {
+  login,
+  logout,
+  getCurrentUser,
+} = require("./controllers/userControllers");
+const { authorize } = require("./middlewares/auth");
+
+router.get("/users/me", authorize, getCurrentUser);
+router.post("/users/login", login);
+router.get("/users/logout", logout);
 
 const chargePointControllers = require("./controllers/chargePointControllers");
 

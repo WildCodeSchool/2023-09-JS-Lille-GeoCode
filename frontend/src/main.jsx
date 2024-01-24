@@ -78,17 +78,13 @@ const router = createBrowserRouter([
   },
 ]);
 
-const roles = ["visitor", "user"];
-
 function PrivateRoute({ children, role = "user" }) {
   const { auth } = useStore();
 
   if (auth.isLogged) {
-    if (
-      auth.user?.status === role ||
-      roles.indexOf(auth.user?.status) >= roles.indexOf(role)
-    )
+    if (auth.user?.status === role) {
       return children;
+    }
     return <Navigate to="/map" />;
   }
   return <Navigate to="/connection" />;

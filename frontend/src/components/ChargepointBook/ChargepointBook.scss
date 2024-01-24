@@ -10,8 +10,6 @@
   justify-content: space-between;
   align-items: center;
   background-color: $colorLight;
-  margin: 4vh 5vw;
-  padding: 2rem;
   border: 1px $colorDark solid;
   border-radius: 10px;
 }
@@ -32,13 +30,10 @@
 }
 .stationInfos {
   background-color: $colorPrimary_trans;
-  width: 70vw;
   border-radius: 10px;
-  padding: 1vw 2.5vh;
   font-family: $fontFamily;
   font-size: 1rem;
   line-height: 2rem;
-  margin: 2rem;
 }
 
 .date,
@@ -84,12 +79,11 @@
 
   .stationName {
     font-size: 2.5rem;
-    width: 40vw;
+    width: 35vw;
   }
 
   .stationInfos {
-    font-size: 1.3rem;
-    width: 27vw;
+    font-size: 1.5rem;
   }
 
   .chargepointBookAll {

@@ -1,5 +1,5 @@
+import { useState } from "react";
 import "./ChargepointBook.scss";
-import * as Dialog from "@radix-ui/react-dialog";
 import ComboCCSplug from "../../assets/ComboCCSplug.svg";
 import Type2plug from "../../assets/Type2plug.svg";
 
@@ -17,68 +17,54 @@ const station = {
   accessibility: "PMR",
 };
 function ChargepointBook() {
+  const [, setIsOpen] = useState(false);
+
+  // const handleOpen = () => {
+  //   setIsOpen(true);
+  // };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button className="bookingButton" type="button">
-          Réservez
+    <>
+      <h2 className="stationName">{station.name}</h2>
+      <div className="stationInfos">
+        <p className="date">Date : {station.date}</p>
+        <p className="time">Horaire : {station.time}</p>
+        <p className="adressStation">Adresse : {station.address}</p>
+        <p>Types de prises :</p>
+        <ul className="plugList">
+          <li>
+            <p className="typePlugItem">{station.typePlug[0].typeName}</p>
+            <img
+              className="imgPlug typePlugItem"
+              src={station.typePlug[0].typeSRC}
+              alt="logo d'une prise électrique de type 2"
+            />
+            <p className="typePlugItem">
+              {station.typePlug[0].available} disponible(s)
+            </p>
+          </li>
+          <li>
+            <p className="typePlugItem">{station.typePlug[1].typeName}</p>
+            <img
+              className="imgPlug typePlugItem"
+              src={station.typePlug[1].typeSRC}
+              alt="logo d'une prise électrique de type Combo CCS"
+            />
+            <p className="typePlugItem">
+              {station.typePlug[1].available} disponible(s)
+            </p>
+          </li>
+        </ul>
+        <p>Puissance de la borne : {station.powerPlug} kW</p>
+        <p>Accessibilité : {station.accessibility}</p>
+        <button type="button" className="book" onClick={handleClose}>
+          Réserver
         </button>
-      </Dialog.Trigger>
-      <Dialog.Portal className="chargepointBookAll">
-        <Dialog.Content className="stationInfos">
-          <Dialog.Title className="stationName">{station.name}</Dialog.Title>
-          <Dialog.Description className="date">
-            Date : {station.date}
-          </Dialog.Description>
-          <Dialog.Description className="time">
-            Horaire : {station.time}
-          </Dialog.Description>
-          <Dialog.Description className="adressStation">
-            Adresse : {station.address}
-          </Dialog.Description>
-          <Dialog.Description>Types de prises :</Dialog.Description>
-          <ul className="plugList">
-            <li>
-              <Dialog.Description className="typePlugItem">
-                {station.typePlug[0].typeName}
-              </Dialog.Description>
-              <img
-                className="imgPlug typePlugItem"
-                src={station.typePlug[0].typeSRC}
-                alt="logo d'une prise electrique de type 2"
-              />
-              <Dialog.Description className="typePlugItem">
-                {station.typePlug[0].available} disponible(s)
-              </Dialog.Description>
-            </li>
-            <li>
-              <Dialog.Description className="typePlugItem">
-                {station.typePlug[1].typeName}
-              </Dialog.Description>
-              <img
-                className="imgPlug typePlugItem"
-                src={station.typePlug[1].typeSRC}
-                alt="logo d'une prise electrique de type Combo CCS"
-              />
-              <Dialog.Description className="typePlugItem">
-                {station.typePlug[1].available} disponible(s)
-              </Dialog.Description>
-            </li>
-          </ul>
-          <Dialog.Description>
-            Puisssance de la borne : {station.powerPlug} kW
-          </Dialog.Description>
-          <Dialog.Description>
-            Accessibilité : {station.accessibility}
-          </Dialog.Description>
-          <Dialog.Close asChild>
-            <button type="button" className="book">
-              Réserver
-            </button>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+      </div>
+    </>
   );
 }
 

@@ -29,13 +29,16 @@
   border-radius: 10px 50px;
   text-shadow: $textDropShadow;
   color: $colorLight;
-  width: auto;
-  padding: 3vw;
-  height: 3vh;
+  padding: 4vw;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  margin-bottom: 3vh;
 }
-
+.selectedDateDisplay {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
 .selectDate,
 .confirmDate,
 .confirmSlot {
@@ -51,15 +54,26 @@
 .selectVehicle,
 .vehicle {
   color: $colorDark;
+  font-size: 1.4rem;
 }
 .confirmSlot {
   font-family: $fontFamily;
   color: $colorDark;
 }
 
-.selectTime,
-.selectVehicle {
-  display: block;
+#selectTime,
+#selectVehicle {
+  height: 3vh;
+  font-size: 1.2rem;
+  border: double 1.5px transparent;
+  border-radius: 30px;
+  background-image: linear-gradient($colorLight, $colorLight), $gradient180deg;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+#selectTime {
+  font-size: 1.5rem;
+  text-align: center;
 }
 .submitButton {
   display: flex;
@@ -74,10 +88,9 @@
   color: $colorLight;
   margin: auto;
   width: auto;
-  padding: 3.5vw;
-  height: 3vh;
+  padding: 5vw;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-top: 2vh;
 }
 @media screen and (min-width: 600px) {

@@ -32,6 +32,10 @@ router.get("/users/logout", logout);
 const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
+
+const bookControllers = require("./controllers/bookControllers");
+
+router.post("/booking", bookControllers.booking);
 /* ************************************************************************* */
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const argon = require("argon2");
 const jwt = require("jsonwebtoken");
-const { getByEmail, getById } = require("../models/UserManager");
+const tables = require("../tables");
 
 const getCurrentUser = async (req, res, next) => {
   try {
-    const [user] = await getById(req.idUser);
+    const [user] = await tables.person.getById(req.idUser);
     res.status(200).json(user);
   } catch (err) {
     next(err);
@@ -17,7 +17,7 @@ const login = async (req, res, next) => {
     return res.status(400).json("Please specify both email and password");
 
   try {
-    const [user] = await getByEmail(email);
+    const [user] = await tables.person.getByEmail(email);
     if (!user) return res.status(400).json("Invalid email");
     if (await argon.verify(user.password, password)) {
       const token = jwt.sign(

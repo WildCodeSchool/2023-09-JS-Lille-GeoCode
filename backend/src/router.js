@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const hashPassword = require("./services/auth");
+
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
@@ -33,5 +35,8 @@ const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
 /* ************************************************************************* */
+const userController = require("./controllers/userController");
+
+router.post("/user", hashPassword, userController.add);
 
 module.exports = router;

@@ -7,7 +7,7 @@ function BackButton({ colorArrow, backButtonStyle }) {
 
   return (
     <button
-      className={`${backButtonStyle} `}
+      className={backButtonStyle}
       type="button"
       onClick={() => navigate(-1)}
     >

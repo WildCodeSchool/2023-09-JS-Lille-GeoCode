@@ -22,6 +22,12 @@ router.post("/items", itemControllers.add);
 const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
+
+// Route to have reservations available
+const bookControllers = require("./controllers/bookControllers");
+
+router.get("/bookAvailable", bookControllers.browse);
+
 /* ************************************************************************* */
 
 module.exports = router;

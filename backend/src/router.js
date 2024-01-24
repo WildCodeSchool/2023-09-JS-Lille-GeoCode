@@ -34,6 +34,13 @@ router.get("/users/logout", logout);
 const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
+
+// Route to get a specific user
+const connectedUserControllers = require("./controllers/connectedUserControllers");
+
+router.get("/connecteduserinfo/:id", connectedUserControllers.read);
+
+router.put("/users/", connectedUserControllers.updateUser);
 /* ************************************************************************* */
 const userController = require("./controllers/userController");
 

@@ -29,4 +29,10 @@ const userController = require("./controllers/userController");
 
 router.post("/user", hashPassword, userController.add);
 
+const carControllers = require("./controllers/carControllers");
+
+router.post("/createcar", carControllers.createCar);
+
+router.delete("/deletecar", carControllers.deleteCar);
+
 module.exports = router;

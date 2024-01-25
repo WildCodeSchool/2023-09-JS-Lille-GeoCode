@@ -51,7 +51,6 @@ class UserManager extends AbstractManager {
   }
 
   async updateUser(user, userId) {
-    console.info(userId);
     const result = await this.database.query(
       `UPDATE ${this.table}
       SET

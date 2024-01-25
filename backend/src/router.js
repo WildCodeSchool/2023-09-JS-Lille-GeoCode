@@ -45,4 +45,9 @@ router.post("/car", carControllers.createCar);
 
 router.delete("/car", carControllers.deleteCar);
 
+// Route to have reservations available
+const bookControllers = require("./controllers/bookControllers");
+
+router.get("/bookAvailable", bookControllers.browse);
+
 module.exports = router;

@@ -29,4 +29,10 @@ router.get("/chargepoint", chargePointControllers.browse);
 
 /* ************************************************************************* */
 
+const carControllers = require("./controllers/carControllers");
+
+router.post("/car", carControllers.createCar);
+
+router.delete("/car", carControllers.deleteCar);
+
 module.exports = router;

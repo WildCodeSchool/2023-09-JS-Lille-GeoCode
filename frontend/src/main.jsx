@@ -64,6 +64,21 @@ const router = createBrowserRouter([
         <EditProfile />
       </PrivateRoute>
     ),
+    loader: async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo`,
+          { method: "get", credentials: "include" }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
   },
   {
     path: "/profile",
@@ -80,6 +95,21 @@ const router = createBrowserRouter([
         <UserInformations />
       </PrivateRoute>
     ),
+    loader: async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo`,
+          { method: "get", credentials: "include" }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
   },
 ]);
 

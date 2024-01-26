@@ -12,25 +12,30 @@ const AuthContext = createContext();
 const useStore = () => useContext(AuthContext);
 const initialState = {
   user: { status: "visitor" },
-  isLogged: false,
 };
 
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
+  const [loading, setLoading] = useState(true);
   const setConnection = async () => {
     try {
       const result = await userService.getCurrentUser();
-      setAuth({ user: result, isLogged: true });
+
+      setAuth({ user: result });
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
-
   useEffect(() => {
     setConnection();
   }, []);
-
   const memoizedValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
+
+  if (loading) {
+    return <div>Chargement...</div>;
+  }
 
   return (
     <AuthContext.Provider value={memoizedValue}>

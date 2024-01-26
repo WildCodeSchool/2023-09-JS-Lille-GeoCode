@@ -35,7 +35,7 @@ class UserManager extends AbstractManager {
 
   async getById(id) {
     const [user] = await this.database.query(
-      "SELECT id, email, status FROM person WHERE id = ?",
+      "SELECT id, firstname, email, status FROM person WHERE id = ?",
       [id]
     );
     return user;

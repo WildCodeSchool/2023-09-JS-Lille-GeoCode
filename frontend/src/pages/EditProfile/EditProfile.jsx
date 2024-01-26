@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useLoaderData } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { format } from "date-fns";
 import "./EditProfile.scss";
 import BackgroundAsideType from "../../components/BackgroundAsideType/BackgroundAsideType";
 import FormLabel from "../../components/FormLabel/FormLabel";
@@ -41,33 +43,37 @@ function EditProfile() {
     city: Joi.string().min(1).max(255).required().messages({
       "string.empty": "La ville est requise",
     }),
-    password: Joi.string().min(5).max(255).required().messages({
-      "string.empty": "Le mot de passe est requis",
-      "string.min":
-        "Le mot de passe doit contenir au moins {#limit} caractères",
-    }),
-    confirmPassword: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
-      .valid(Joi.ref("password"))
-      .messages({
-        "string.empty": "La confirmation du mot de passe est requise",
-        "string.min":
-          "La confirmation du mot de passe doit contenir au moins {#limit} caractères",
-        "any.only":
-          "La confirmation du mot de passe doit correspondre au mot de passe",
-      }),
   }).required();
 
+  const connectedUser = useLoaderData();
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm({ resolver: joiResolver(validationSchema) });
+  } = useForm({
+    resolver: joiResolver(validationSchema),
+    defaultValues: {
+      lastName: connectedUser.lastname,
+      firstName: connectedUser.firstname,
+      email: connectedUser.email,
+      gender: connectedUser.gender,
+      birthdate: format(new Date(connectedUser.birthdate), "yyyy-MM-dd"),
+      zipcode: connectedUser.zipcode.toString(),
+      city: connectedUser.city,
+    },
+  });
 
   function onSubmit(data) {
-    console.info(JSON.stringify(data));
+    try {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        credentials: "include",
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -125,20 +131,6 @@ function EditProfile() {
           register={register}
           errors={errors}
           placeholder="Tapez votre ville ici"
-        />
-        <FormLabel
-          label="password"
-          labelTitle="Mot de passe"
-          register={register}
-          errors={errors}
-          placeholder="Tapez votre mot de passe ici"
-        />
-        <FormLabel
-          label="confirmPassword"
-          labelTitle="Confirmer le mot de passe"
-          register={register}
-          errors={errors}
-          placeholder="Retapez votre mot de passe ici"
         />
         <button className="submit" type="submit">
           Envoyer

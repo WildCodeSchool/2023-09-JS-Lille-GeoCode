@@ -33,7 +33,9 @@ function AuthProvider({ children }) {
   }, []);
   const memoizedValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
   return loading ? (
-    <div>Chargement...</div>
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
   ) : (
     <AuthContext.Provider value={memoizedValue}>
       {children}

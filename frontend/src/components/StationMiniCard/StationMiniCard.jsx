@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
+// import { useState } from "react";
 import NavbarStations from "../../assets/navbar_stations.svg";
 import "./StationMiniCard.scss";
+import useStore from "../../store/AuthProvider";
 
 function StationMiniCard({ stations }) {
+  const { sethandleModal, setopenBooking } = useStore();
   return (
     <li className="station_mc">
       <img
@@ -20,6 +23,19 @@ function StationMiniCard({ stations }) {
         draggable="false"
         alt="logo type de prise"
       />
+      <button
+        type="button"
+        className="chooseStation"
+        onClick={() => {
+          sethandleModal(false);
+          setopenBooking({
+            page1: true,
+            page2: false,
+          });
+        }}
+      >
+        Choisir
+      </button>
     </li>
   );
 }

@@ -17,6 +17,11 @@ const initialState = {
 
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
+  const [handleModal, sethandleModal] = useState(true);
+  const [openBooking, setopenBooking] = useState({
+    page1: false,
+    page2: false,
+  });
   const setConnection = async () => {
     try {
       const result = await userService.getCurrentUser();
@@ -30,7 +35,17 @@ function AuthProvider({ children }) {
     setConnection();
   }, []);
 
-  const memoizedValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
+  const memoizedValue = useMemo(
+    () => ({
+      auth,
+      setAuth,
+      handleModal,
+      sethandleModal,
+      openBooking,
+      setopenBooking,
+    }),
+    [auth, handleModal, openBooking, setAuth]
+  );
 
   return (
     <AuthContext.Provider value={memoizedValue}>

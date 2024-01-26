@@ -9,6 +9,9 @@ import NavbarUserPage from "../../assets/navbar_user_page.svg";
 import StationPlugType2 from "../../assets/plug-type/ev-plug-type2.svg";
 import StationPlugType3 from "../../assets/plug-type/ev-plug-type3.svg";
 import StationPlugCHAdeMO from "../../assets/plug-type/ev-plug-chademo.svg";
+import useStore from "../../store/AuthProvider";
+import ChargepointBook from "../ChargepointBook/ChargepointBook";
+import ChargepointCalendar from "../ChargepointCalendar/ChargepointCalendar";
 
 const stations = [
   {
@@ -56,6 +59,7 @@ const stations = [
 ];
 
 function Navbar() {
+  const { handleModal, openBooking } = useStore();
   return (
     <nav className="navbar_container">
       <ul className="navbar_list">
@@ -82,11 +86,15 @@ function Navbar() {
             <Dialog.Portal>
               <Dialog.Overlay className="dialogOverlay" />
               <Dialog.Content className="dialogContent">
-                <ul>
-                  {stations.map((station) => (
-                    <StationMiniCard key={station.id} stations={station} />
-                  ))}
-                </ul>
+                {handleModal && (
+                  <ul>
+                    {stations.map((station) => (
+                      <StationMiniCard key={station.id} stations={station} />
+                    ))}
+                  </ul>
+                )}
+                {openBooking.page1 && <ChargepointCalendar />}
+                {openBooking.page2 && <ChargepointBook />}
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>

@@ -26,7 +26,7 @@ class carManager extends AbstractManager {
       `SELECT car.id, car.car_type_id, car.user_id, car_type.brand, car_type.model, car_type.max_power, car_type.plug_type
       FROM car
       INNER JOIN car_type ON car.car_type_id = car_type.id
-      WHERE car.user_id = 1;`,
+      WHERE car.user_id = ?;`,
       [userId]
     );
     return result;

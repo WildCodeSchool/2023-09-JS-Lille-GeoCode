@@ -31,6 +31,7 @@ function StationMiniCard({ stations }) {
           setopenBooking({
             page1: true,
             page2: false,
+            page3: false,
           });
         }}
       >

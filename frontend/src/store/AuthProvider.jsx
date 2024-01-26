@@ -21,6 +21,7 @@ function AuthProvider({ children }) {
   const [openBooking, setopenBooking] = useState({
     page1: false,
     page2: false,
+    page3: false,
   });
   const setConnection = async () => {
     try {

@@ -1,7 +1,7 @@
-import { useState } from "react";
 import "./ChargepointBook.scss";
 import ComboCCSplug from "../../assets/ComboCCSplug.svg";
 import Type2plug from "../../assets/Type2plug.svg";
+import useStore from "../../store/AuthProvider";
 
 const station = {
   name: "Station République",
@@ -17,19 +17,11 @@ const station = {
   accessibility: "PMR",
 };
 function ChargepointBook() {
-  const [, setIsOpen] = useState(false);
-
-  // const handleOpen = () => {
-  //   setIsOpen(true);
-  // };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const { setopenBooking } = useStore();
   return (
     <>
       <h2 className="stationName">{station.name}</h2>
-      <div className="stationInfos">
+      <section className="stationInfos">
         <p className="date">Date : {station.date}</p>
         <p className="time">Horaire : {station.time}</p>
         <p className="adressStation">Adresse : {station.address}</p>
@@ -60,10 +52,20 @@ function ChargepointBook() {
         </ul>
         <p>Puissance de la borne : {station.powerPlug} kW</p>
         <p>Accessibilité : {station.accessibility}</p>
-        <button type="button" className="book" onClick={handleClose}>
+        <button
+          type="button"
+          className="book"
+          onClick={() => {
+            setopenBooking({
+              page1: false,
+              page2: false,
+              page3: true,
+            });
+          }}
+        >
           Réserver
         </button>
-      </div>
+      </section>
     </>
   );
 }

@@ -11,6 +11,7 @@ import StationPlugType3 from "../../assets/plug-type/ev-plug-type3.svg";
 import StationPlugCHAdeMO from "../../assets/plug-type/ev-plug-chademo.svg";
 import useStore from "../../store/AuthProvider";
 import ChargepointBook from "../ChargepointBook/ChargepointBook";
+import ChargepointBook2 from "../ChargepointBook2/ChargepointBook2";
 import ChargepointCalendar from "../ChargepointCalendar/ChargepointCalendar";
 
 const stations = [
@@ -95,6 +96,7 @@ function Navbar() {
                 )}
                 {openBooking.page1 && <ChargepointCalendar />}
                 {openBooking.page2 && <ChargepointBook />}
+                {openBooking.page3 && <ChargepointBook2 />}
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>

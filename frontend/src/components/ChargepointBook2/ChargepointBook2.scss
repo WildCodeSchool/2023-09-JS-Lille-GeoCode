@@ -4,9 +4,8 @@
   justify-content: center;
   flex-wrap: wrap;
   border-radius: 10px;
-  border: 1px solid $colorDark;
   background-color: $colorLight;
-  width: 80vw;
+  width: 85vw;
   margin: auto;
   padding: 1rem;
 }
@@ -18,10 +17,11 @@
   font-family: $fontFamily;
   font-size: 1.2rem;
   border-radius: 10px;
-  width: 65vw;
-  height: 5vh;
+  width: 75vw;
+  height: 12vh;
   padding: 1rem;
   margin: 1rem auto;
+  text-align: center;
 }
 .answerBtn {
   font-family: $fontFamily;
@@ -35,4 +35,19 @@
   height: 5vh;
   font-size: 1.2rem;
   margin: 1vw;
+}
+
+@media screen and (min-width: 600px) {
+  .ChargepointBook2TextContainer {
+    width: auto;
+    margin-top: 1vh;
+  }
+
+  .ChargepointBook2Text {
+    width: 45vw;
+  }
+
+  .answerBtn {
+    width: 10vw;
+  }
 }

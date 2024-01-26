@@ -80,10 +80,17 @@
   .stationName {
     font-size: 2.5rem;
     width: 35vw;
+    margin-bottom: 6vh;
+    margin-left: 0.6vw;
   }
 
   .stationInfos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     font-size: 1.5rem;
+    height: 43vh;
   }
 
   .chargepointBookAll {

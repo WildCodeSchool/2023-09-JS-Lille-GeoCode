@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "./ChargepointCalendar.scss";
 import { format } from "date-fns";
+import useStore from "../../store/AuthProvider";
 
 function ChargepointCalendar() {
   const booking = { date: "2024-01-10 12:00" };
@@ -9,6 +10,7 @@ function ChargepointCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedVehicle, setSelectedVehicle] = useState("");
+  const { setopenBooking } = useStore();
 
   const user = {
     id: 1,
@@ -133,7 +135,17 @@ function ChargepointCalendar() {
         )}
 
         {isFormValid && (
-          <button type="submit" className="submitButton">
+          <button
+            type="submit"
+            className="submitButton"
+            onClick={() => {
+              setopenBooking({
+                page1: false,
+                page2: true,
+                page3: false,
+              });
+            }}
+          >
             Valider la réservation
           </button>
         )}

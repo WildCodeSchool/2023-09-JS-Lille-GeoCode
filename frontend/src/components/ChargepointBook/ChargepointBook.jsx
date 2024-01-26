@@ -30,7 +30,7 @@ function ChargepointBook() {
           <li>
             <p className="typePlugItem">{station.typePlug[0].typeName}</p>
             <img
-              className="imgPlug typePlugItem"
+              className="imgPlug"
               src={station.typePlug[0].typeSRC}
               alt="logo d'une prise électrique de type 2"
             />
@@ -50,22 +50,24 @@ function ChargepointBook() {
             </p>
           </li>
         </ul>
-        <p>Puissance de la borne : {station.powerPlug} kW</p>
-        <p>Accessibilité : {station.accessibility}</p>
-        <button
-          type="button"
-          className="book"
-          onClick={() => {
-            setopenBooking({
-              page1: false,
-              page2: false,
-              page3: true,
-            });
-          }}
-        >
-          Réserver
-        </button>
+        <p className="chargepointPower">
+          Puissance de la borne : {station.powerPlug} kW
+        </p>
+        <p className="accessibility">Accessibilité : {station.accessibility}</p>
       </section>
+      <button
+        type="button"
+        className="book"
+        onClick={() => {
+          setopenBooking({
+            page1: false,
+            page2: false,
+            page3: true,
+          });
+        }}
+      >
+        Réserver
+      </button>
     </>
   );
 }

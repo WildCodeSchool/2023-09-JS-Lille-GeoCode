@@ -12,7 +12,6 @@ import NavigationButton from "../Home/NavigationButton";
 
 function UserInformations() {
   const connectedUser = useLoaderData();
-  console.info(connectedUser);
   const formatedBirthdate = format(
     new Date(connectedUser.birthdate),
     "dd/MM/yyyy"

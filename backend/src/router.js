@@ -27,6 +27,10 @@ const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
 
+const bookControllers = require("./controllers/bookControllers");
+
+router.post("/booking", bookControllers.booking);
+
 /* ************************************************************************* */
 
 const carControllers = require("./controllers/carControllers");

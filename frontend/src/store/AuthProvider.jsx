@@ -32,18 +32,14 @@ function AuthProvider({ children }) {
     setConnection();
   }, []);
   const memoizedValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
-
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
-
-  return (
+  return loading ? (
+    <div>Chargement...</div>
+  ) : (
     <AuthContext.Provider value={memoizedValue}>
       {children}
     </AuthContext.Provider>
   );
 }
-
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

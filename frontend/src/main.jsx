@@ -150,9 +150,9 @@ function PrivateRoute({ children }) {
 function PublicRoute({ children }) {
   const { auth } = useStore();
   if (auth.user.status === "user") {
-    return children;
+    return <Navigate to="/map" />;
   }
-  return <Navigate to="/map" />;
+  return children;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -167,7 +167,7 @@ root.render(
 
 PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired,
-  user: PropTypes.shape({ stauts: PropTypes.string.isRequired }).isRequired,
+  user: PropTypes.shape({ status: PropTypes.string.isRequired }).isRequired,
 };
 PublicRoute.propTypes = {
   children: PropTypes.node.isRequired,

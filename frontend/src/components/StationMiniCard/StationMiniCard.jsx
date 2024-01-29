@@ -5,7 +5,7 @@ import "./StationMiniCard.scss";
 import useStore from "../../store/AuthProvider";
 
 function StationMiniCard({ stations }) {
-  const { sethandleModal, setopenBooking } = useStore();
+  const { sethandleModal, SetopenBooking } = useStore();
   return (
     <li className="station_mc">
       <img
@@ -28,7 +28,7 @@ function StationMiniCard({ stations }) {
         className="chooseStation"
         onClick={() => {
           sethandleModal(false);
-          setopenBooking({
+          SetopenBooking({
             page1: true,
             page2: false,
             page3: false,

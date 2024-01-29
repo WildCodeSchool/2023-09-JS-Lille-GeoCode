@@ -10,7 +10,7 @@ function ChargepointCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedVehicle, setSelectedVehicle] = useState("");
-  const { setopenBooking } = useStore();
+  const { SetopenBooking } = useStore();
 
   const user = {
     id: 1,
@@ -78,16 +78,16 @@ function ChargepointCalendar() {
           />
           {selectedDate && (
             <>
-              <p className="confirmDate">Votre date sélectionnée :</p>
-              <span className="selectedDateDisplay">
+              <time className="confirmDate">Votre date sélectionnée :</time>
+              <time className="selectedDateDisplay">
                 {selectedDate.toLocaleDateString()}
-              </span>
+              </time>
             </>
           )}
         </fieldset>
 
         {generateTimeSlots()[0] ? (
-          <article className="timeVehicule">
+          <time className="timeVehicule">
             <label htmlFor="selectTime" className="selectTime">
               Choisir un créneau horaire :
             </label>
@@ -129,7 +129,7 @@ function ChargepointCalendar() {
                 </option>
               ))}
             </select>
-          </article>
+          </time>
         ) : (
           <p>Pas de créneaux disponibles</p>
         )}
@@ -139,7 +139,7 @@ function ChargepointCalendar() {
             type="submit"
             className="submitButton"
             onClick={() => {
-              setopenBooking({
+              SetopenBooking({
                 page1: false,
                 page2: true,
                 page3: false,

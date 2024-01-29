@@ -5,15 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 function ChargepointBook2() {
   return (
     <main className="ChargepointBook2TextContainer">
-      <header className="ChargepointBook2Text">
+      <p className="ChargepointBook2Text">
         Un tarif de 2 euros vous sera facturés pour la réservation.
-      </header>
-      <section className="beCareful">
+      </p>
+      <p className="beCareful">
         Les frais de réservation ne seront pas remboursés en cas d'annulation.
-      </section>
-      <section className="ChargepointBook2Text">
+      </p>
+      <p className="ChargepointBook2Text">
         Êtes vous sûr de vouloir réserver ?
-      </section>
+      </p>
       <footer>
         <button
           className="answerBtn"

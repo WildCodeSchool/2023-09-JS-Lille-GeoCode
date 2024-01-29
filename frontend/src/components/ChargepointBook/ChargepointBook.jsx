@@ -17,16 +17,16 @@ const station = {
   accessibility: "PMR",
 };
 function ChargepointBook() {
-  const { setopenBooking } = useStore();
+  const { SetopenBooking } = useStore();
   return (
     <>
       <h2 className="stationName">{station.name}</h2>
       <section className="stationInfos">
         <p className="date">
-          Date : <span className="dateChoose">{station.date}</span>
+          Date : <time className="dateChoose">{station.date}</time>
         </p>
         <p className="time">
-          Horaire : <span className="timeChoose">{station.time}</span>
+          Horaire : <time className="timeChoose">{station.time}</time>
         </p>
         <p className="adressStation">
           Adresse :{" "}
@@ -72,7 +72,7 @@ function ChargepointBook() {
         type="button"
         className="book"
         onClick={() => {
-          setopenBooking({
+          SetopenBooking({
             page1: false,
             page2: false,
             page3: true,

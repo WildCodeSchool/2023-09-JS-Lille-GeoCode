@@ -18,7 +18,7 @@ const initialState = {
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
   const [handleModal, sethandleModal] = useState(true);
-  const [openBooking, setopenBooking] = useState({
+  const [openBooking, SetopenBooking] = useState({
     page1: false,
     page2: false,
     page3: false,
@@ -43,7 +43,7 @@ function AuthProvider({ children }) {
       handleModal,
       sethandleModal,
       openBooking,
-      setopenBooking,
+      SetopenBooking,
     }),
     [auth, handleModal, openBooking, setAuth]
   );

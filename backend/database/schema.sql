@@ -250,7 +250,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Doe','John','john@example.com','male','1995-05-25','CityName',54321,'$argon2id$v=19$m=19456,t=2,p=1$kDR+OqkCsDijBJRvExPrBA$99v+M8tbuDqs8EnrScmo+pXipo5/JOzwAhyFAeBkPFA','user');
+INSERT INTO `person` VALUES (1,'Doe','John','john@example.com','Homme','1995-05-25','Lille',59800,'$argon2id$v=19$m=19456,t=2,p=1$kDR+OqkCsDijBJRvExPrBA$99v+M8tbuDqs8EnrScmo+pXipo5/JOzwAhyFAeBkPFA','user');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 

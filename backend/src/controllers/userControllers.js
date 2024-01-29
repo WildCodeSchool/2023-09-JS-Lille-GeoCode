@@ -2,13 +2,13 @@ const argon = require("argon2");
 const jwt = require("jsonwebtoken");
 const tables = require("../tables");
 
-const add = async (req, res, next) => {
+const add = async (req, res) => {
   const user = req.body;
   try {
     const insertId = await tables.person.create(user);
     res.status(201).json({ insertId });
   } catch (err) {
-    next(err);
+    res.sendStatus(409);
   }
 };
 
@@ -35,7 +35,7 @@ const getCurrentUser = async (req, res, next) => {
   }
 };
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password)
     return res.status(400).json("Please specify both email and password");
@@ -54,10 +54,15 @@ const login = async (req, res, next) => {
         secure: false,
       });
 
-      res.status(200).json({ email, id: user.id, status: user.status });
+      res.status(200).json({
+        firstname: user.firstname,
+        email,
+        id: user.id,
+        status: user.status,
+      });
     } else res.status(400).json("invalid password");
   } catch (err) {
-    next(err);
+    res.sendStatus(404);
   }
   return null;
 };

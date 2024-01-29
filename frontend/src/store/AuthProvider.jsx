@@ -17,6 +17,7 @@ const initialState = {
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
   const [loading, setLoading] = useState(true);
+
   const setConnection = async () => {
     try {
       const result = await userService.getCurrentUser();
@@ -33,7 +34,9 @@ function AuthProvider({ children }) {
   }, []);
   const memoizedValue = useMemo(() => ({ auth, setAuth }), [auth, setAuth]);
   return loading ? (
-    <div>Chargement...</div>
+    <AuthContext.Provider value={memoizedValue}>
+      <p>Chargement...</p>
+    </AuthContext.Provider>
   ) : (
     <AuthContext.Provider value={memoizedValue}>
       {children}

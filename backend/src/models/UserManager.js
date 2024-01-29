@@ -33,7 +33,7 @@ class UserManager extends AbstractManager {
       return rows;
     } catch (error) {
       await this.database.query("ROLLBACK");
-      return console.error(error);
+      return console.error("Erreur de données");
     }
   }
 

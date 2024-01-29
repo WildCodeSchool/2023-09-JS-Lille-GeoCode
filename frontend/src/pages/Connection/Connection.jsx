@@ -1,8 +1,9 @@
 import "./Connection.scss";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import BackgroundAsideType from "../../components/BackgroundAsideType/BackgroundAsideType";
 import FormLabel from "../../components/FormLabel/FormLabel";
 import { login } from "../../services/auth";
@@ -26,17 +27,26 @@ function Connection() {
     formState: { errors },
   } = useForm({ resolver: joiResolver(validationSchema) });
 
-  const navigate = useNavigate();
-
-  const { setAuth } = useStore();
+  const { auth, setAuth } = useStore();
 
   const onSubmit = async (data) => {
     try {
       const result = await login(data.email, data.password);
-      setAuth({ result });
-      navigate("/map");
+      setAuth({ user: result });
     } catch (error) {
       console.error(error);
+    }
+    if (auth.user.status !== "user") {
+      toast.error("Erreur de connection, veuillez réessayer", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
@@ -63,6 +73,18 @@ function Connection() {
           </button>
         </footer>
       </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </BackgroundAsideType>
   );
 }

@@ -52,7 +52,7 @@ function AuthProvider({ children }) {
 
   return loading ? (
     <AuthContext.Provider value={memoizedValue}>
-      {children}
+      <p>chargement...</p>
     </AuthContext.Provider>
   ) : (
     <AuthContext.Provider value={memoizedValue}>

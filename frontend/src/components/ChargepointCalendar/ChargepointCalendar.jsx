@@ -10,7 +10,7 @@ function ChargepointCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedVehicle, setSelectedVehicle] = useState("");
-  const { SetopenBooking } = useStore();
+  const { setOpenBooking } = useStore();
 
   const user = {
     id: 1,
@@ -139,7 +139,7 @@ function ChargepointCalendar() {
             type="submit"
             className="submitButton"
             onClick={() => {
-              SetopenBooking({
+              setOpenBooking({
                 page1: false,
                 page2: true,
                 page3: false,

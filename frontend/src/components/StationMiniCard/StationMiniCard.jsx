@@ -14,7 +14,7 @@ function StationMiniCard({ stations }) {
     chademo,
   };
 
-  const { sethandleModal, setOpenBooking } = useStore();
+  const { setHandleModal, setOpenBooking } = useStore();
   return (
     <li className="station_mc">
       <img
@@ -36,7 +36,7 @@ function StationMiniCard({ stations }) {
         type="button"
         className="chooseStation"
         onClick={() => {
-          sethandleModal(false);
+          setHandleModal(false);
           setOpenBooking({
             page1: true,
             page2: false,

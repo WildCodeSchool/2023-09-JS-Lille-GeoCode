@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
 import "./Subscribe.scss";
@@ -60,6 +63,7 @@ export default function Subscribe() {
       }),
   }).required();
 
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -67,11 +71,42 @@ export default function Subscribe() {
   } = useForm({ resolver: joiResolver(validationSchema) });
 
   const onSubmit = async (data) => {
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/user`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
+    if (response.ok) {
+      toast.success("Enregistrement validé", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+        onClose: () => {
+          setTimeout(() => {
+            navigate("/connection");
+          }, 2000);
+        },
+      });
+    } else {
+      toast.error("Erreur d'enregistrement, veuillez réessayer", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   return (
@@ -148,6 +183,18 @@ export default function Subscribe() {
           Envoyer
         </button>
       </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </BackgroundAsideType>
   );
 }

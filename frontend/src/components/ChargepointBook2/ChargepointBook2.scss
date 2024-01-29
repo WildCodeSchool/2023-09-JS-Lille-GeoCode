@@ -23,6 +23,22 @@
   margin: 1rem auto;
   text-align: center;
 }
+
+.beCareful {
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $colorPrimary_trans;
+  font-family: $fontFamily;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  width: 75vw;
+  height: 12vh;
+  padding: 1rem;
+  margin: 1rem auto;
+  text-align: center;
+}
 .answerBtn {
   font-family: $fontFamily;
   background: $gradient180deg;

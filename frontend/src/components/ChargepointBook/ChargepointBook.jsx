@@ -22,9 +22,16 @@ function ChargepointBook() {
     <>
       <h2 className="stationName">{station.name}</h2>
       <section className="stationInfos">
-        <p className="date">Date : {station.date}</p>
-        <p className="time">Horaire : {station.time}</p>
-        <p className="adressStation">Adresse : {station.address}</p>
+        <p className="date">
+          Date : <span className="dateChoose">{station.date}</span>
+        </p>
+        <p className="time">
+          Horaire : <span className="timeChoose">{station.time}</span>
+        </p>
+        <p className="adressStation">
+          Adresse :{" "}
+          <span className="adressStationChoose">{station.adress}</span>
+        </p>
         <p>Types de prises :</p>
         <ul className="plugList">
           <li>
@@ -35,7 +42,8 @@ function ChargepointBook() {
               alt="logo d'une prise électrique de type 2"
             />
             <p className="typePlugItem">
-              {station.typePlug[0].available} disponible(s)
+              <span className="available">{station.typePlug[0].available}</span>{" "}
+              x disponible(s)
             </p>
           </li>
           <li>
@@ -46,14 +54,19 @@ function ChargepointBook() {
               alt="logo d'une prise électrique de type Combo CCS"
             />
             <p className="typePlugItem">
-              {station.typePlug[1].available} disponible(s)
+              <span className="available">{station.typePlug[1].available}</span>{" "}
+              x disponible(s)
             </p>
           </li>
         </ul>
         <p className="chargepointPower">
-          Puissance de la borne : {station.powerPlug} kW
+          Puissance de la borne :{" "}
+          <span className="fullPower">{station.powerPlug}</span> kW
         </p>
-        <p className="accessibility">Accessibilité : {station.accessibility}</p>
+        <p className="accessibility">
+          Accessibilité :{" "}
+          <span className="access">{station.accessibility}</span>
+        </p>
       </section>
       <button
         type="button"

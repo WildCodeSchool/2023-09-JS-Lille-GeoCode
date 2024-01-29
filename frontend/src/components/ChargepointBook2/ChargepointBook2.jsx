@@ -8,7 +8,7 @@ function ChargepointBook2() {
       <header className="ChargepointBook2Text">
         Un tarif de 2 euros vous sera facturés pour la réservation.
       </header>
-      <section className="ChargepointBook2Text">
+      <section className="beCareful">
         Les frais de réservation ne seront pas remboursés en cas d'annulation.
       </section>
       <section className="ChargepointBook2Text">

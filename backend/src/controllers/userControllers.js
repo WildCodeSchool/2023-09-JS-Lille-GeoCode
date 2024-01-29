@@ -8,7 +8,7 @@ const add = async (req, res) => {
     const insertId = await tables.person.create(user);
     res.status(201).json({ insertId });
   } catch (err) {
-    res.sendStatus(409);
+    res.sendStatus(400);
   }
 };
 

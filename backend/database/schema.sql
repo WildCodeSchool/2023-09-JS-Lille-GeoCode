@@ -58,9 +58,9 @@ CREATE TABLE `booking_list` (
   PRIMARY KEY (`id`),
   KEY `car_id` (`car_id`),
   KEY `charge_point_id` (`charge_point_id`),
-  CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`),
-  CONSTRAINT `fk_car_id` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `booking_list_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
+  CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `booking_list` (
 
 LOCK TABLES `booking_list` WRITE;
 /*!40000 ALTER TABLE `booking_list` DISABLE KEYS */;
-INSERT INTO `booking_list` VALUES (1,'2024-02-08 08:00:00','FR3R3E10000849861',1,NULL),(2,'2024-02-08 08:30:00','FR3R3E10000849861',2,NULL);
+INSERT INTO `booking_list`(date, charge_point_id, car_id, car_type_id) VALUES ('2024-02-08 08:00:00','FR3R3E10000849861',1,1),('2024-02-08 08:30:00','FR3R3E10000849861',2,2);
 /*!40000 ALTER TABLE `booking_list` ENABLE KEYS */;
 UNLOCK TABLES;
 

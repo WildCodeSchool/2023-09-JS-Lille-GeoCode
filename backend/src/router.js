@@ -47,4 +47,14 @@ router.delete("/car", carControllers.deleteCar);
 
 router.get("/bookAvailable", bookControllers.browse);
 
+// Route to get reservation
+
+router.get("/users/:id/booking", authorize, bookControllers.getBookingUser);
+
+router.delete(
+  "/users/booking/:id",
+  authorize,
+  bookControllers.deleteReservation
+);
+
 module.exports = router;

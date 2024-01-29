@@ -1,8 +1,17 @@
 import PropTypes from "prop-types";
 import NavbarStations from "../../assets/navbar_stations.svg";
 import "./StationMiniCard.scss";
+import type2 from "../../assets/plug-type/ev-plug-type2.svg";
+import comboCCS from "../../assets/plug-type/ComboCCSplug.svg";
+import chademo from "../../assets/plug-type/ev-plug-chademo.svg";
 
 function StationMiniCard({ stations }) {
+  const plugImages = {
+    type2,
+    comboCCS,
+    chademo,
+  };
+
   return (
     <li className="station_mc">
       <img
@@ -11,12 +20,12 @@ function StationMiniCard({ stations }) {
         draggable="false"
         alt="logo prise de recharge"
       />
-      <h2>{stations.name}</h2>
+      <h2>{stations.station_name}</h2>
       <p className="station_mc_distance">à {stations.distance} km</p>
-      <p className="station_mc_plugtype">{stations.plugType}</p>
+      <p className="station_mc_plugtype">{stations.plug_type}</p>
       <img
         className="plug-type_logo"
-        src={stations.plugPicture}
+        src={plugImages[stations.plug_type]}
         draggable="false"
         alt="logo type de prise"
       />
@@ -26,10 +35,9 @@ function StationMiniCard({ stations }) {
 
 StationMiniCard.propTypes = {
   stations: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    station_name: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired,
-    plugPicture: PropTypes.string.isRequired,
-    plugType: PropTypes.string.isRequired,
+    plug_type: PropTypes.string.isRequired,
   }).isRequired,
 };
 

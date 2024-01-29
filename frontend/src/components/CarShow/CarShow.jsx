@@ -55,7 +55,7 @@ function CarShow({ carData, counterCar, setcounterCar }) {
       )}
     </section>
   ) : (
-    <p className="textInformationCar">Pas de voiture enregistré</p>
+    <p className="textInformationCar">Pas de voiture enregistrée</p>
   );
 }
 CarShow.propTypes = {

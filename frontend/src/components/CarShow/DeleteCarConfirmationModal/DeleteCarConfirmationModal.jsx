@@ -27,10 +27,10 @@ function DeleteCarConfirmationModal({ carData, counterCar }) {
         <AlertDialog.Overlay className="AlertDialogOverlay" />
         <AlertDialog.Content className="AlertDialogContent">
           <AlertDialog.Title className="AlertDialogTitle">
-            Êtes vous vraiment sur de vouloir supprimé cette voiture ?
+            Êtes-vous vraiment sûr de vouloir supprimer cette voiture ?
           </AlertDialog.Title>
           <AlertDialog.Description className="AlertDialogDescription">
-            Cette action va supprimer votre voiture définitivement et ces
+            Cette action va supprimer définitivement votre voiture et toutes les
             réservations liées.
           </AlertDialog.Description>
           <footer className="chooseButton">

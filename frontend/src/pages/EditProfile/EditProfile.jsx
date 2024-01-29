@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -9,6 +9,7 @@ import BackgroundAsideType from "../../components/BackgroundAsideType/Background
 import FormLabel from "../../components/FormLabel/FormLabel";
 
 function EditProfile() {
+  const navigate = useNavigate();
   const validationSchema = Joi.object({
     lastName: Joi.string().min(1).max(255).required().messages({
       "string.empty": "Votre nom est requis",
@@ -71,6 +72,7 @@ function EditProfile() {
         body: JSON.stringify(data),
         credentials: "include",
       });
+      navigate("/profile");
     } catch (err) {
       console.error(err);
     }

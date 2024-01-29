@@ -6,16 +6,18 @@
   align-items: center;
   background: $colorLight;
   border-radius: 20px;
-  width: 85vw;
-  padding: 3vw;
-  margin: auto;
-  padding-bottom: 3vh;
+  width: 82vw;
+  padding: 1vw;
+  margin: O;
 }
 
 .allElementsCalendar {
   border: none;
   padding: 0;
   margin: 0;
+  height: 5vh;
+  width: 21rem;
+  margin-top: 2vh;
 }
 .titleCard {
   display: flex;
@@ -29,13 +31,22 @@
   border-radius: 10px 50px;
   text-shadow: $textDropShadow;
   color: $colorLight;
-  width: auto;
-  padding: 3vw;
-  height: 3vh;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  margin-bottom: 2vh;
+  width: 70vw;
+  height: 4vh;
 }
 
+.selectedDateDisplay {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1vh;
+}
+.confirmDate {
+  margin-top: 1vh;
+}
 .selectDate,
 .confirmDate,
 .confirmSlot {
@@ -43,23 +54,52 @@
   justify-content: center;
   font-family: $fontFamily;
   color: $colorDark;
+  font-size: 1rem;
 }
-
+.selectDate {
+  font-size: 1.1rem;
+}
+.react-calendar {
+  height: 19vh;
+}
 .confirmDate,
 .selectTime,
 .slot,
 .selectVehicle,
 .vehicle {
   color: $colorDark;
+  font-size: 0.8rem;
+}
+
+.confirmDate,
+.selectTime,
+.selectVehicle {
+  font-size: 1.1rem;
 }
 .confirmSlot {
   font-family: $fontFamily;
   color: $colorDark;
+  text-align: center;
+  margin-bottom: 1vh;
 }
 
-.selectTime,
-.selectVehicle {
-  display: block;
+#selectTime,
+#selectVehicle {
+  font-size: 0.8rem;
+  border: double 1.5px transparent;
+  border-radius: 30px;
+  background-image: linear-gradient($colorLight, $colorLight), $gradient180deg;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  height: 2vh;
+  width: 80vw;
+  text-align: center;
+}
+#selectTime {
+  font-size: 0.8rem;
+  text-align: center;
+  height: 2vh;
+  width: 80vw;
 }
 .submitButton {
   display: flex;
@@ -74,39 +114,70 @@
   color: $colorLight;
   margin: auto;
   width: auto;
-  padding: 3.5vw;
-  height: 3vh;
+  padding: 5vw;
   text-align: center;
-  font-size: 1.2rem;
-  margin-top: 2vh;
+  font-size: 1rem;
+  margin-top: 3vh;
+  height: 1vh;
+}
+
+.timeVehicule {
+  margin-top: 1vh;
 }
 @media screen and (min-width: 600px) {
   .allElements {
-    font-size: 2.5vw;
-    height: auto;
+    width: auto;
+    padding-top: 0;
+  }
+
+  .selectedDateDisplay {
+    margin-top: 0.1vh;
   }
 
   .titleCard {
-    font-size: 2.5rem;
-    width: auto;
-    padding: 2vw;
+    width: 30vw;
+    height: 5vh;
+    margin: 0;
+    margin-bottom: 1vh;
+    padding: 0;
   }
 
-  .slot {
-    margin: 0%;
-  }
-
-  .confirmSlot {
-    display: flex;
-    justify-content: center;
-  }
-
-  .selectVehicle {
-    color: $colorDark;
+  .react-calendar,
+  .selectDate {
+    width: 30vw;
+    margin-left: 3vw;
   }
 
   .submitButton {
-    font-size: 2rem;
+    height: 5vh;
+    font-size: 1rem;
+    padding: 1vw;
     margin-top: 2vh;
+  }
+
+  .timeVehicule {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.1vh;
+  }
+
+  .slot,
+  .vehicle {
+    max-width: 20vw;
+  }
+
+  .slot {
+    margin: 2vh;
+  }
+
+  .selectVehicle {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+
+  .allElementsCalendar {
+    width: 35vw;
+    margin: 0;
   }
 }

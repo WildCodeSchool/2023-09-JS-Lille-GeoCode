@@ -1,9 +1,8 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useState } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
 import Calendar from "react-calendar";
 import "./ChargepointCalendar.scss";
 import { format } from "date-fns";
+import useStore from "../../store/AuthProvider";
 
 function ChargepointCalendar() {
   const booking = { date: "2024-01-10 12:00" };
@@ -11,6 +10,7 @@ function ChargepointCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedVehicle, setSelectedVehicle] = useState("");
+  const { setOpenBooking } = useStore();
 
   const user = {
     id: 1,
@@ -66,85 +66,91 @@ function ChargepointCalendar() {
   };
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>
-        <button type="button">cliquer</button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Content className="allElements">
-          <Dialog.Title className="titleCard">Choisir un créneau</Dialog.Title>
-          <form onSubmit={handleSubmit}>
-            <fieldset className="allElementsCalendar">
-              <legend className="selectDate">Choisir une date :</legend>
-              <Calendar
-                className="calendar"
-                onChange={handleDateChange}
-                value={selectedDate}
-              />
-              {selectedDate && (
-                <p className="confirmDate">
-                  Votre date sélectionnée : {selectedDate.toLocaleDateString()}
-                </p>
-              )}
-            </fieldset>
+    <div className="allElements">
+      <h2 className="titleCard">Choisir un créneau</h2>
+      <form onSubmit={handleSubmit}>
+        <fieldset className="allElementsCalendar">
+          <legend className="selectDate">Choisir une date :</legend>
+          <Calendar
+            className="calendar"
+            onChange={handleDateChange}
+            value={selectedDate}
+          />
+          {selectedDate && (
+            <>
+              <time className="confirmDate">Votre date sélectionnée :</time>
+              <time className="selectedDateDisplay">
+                {selectedDate.toLocaleDateString()}
+              </time>
+            </>
+          )}
+        </fieldset>
 
-            {generateTimeSlots()[0] ? (
-              <>
-                <label htmlFor="selectTime" className="selectTime">
-                  Choisir un créneau horaire :
-                </label>
-                <select
-                  className="slot"
-                  id="selectTime"
-                  onChange={(e) => handleTimeSelect(new Date(e.target.value))}
-                >
-                  <option value="">Sélectionnez un créneau</option>
-                  {generateTimeSlots().map((time, index) => (
-                    <option key={index} value={time}>
-                      {time.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </option>
-                  ))}
-                </select>
+        {generateTimeSlots()[0] ? (
+          <time className="timeVehicule">
+            <label htmlFor="selectTime" className="selectTime">
+              Choisir un créneau horaire :
+            </label>
+            <select
+              className="slot"
+              id="selectTime"
+              onChange={(e) => handleTimeSelect(new Date(e.target.value))}
+            >
+              <option value="">Sélectionnez un créneau</option>
+              {generateTimeSlots().map((time) => (
+                <option key={generateTimeSlots} value={time}>
+                  {time.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </option>
+              ))}
+            </select>
 
-                {selectedTime && (
-                  <p className="confirmSlot">
-                    Votre créneau horaire sélectionné :{" "}
-                    {selectedTime.toLocaleTimeString()}
-                  </p>
-                )}
-
-                <label htmlFor="selectVehicle" className="selectVehicle">
-                  Choisir un véhicule :
-                </label>
-                <select
-                  className="vehicle"
-                  id="selectVehicle"
-                  onChange={(e) => handleVehicleSelect(e.target.value)}
-                >
-                  <option value="">Sélectionnez votre véhicule</option>
-                  {user.vehicle.map((vehicle, index) => (
-                    <option key={index} value={vehicle}>
-                      {vehicle}
-                    </option>
-                  ))}
-                </select>
-              </>
-            ) : (
-              <p>Pas de créneaux disponibles</p>
+            {selectedTime && (
+              <p className="confirmSlot">
+                Votre créneau horaire sélectionné :{" "}
+                {selectedTime.toLocaleTimeString()}
+              </p>
             )}
 
-            {isFormValid && (
-              <button type="submit" className="submitButton">
-                Valider la réservation
-              </button>
-            )}
-          </form>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+            <label htmlFor="selectVehicle" className="selectVehicle">
+              Choisir un véhicule :
+            </label>
+            <select
+              className="vehicle"
+              id="selectVehicle"
+              onChange={(e) => handleVehicleSelect(e.target.value)}
+            >
+              <option value="">Sélectionnez votre véhicule</option>
+              {user.vehicle.map((vehicle) => (
+                <option key={user.id} value={vehicle}>
+                  {vehicle}
+                </option>
+              ))}
+            </select>
+          </time>
+        ) : (
+          <p>Pas de créneau disponible</p>
+        )}
+
+        {isFormValid && (
+          <button
+            type="submit"
+            className="submitButton"
+            onClick={() => {
+              setOpenBooking({
+                page1: false,
+                page2: true,
+                page3: false,
+              });
+            }}
+          >
+            Valider la réservation
+          </button>
+        )}
+      </form>
+    </div>
   );
 }
 

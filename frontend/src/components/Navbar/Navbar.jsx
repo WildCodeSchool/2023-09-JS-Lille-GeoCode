@@ -8,6 +8,10 @@ import StationMiniCard from "../StationMiniCard/StationMiniCard";
 import NavbarMap from "../../assets/navbar_map.svg";
 import NavbarStations from "../../assets/navbar_stations.svg";
 import NavbarUserPage from "../../assets/navbar_user_page.svg";
+import useStore from "../../store/AuthProvider";
+import ChargepointBook from "../ChargepointBook/ChargepointBook";
+import ChargepointBook2 from "../ChargepointBook2/ChargepointBook2";
+import ChargepointCalendar from "../ChargepointCalendar/ChargepointCalendar";
 
 function Navbar({ stations, position }) {
   const referencePoint = { latitude: position[0], longitude: position[1] };
@@ -33,6 +37,7 @@ function Navbar({ stations, position }) {
   stationsWithDistance.sort((a, b) => a.distance - b.distance);
 
   const nearestStations = stationsWithDistance.slice(0, 10);
+  const { handleModal, openBooking } = useStore();
 
   return (
     <nav className="navbar_container">
@@ -60,14 +65,19 @@ function Navbar({ stations, position }) {
             <Dialog.Portal>
               <Dialog.Overlay className="dialogOverlay" />
               <Dialog.Content className="dialogContent">
-                <ul>
-                  {nearestStations.map((station) => (
-                    <StationMiniCard
-                      key={station.charge_point_id_fr}
-                      stations={station}
-                    />
-                  ))}
-                </ul>
+                {handleModal && (
+                  <ul>
+                    {nearestStations.map((station) => (
+                      <StationMiniCard
+                        key={station.charge_point_id_fr}
+                        stations={station}
+                      />
+                    ))}
+                  </ul>
+                )}
+                {openBooking.page1 && <ChargepointCalendar />}
+                {openBooking.page2 && <ChargepointBook />}
+                {openBooking.page3 && <ChargepointBook2 />}
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>

@@ -10,15 +10,16 @@
   justify-content: space-between;
   align-items: center;
   background-color: $colorLight;
-  margin: 4vh 5vw;
-  padding: 2rem;
   border: 1px $colorDark solid;
   border-radius: 10px;
 }
 
 .stationName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: $fontFamily;
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: $colorLight;
   text-shadow: $textDropShadow;
   background: $gradient90deg;
@@ -26,19 +27,21 @@
   box-shadow: $colorDark 5px 7px 15px 1px;
   border-radius: 10px 50px;
   width: 70vw;
+  height: 10vh;
   text-align: center;
   padding-bottom: 0;
-  margin-bottom: 1vh;
+  margin-bottom: 5vh;
+  margin-left: 3vh;
 }
 .stationInfos {
   background-color: $colorPrimary_trans;
-  width: 70vw;
   border-radius: 10px;
-  padding: 1vw 2.5vh;
   font-family: $fontFamily;
   font-size: 1rem;
   line-height: 2rem;
-  margin: 2rem;
+  width: 80vw;
+  height: auto;
+  list-style-type: none;
 }
 
 .date,
@@ -63,6 +66,9 @@
   margin-bottom: -0.4rem;
 }
 .book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: $fontFamily;
   font-size: 1.5rem;
   color: $colorLight;
@@ -71,29 +77,46 @@
   box-shadow: $colorDark 5px 7px 15px 1px;
   border-radius: 10px 50px;
   width: 35vw;
+  height: 8vh;
   text-shadow: $textDropShadow;
   align-self: flex-end;
+  margin-top: 6vh;
+  margin-left: 25vw;
+}
+
+.dateChoose,
+.timeChoose,
+.adressStationChoose,
+.available,
+.fullPower,
+.access {
+  color: $colorPrimary;
+  margin: 0 0.5vw;
 }
 
 @media screen and (min-width: 600px) {
-  .book {
-    align-self: center;
-    width: 20vw;
-    font-size: 2rem;
-  }
-
   .stationName {
     font-size: 2.5rem;
-    width: 40vw;
+    width: 32vw;
+    height: auto;
   }
 
   .stationInfos {
-    font-size: 1.3rem;
-    width: 27vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 1vh 2vw;
+    font-size: 1.5rem;
+    width: 35vw;
   }
 
-  .chargepointBookAll {
-    width: 50vw;
-    margin: auto;
+  .book {
+    display: flex;
+    justify-content: center;
+    font-size: 2.2rem;
+    width: 15vw;
+    margin-top: 5vh;
+    margin-left: 11vw;
   }
 }

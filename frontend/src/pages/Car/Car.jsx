@@ -8,6 +8,11 @@ import PeugeotE208 from "../../assets/cars/PeugeotE208.png";
 import DaciaSpring from "../../assets/cars/daciaSpring.png";
 import mg4 from "../../assets/cars/mg4.png";
 import zoe from "../../assets/cars/renaultZOE.png";
+import renaultMegane from "../../assets/cars/renaultMegane.png";
+import nissanLeaf from "../../assets/cars/nissanLeaf.png";
+import kiaNiro from "../../assets/cars/kiaNiro.png";
+import fiatE500 from "../../assets/cars/fiatE500.png";
+import miniCooperSE from "../../assets/cars/miniCooperSE.png";
 import AddCarModal from "../../components/CarShow/AddCarModal/AddCarModal";
 import BackButton from "../../components/BackButton/BackButton";
 import arrowDark from "../../assets/arrowBackDark.svg";
@@ -21,10 +26,15 @@ function Car() {
   const carData = useLoaderData();
   const carImages = {
     "Modele 3": Teslamodel3,
-    "E-208": PeugeotE208,
     Spring: DaciaSpring,
+    "Megane E-tech": renaultMegane,
     MG4: mg4,
+    "500e": fiatE500,
+    "E-208": PeugeotE208,
+    "Cooper SE": miniCooperSE,
     ZOE: zoe,
+    Leaf: nissanLeaf,
+    Niro: kiaNiro,
   };
 
   return (

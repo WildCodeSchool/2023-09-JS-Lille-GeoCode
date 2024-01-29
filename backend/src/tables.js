@@ -15,6 +15,7 @@ const managers = [
   UserManager,
   CarManager,
   BookManager,
+
   // Add other managers here
 ];
 

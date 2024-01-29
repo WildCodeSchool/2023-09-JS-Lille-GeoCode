@@ -115,9 +115,7 @@ function Map() {
           </MarkerClusterGroup>
           {coords && (
             <Marker position={[coords.lat, coords.long]}>
-              <Popup>
-                <h1>Vous êtes ici</h1>
-              </Popup>
+              <Popup>Vous êtes ici</Popup>
             </Marker>
           )}
           <Navbar stations={stations} position={[coords.lat, coords.long]} />

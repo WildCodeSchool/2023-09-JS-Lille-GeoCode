@@ -2,11 +2,22 @@ import PropTypes from "prop-types";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import "./DeleteCarConfirmationModal.scss";
 
-function DeleteCarConfirmationModal({ user }) {
+function DeleteCarConfirmationModal({ carData, counterCar }) {
+  const deleteCar = () => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/car`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(carData[counterCar]),
+    });
+    return null;
+  };
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
-        {user.car && (
+        {carData && (
           <button type="button" className="addCar">
             Supprimer la voiture
           </button>
@@ -16,10 +27,11 @@ function DeleteCarConfirmationModal({ user }) {
         <AlertDialog.Overlay className="AlertDialogOverlay" />
         <AlertDialog.Content className="AlertDialogContent">
           <AlertDialog.Title className="AlertDialogTitle">
-            Êtes vous vraiment sur de vouloir supprimé cette voiture ?
+            Êtes-vous vraiment sûr de vouloir supprimer cette voiture ?
           </AlertDialog.Title>
           <AlertDialog.Description className="AlertDialogDescription">
-            Cette action va supprimer votre voiture définitivement.
+            Cette action va supprimer définitivement votre voiture et toutes les
+            réservations liées.
           </AlertDialog.Description>
           <footer className="chooseButton">
             <AlertDialog.Cancel asChild>
@@ -28,7 +40,14 @@ function DeleteCarConfirmationModal({ user }) {
               </button>
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild>
-              <button type="button" className="carButtonDelete">
+              <button
+                type="button"
+                className="carButtonDelete"
+                onClick={() => {
+                  deleteCar();
+                  window.location.reload();
+                }}
+              >
                 Oui
               </button>
             </AlertDialog.Action>
@@ -39,15 +58,11 @@ function DeleteCarConfirmationModal({ user }) {
   );
 }
 DeleteCarConfirmationModal.propTypes = {
-  user: PropTypes.shape({
-    firstname: PropTypes.string.isRequired,
-    car: PropTypes.arrayOf(
-      PropTypes.shape({
-        brand: PropTypes.string.isRequired,
-        model: PropTypes.string.isRequired,
-      })
-    ).isRequired,
+  carData: PropTypes.shape({
+    max_power: PropTypes.number.isRequired,
+    plug_type: PropTypes.string.isRequired,
   }).isRequired,
+  counterCar: PropTypes.number.isRequired,
 };
 
 export default DeleteCarConfirmationModal;

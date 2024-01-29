@@ -1,66 +1,44 @@
 import React from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as geolib from "geolib";
 import StationMiniCard from "../StationMiniCard/StationMiniCard";
 import NavbarMap from "../../assets/navbar_map.svg";
 import NavbarStations from "../../assets/navbar_stations.svg";
 import NavbarUserPage from "../../assets/navbar_user_page.svg";
-import StationPlugType2 from "../../assets/plug-type/ev-plug-type2.svg";
-import StationPlugType3 from "../../assets/plug-type/ev-plug-type3.svg";
-import StationPlugCHAdeMO from "../../assets/plug-type/ev-plug-chademo.svg";
 import useStore from "../../store/AuthProvider";
 import ChargepointBook from "../ChargepointBook/ChargepointBook";
 import ChargepointBook2 from "../ChargepointBook2/ChargepointBook2";
 import ChargepointCalendar from "../ChargepointCalendar/ChargepointCalendar";
 
-const stations = [
-  {
-    id: 1,
-    name: "Total",
-    distance: 5,
-    plugType: "Type 2",
-    plugPicture: StationPlugType2,
-  },
-  {
-    id: 2,
-    name: "Leclerc",
-    distance: 10,
-    plugType: "Type 3",
-    plugPicture: StationPlugType3,
-  },
-  {
-    id: 3,
-    name: "Auchan",
-    distance: 15,
-    plugType: "CHAdeMO",
-    plugPicture: StationPlugCHAdeMO,
-  },
-  {
-    id: 4,
-    name: "Total",
-    distance: 20,
-    plugType: "Type 2",
-    plugPicture: StationPlugType2,
-  },
-  {
-    id: 5,
-    name: "Carrefour",
-    distance: 25,
-    plugType: "Type 3",
-    plugPicture: StationPlugType3,
-  },
-  {
-    id: 6,
-    name: "Total",
-    distance: 30,
-    plugType: "Type 2",
-    plugPicture: StationPlugType2,
-  },
-];
+function Navbar({ stations, position }) {
+  const referencePoint = { latitude: position[0], longitude: position[1] };
 
-function Navbar() {
+  const stationsWithDistance = stations.map((station) => {
+    const latitude = station.y_latitude;
+    const longitude = station.x_longitude;
+
+    const distanceInMeters = geolib.getDistance(referencePoint, {
+      latitude,
+      longitude,
+    });
+
+    const distanceInKilometers =
+      Math.round((distanceInMeters / 1000) * 100) / 100;
+
+    return {
+      ...station,
+      distance: distanceInKilometers,
+    };
+  });
+
+  stationsWithDistance.sort((a, b) => a.distance - b.distance);
+
+  const nearestStations = stationsWithDistance.slice(0, 10);
   const { handleModal, openBooking } = useStore();
+
   return (
     <nav className="navbar_container">
       <ul className="navbar_list">
@@ -89,8 +67,11 @@ function Navbar() {
               <Dialog.Content className="dialogContent">
                 {handleModal && (
                   <ul>
-                    {stations.map((station) => (
-                      <StationMiniCard key={station.id} stations={station} />
+                    {nearestStations.map((station) => (
+                      <StationMiniCard
+                        key={station.charge_point_id_fr}
+                        stations={station}
+                      />
                     ))}
                   </ul>
                 )}
@@ -115,5 +96,16 @@ function Navbar() {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  stations: PropTypes.arrayOf(
+    PropTypes.shape({
+      charge_point_id_fr: PropTypes.string.isRequired,
+      y_latitude: PropTypes.string.isRequired,
+      x_longitude: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  position: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+};
 
 export default Navbar;

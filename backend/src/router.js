@@ -27,11 +27,19 @@ const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
 
+const bookControllers = require("./controllers/bookControllers");
+
+router.post("/booking", bookControllers.booking);
+
 /* ************************************************************************* */
 
 const carControllers = require("./controllers/carControllers");
 
-router.post("/car", carControllers.createCar);
+router.get("/users/car", authorize, carControllers.getCarsOfUser);
+
+router.get("/car", carControllers.getCarsType);
+
+router.post("/car", authorize, carControllers.createCar);
 
 router.delete("/car", carControllers.deleteCar);
 

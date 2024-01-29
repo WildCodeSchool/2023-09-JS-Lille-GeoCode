@@ -27,9 +27,20 @@ function Map() {
 
   const chargepointCleaned = Object.values(groupedData);
 
-  const markers = chargepointCleaned.map((e) => ({
+  const groupedChargedpoints = {};
+
+  chargepointCleaned.forEach((e) => {
+    if (!groupedChargedpoints[e.station_id]) {
+      groupedChargedpoints[e.station_id] = { ...e };
+    }
+  });
+
+  const stations = Object.values(groupedChargedpoints);
+
+  const markers = stations.map((e) => ({
     coord: [e.y_latitude, e.x_longitude],
-    popUp: `${e.adress}`,
+    popUp: `${e.station_name}`,
+    id: `${e.station_id}`,
   }));
 
   const customIcon = new Icon({
@@ -97,19 +108,17 @@ function Map() {
           />
           <MarkerClusterGroup>
             {markers.map((marker) => (
-              <Marker position={marker.coord} icon={customIcon}>
+              <Marker key={marker.id} position={marker.coord} icon={customIcon}>
                 <Popup>{marker.popUp}</Popup>
               </Marker>
             ))}
           </MarkerClusterGroup>
           {coords && (
             <Marker position={[coords.lat, coords.long]}>
-              <Popup>
-                <h1>Vous êtes ici</h1>
-              </Popup>
+              <Popup>Vous êtes ici</Popup>
             </Marker>
           )}
-          <Navbar />
+          <Navbar stations={stations} position={[coords.lat, coords.long]} />
         </MapContainer>
       )}
     </>

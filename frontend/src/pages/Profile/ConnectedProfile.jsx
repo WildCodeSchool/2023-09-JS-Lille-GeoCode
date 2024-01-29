@@ -10,11 +10,12 @@ import useStore from "../../store/AuthProvider";
 function Profile() {
   const navigate = useNavigate();
   const { setAuth } = useStore();
+  const { auth } = useStore();
   return (
     <main>
       <section className="headband">
         <img className="profilePict" src={profilePict} alt="vue du profil" />
-        <h2 className="titleSize">Photo du profil</h2>
+        <h2 className="titleSize">{auth.user.firstname}</h2>
       </section>
       <nav className="profile">
         <NavigationButton
@@ -45,7 +46,6 @@ function Profile() {
             navigate("/map");
             setAuth({
               user: { status: "visitor" },
-              isLogged: false,
             });
           }}
         >

@@ -6,23 +6,35 @@ class UserManager extends AbstractManager {
   }
 
   async create(person) {
-    const [rows] = await this.database.query(
-      `INSERT INTO 
-      ${this.table} (lastName, firstName, email, gender, birthdate, city, zipcode, password)
-     VALUES (?,?,?,?,?,?,?,?);`,
-      [
-        person.lastName,
-        person.firstName,
-        person.email,
-        person.gender,
-        person.birthdate,
-        person.city,
-        person.zipcode,
-        person.hashedPassword,
-      ]
-    );
+    try {
+      await this.database.query("START TRANSACTION");
 
-    return rows;
+      const [rows] = await this.database.query(
+        `INSERT INTO 
+        ${this.table} (lastName, firstName, email, gender, birthdate, city, zipcode, password)
+       VALUES (?,?,?,?,?,?,?,?);`,
+        [
+          person.lastName,
+          person.firstName,
+          person.email,
+          person.gender,
+          person.birthdate,
+          person.city,
+          person.zipcode,
+          person.hashedPassword,
+        ]
+      );
+
+      const userId = rows.insertId;
+      await this.database.query("INSERT INTO user (user_id) VALUES (?)", [
+        userId,
+      ]);
+      await this.database.query("COMMIT");
+      return rows;
+    } catch (error) {
+      await this.database.query("ROLLBACK");
+      return console.error(error);
+    }
   }
 
   async getByEmail(email) {
@@ -35,7 +47,7 @@ class UserManager extends AbstractManager {
 
   async getById(id) {
     const [user] = await this.database.query(
-      "SELECT id, email, status FROM person WHERE id = ?",
+      "SELECT id, firstname, email, status FROM person WHERE id = ?",
       [id]
     );
     return user;

@@ -12,11 +12,11 @@ const AuthContext = createContext();
 const useStore = () => useContext(AuthContext);
 const initialState = {
   user: { status: "visitor" },
-  isLogged: false,
 };
 
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
+  const [loading, setLoading] = useState(true);
   const [handleModal, sethandleModal] = useState(true);
   const [openBooking, SetopenBooking] = useState({
     page1: false,
@@ -26,12 +26,14 @@ function AuthProvider({ children }) {
   const setConnection = async () => {
     try {
       const result = await userService.getCurrentUser();
-      setAuth({ user: result, isLogged: true });
+
+      setAuth({ user: result });
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
-
   useEffect(() => {
     setConnection();
   }, []);
@@ -48,13 +50,16 @@ function AuthProvider({ children }) {
     [auth, handleModal, openBooking, setAuth]
   );
 
-  return (
+  return loading ? (
+    <AuthContext.Provider value={memoizedValue}>
+      <p>chargement...</p>
+    </AuthContext.Provider>
+  ) : (
     <AuthContext.Provider value={memoizedValue}>
       {children}
     </AuthContext.Provider>
   );
 }
-
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -1,6 +1,6 @@
 import "./ChargepointBook.scss";
-import ComboCCSplug from "../../assets/ComboCCSplug.svg";
-import Type2plug from "../../assets/Type2plug.svg";
+import ComboCCSplug from "../../assets/plug-type/ComboCCSplug.svg";
+import Type2plug from "../../assets/plug-type/ev-plug-type2.svg";
 import useStore from "../../store/AuthProvider";
 
 const station = {
@@ -29,43 +29,41 @@ function ChargepointBook() {
           Horaire : <time className="timeChoose">{station.time}</time>
         </p>
         <p className="adressStation">
-          Adresse :{" "}
-          <span className="adressStationChoose">{station.adress}</span>
+          Adresse :<span className="adressStationChoose">{station.adress}</span>
         </p>
         <p>Types de prises :</p>
         <ul className="plugList">
           <li>
-            <p className="typePlugItem">{station.typePlug[0].typeName}</p>
+            <p className="typePlugItem">- {station.typePlug[0].typeName}</p>
             <img
               className="imgPlug"
               src={station.typePlug[0].typeSRC}
               alt="logo d'une prise électrique de type 2"
             />
             <p className="typePlugItem">
-              <span className="available">{station.typePlug[0].available}</span>{" "}
+              <span className="available">{station.typePlug[0].available}</span>
               x disponible(s)
             </p>
           </li>
           <li>
-            <p className="typePlugItem">{station.typePlug[1].typeName}</p>
+            <p className="typePlugItem">- {station.typePlug[1].typeName}</p>
             <img
               className="imgPlug typePlugItem"
               src={station.typePlug[1].typeSRC}
               alt="logo d'une prise électrique de type Combo CCS"
             />
             <p className="typePlugItem">
-              <span className="available">{station.typePlug[1].available}</span>{" "}
+              <span className="available">{station.typePlug[1].available}</span>
               x disponible(s)
             </p>
           </li>
         </ul>
         <p className="chargepointPower">
-          Puissance de la borne :{" "}
+          Puissance de la borne :
           <span className="fullPower">{station.powerPlug}</span> kW
         </p>
         <p className="accessibility">
-          Accessibilité :{" "}
-          <span className="access">{station.accessibility}</span>
+          Accessibilité :<span className="access">{station.accessibility}</span>
         </p>
       </section>
       <button

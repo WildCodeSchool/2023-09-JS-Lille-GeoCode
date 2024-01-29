@@ -6,7 +6,7 @@ function ChargepointBook2() {
   return (
     <main className="ChargepointBook2TextContainer">
       <p className="ChargepointBook2Text">
-        Un tarif de 2 euros vous sera facturés pour la réservation.
+        Un tarif de 2 euros vous sera facturé pour la réservation.
       </p>
       <p className="beCareful">
         Les frais de réservation ne seront pas remboursés en cas d'annulation.

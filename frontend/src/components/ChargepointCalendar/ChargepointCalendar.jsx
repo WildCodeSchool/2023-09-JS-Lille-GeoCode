@@ -131,7 +131,7 @@ function ChargepointCalendar() {
             </select>
           </time>
         ) : (
-          <p>Pas de créneaux disponibles</p>
+          <p>Pas de créneau disponible</p>
         )}
 
         {isFormValid && (

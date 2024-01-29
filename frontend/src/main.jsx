@@ -64,6 +64,21 @@ const router = createBrowserRouter([
         <EditProfile />
       </PrivateRoute>
     ),
+    loader: async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo`,
+          { method: "get", credentials: "include" }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
   },
   {
     path: "/profile",
@@ -71,7 +86,32 @@ const router = createBrowserRouter([
   },
   {
     path: "/car",
-    element: <Car />,
+    element: (
+      <PrivateRoute>
+        <Car />
+      </PrivateRoute>
+    ),
+    loader: async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/car`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
   },
   {
     path: "/userinformations",
@@ -80,27 +120,39 @@ const router = createBrowserRouter([
         <UserInformations />
       </PrivateRoute>
     ),
+    loader: async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/connecteduserinfo`,
+          { method: "get", credentials: "include" }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
   },
 ]);
 
-function PrivateRoute({ children, role = "user" }) {
+function PrivateRoute({ children }) {
   const { auth } = useStore();
 
-  if (auth.isLogged) {
-    if (auth.user?.status === role) {
-      return children;
-    }
-    return <Navigate to="/map" />;
+  if (auth.user.status === "user") {
+    return children;
   }
   return <Navigate to="/connection" />;
 }
 
 function PublicRoute({ children }) {
   const { auth } = useStore();
-  if (!auth.isLogged) {
-    return children;
+  if (auth.user.status === "user") {
+    return <Navigate to="/map" />;
   }
-  return <Navigate to="/map" />;
+  return children;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -115,7 +167,7 @@ root.render(
 
 PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired,
-  role: PropTypes.string.isRequired,
+  user: PropTypes.shape({ status: PropTypes.string.isRequired }).isRequired,
 };
 PublicRoute.propTypes = {
   children: PropTypes.node.isRequired,

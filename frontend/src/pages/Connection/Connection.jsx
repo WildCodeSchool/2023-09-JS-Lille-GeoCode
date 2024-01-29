@@ -33,7 +33,7 @@ function Connection() {
   const onSubmit = async (data) => {
     try {
       const result = await login(data.email, data.password);
-      setAuth({ user: result, isLogged: true });
+      setAuth({ result });
       navigate("/map");
     } catch (error) {
       console.error(error);

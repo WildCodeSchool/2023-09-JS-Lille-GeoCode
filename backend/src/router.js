@@ -8,45 +8,42 @@ const hashPassword = require("./services/auth");
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Import itemControllers module for handling item-related operations
-const itemControllers = require("./controllers/itemControllers");
+// Route to get users
 
-// Route to get a list of items
-router.get("/items", itemControllers.browse);
+const userControllers = require("./controllers/userControllers");
 
-// Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
-
-// Route to add a new item
-router.post("/items", itemControllers.add);
-// Route to get charge point
-const {
-  login,
-  logout,
-  getCurrentUser,
-} = require("./controllers/userControllers");
 const { authorize } = require("./middlewares/auth");
 
-router.get("/users/me", authorize, getCurrentUser);
-router.post("/users/login", login);
-router.get("/users/logout", logout);
+router.get("/users/me", authorize, userControllers.getCurrentUser);
+router.get("/users/logout", userControllers.logout);
+router.get("/connecteduserinfo", authorize, userControllers.read);
+router.post("/users/login", userControllers.login);
+router.post("/user", hashPassword, userControllers.add);
+router.put("/users", authorize, userControllers.updateUser);
+
+// Route to get charge point
 
 const chargePointControllers = require("./controllers/chargePointControllers");
 
 router.get("/chargepoint", chargePointControllers.browse);
-/* ************************************************************************* */
-const userController = require("./controllers/userController");
 
-router.post("/user", hashPassword, userController.add);
+const bookControllers = require("./controllers/bookControllers");
+
+router.post("/booking", bookControllers.booking);
+
+/* ************************************************************************* */
 
 const carControllers = require("./controllers/carControllers");
 
-router.post("/car", carControllers.createCar);
+router.get("/users/car", authorize, carControllers.getCarsOfUser);
+
+router.get("/car", carControllers.getCarsType);
+
+router.post("/car", authorize, carControllers.createCar);
 
 router.delete("/car", carControllers.deleteCar);
 
 // Route to have reservations available
-const bookControllers = require("./controllers/bookControllers");
 
 router.get("/bookAvailable", bookControllers.browse);
 

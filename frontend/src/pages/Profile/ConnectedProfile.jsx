@@ -45,7 +45,6 @@ function Profile() {
             navigate("/map");
             setAuth({
               user: { status: "visitor" },
-              isLogged: false,
             });
           }}
         >

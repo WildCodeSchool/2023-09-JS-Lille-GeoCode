@@ -1,58 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "./ChargepointCalendar.scss";
-import { format } from "date-fns";
 import useStore from "../../store/AuthProvider";
 
 function ChargepointCalendar() {
-  const booking = { date: "2024-01-10 12:00" };
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
-  const [selectedVehicle, setSelectedVehicle] = useState("");
-  const { setOpenBooking } = useStore();
-
-  const user = {
-    id: 1,
-    name: "Naomi Watts",
-    vehicle: ["Renault Megane ETECH"],
-  };
+  // const [selectedVehicle, setSelectedVehicle] = useState("");
+  const [dateAvailable, setDateAvailable] = useState([]);
+  const { setOpenBooking, selectedStation } = useStore();
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const generateTimeSlots = () => {
-    const startTime = new Date(selectedDate);
-    startTime.setHours(1, 0, 0);
+  useEffect(() => {
+    const fetchTimeSlots = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/book/${selectedStation}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({ selectedDate }),
+          }
+        );
 
-    const endTime = new Date(selectedDate);
-    endTime.setHours(23, 30, 0);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
 
-    const timeSlots = [];
-    const currentTime = new Date(startTime);
-
-    while (currentTime <= endTime) {
-      const formattedDate = format(currentTime, "yyyy-MM-dd HH:mm", {
-        timeZone: "Europe/Paris",
-      });
-      if (formattedDate !== booking.date) {
-        timeSlots.push(new Date(formattedDate));
+        const data = await response.json();
+        setDateAvailable(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-      currentTime.setMinutes(currentTime.getMinutes() + 30);
-    }
-    return timeSlots;
-  };
+    };
+
+    fetchTimeSlots();
+  }, [selectedDate]);
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
   };
 
-  const handleVehicleSelect = (vehicle) => {
-    setSelectedVehicle(vehicle);
-  };
+  // const handleVehicleSelect = (vehicle) => {
+  //   setSelectedVehicle(vehicle);
+  // };
 
-  const isFormValid = selectedDate && selectedTime && selectedVehicle;
+  const isFormValid = selectedDate && selectedTime;
+  // && selectedVehicle;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ function ChargepointCalendar() {
       console.info("Réservation validée :", {
         selectedDate,
         selectedTime,
-        selectedVehicle,
+        // selectedVehicle,
       });
     }
   };
@@ -86,7 +86,7 @@ function ChargepointCalendar() {
           )}
         </fieldset>
 
-        {generateTimeSlots()[0] ? (
+        {dateAvailable[0] ? (
           <time className="timeVehicule">
             <label htmlFor="selectTime" className="selectTime">
               Choisir un créneau horaire :
@@ -97,9 +97,9 @@ function ChargepointCalendar() {
               onChange={(e) => handleTimeSelect(new Date(e.target.value))}
             >
               <option value="">Sélectionnez un créneau</option>
-              {generateTimeSlots().map((time) => (
-                <option key={generateTimeSlots} value={time}>
-                  {time.toLocaleTimeString([], {
+              {dateAvailable.map((time) => (
+                <option key={time} value={time}>
+                  {new Date(time).toLocaleTimeString([], {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}
@@ -117,7 +117,7 @@ function ChargepointCalendar() {
             <label htmlFor="selectVehicle" className="selectVehicle">
               Choisir un véhicule :
             </label>
-            <select
+            {/* <select
               className="vehicle"
               id="selectVehicle"
               onChange={(e) => handleVehicleSelect(e.target.value)}
@@ -128,12 +128,11 @@ function ChargepointCalendar() {
                   {vehicle}
                 </option>
               ))}
-            </select>
+            </select> */}
           </time>
         ) : (
           <p>Pas de créneau disponible</p>
         )}
-
         {isFormValid && (
           <button
             type="submit"

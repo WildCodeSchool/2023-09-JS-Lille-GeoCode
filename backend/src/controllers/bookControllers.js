@@ -47,9 +47,24 @@ const deleteReservation = async (req, res) => {
   }
 };
 
+const getAllBookedDate = async (req, res) => {
+  const stationId = req.params.id;
+  const { selectedDate } = req.body;
+  try {
+    const result = await tables.booking_list.getNotBookedDateByStationId(
+      stationId,
+      selectedDate
+    );
+    res.status(201).json(result);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
   browse,
   getBookingUser,
   deleteReservation,
   booking,
+  getAllBookedDate,
 };

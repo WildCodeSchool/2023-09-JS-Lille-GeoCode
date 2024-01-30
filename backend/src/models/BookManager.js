@@ -1,4 +1,6 @@
+const { format } = require("date-fns");
 const AbstractManager = require("./AbstractManager");
+const generateTimeSlots = require("../services/generateTimeSlots");
 
 class BookManager extends AbstractManager {
   constructor() {
@@ -36,6 +38,39 @@ class BookManager extends AbstractManager {
     );
     return result;
   }
-}
 
+  async getNotBookedDateByStationId(stationId, date) {
+    const dateArray = generateTimeSlots(date);
+    const dateAvailableArray = [];
+
+    await Promise.all(
+      dateArray.map(async (d) => {
+        const formattedDate = format(d, "yyyy-MM-dd HH:mm:ss", {
+          timeZone: "Europe/Paris",
+        });
+
+        try {
+          const [result] = await this.database.query(
+            `SELECT ((SELECT COUNT(charge_point_id_fr) 
+            FROM charge_point
+            WHERE station_id = ?) - (SELECT COUNT(charge_point_id_fr)
+            FROM booking_list
+            INNER JOIN charge_point 
+            ON charge_point_id_fr = charge_point_id
+            WHERE station_id = ?
+            AND date = ?)) AS result;`,
+            [stationId, stationId, formattedDate]
+          );
+
+          if (result[0].result) {
+            dateAvailableArray.push(formattedDate);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      })
+    );
+    return dateAvailableArray;
+  }
+}
 module.exports = BookManager;

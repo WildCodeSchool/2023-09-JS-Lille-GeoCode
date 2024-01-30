@@ -14,7 +14,7 @@ function StationMiniCard({ stations }) {
     chademo,
   };
 
-  const { setHandleModal, setOpenBooking } = useStore();
+  const { setHandleModal, setOpenBooking, setSelectedStation } = useStore();
   return (
     <li className="station_mc">
       <img
@@ -36,6 +36,7 @@ function StationMiniCard({ stations }) {
         type="button"
         className="chooseStation"
         onClick={() => {
+          setSelectedStation(stations.station_id);
           setHandleModal(false);
           setOpenBooking({
             page1: true,
@@ -52,6 +53,7 @@ function StationMiniCard({ stations }) {
 
 StationMiniCard.propTypes = {
   stations: PropTypes.shape({
+    station_id: PropTypes.string.isRequired,
     station_name: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired,
     plug_type: PropTypes.string.isRequired,

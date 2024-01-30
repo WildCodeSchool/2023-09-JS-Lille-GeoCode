@@ -57,4 +57,6 @@ router.delete(
   bookControllers.deleteReservation
 );
 
+router.post("/book/:id", bookControllers.getAllBookedDate);
+
 module.exports = router;

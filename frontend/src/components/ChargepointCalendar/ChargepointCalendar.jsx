@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "./ChargepointCalendar.scss";
 import useStore from "../../store/AuthProvider";
+import arrowDark from "../../assets/arrowBackDark.svg";
 
 function ChargepointCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [dateAvailable, setDateAvailable] = useState([]);
   const {
+    setHandleModal,
     setOpenBooking,
     selectedStation,
     carAvailableList,
@@ -49,7 +51,6 @@ function ChargepointCalendar() {
     fetchTimeSlots();
   }, [selectedDate]);
   const isFormValid = selectedDate && selectedTime && selectedVehicle;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
@@ -63,7 +64,22 @@ function ChargepointCalendar() {
 
   return (
     <div className="allElements">
+      <button
+        className="backButtonModal"
+        type="button"
+        onClick={() => {
+          setOpenBooking({
+            page1: false,
+            page2: false,
+            page3: false,
+          });
+          setHandleModal(true);
+        }}
+      >
+        <img src={arrowDark} alt="Retour en arrière" />
+      </button>
       <h2 className="titleCard">Choisir un créneau</h2>
+
       <form onSubmit={handleSubmit}>
         <fieldset className="allElementsCalendar">
           <legend className="selectDate">Choisir une date :</legend>
@@ -110,7 +126,7 @@ function ChargepointCalendar() {
               </p>
             )}
 
-            {carAvailableList[0] ? (
+            {carAvailableList?.[0] ? (
               <>
                 <label htmlFor="selectVehicle" className="selectVehicle">
                   Choisir un véhicule :

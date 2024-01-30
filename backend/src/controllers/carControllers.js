@@ -40,8 +40,9 @@ const getCarsType = async (req, res) => {
 };
 
 const getAvailableCar = async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
   try {
-    const cars = await tables.car.getAvailableCar();
+    const cars = await tables.car.getAvailableCar(userId);
     res.status(201).json(cars);
   } catch (err) {
     console.error(err);

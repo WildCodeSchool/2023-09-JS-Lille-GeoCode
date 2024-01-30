@@ -12,6 +12,9 @@ const booking = async (req, res) => {
     res.status(201).json({ insertId });
   } catch (err) {
     console.error(err);
+    res
+      .status(400)
+      .json({ error: "Une erreur s'est produite lors de la réservation." });
   }
 };
 

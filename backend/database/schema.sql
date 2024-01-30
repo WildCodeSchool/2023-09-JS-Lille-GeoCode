@@ -54,13 +54,12 @@ CREATE TABLE `booking_list` (
   `date` datetime DEFAULT NULL,
   `charge_point_id` varchar(80) DEFAULT NULL,
   `car_id` int DEFAULT NULL,
-  `car_type_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `car_id` (`car_id`),
   KEY `charge_point_id` (`charge_point_id`),
   CONSTRAINT `booking_list_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
   CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +68,7 @@ CREATE TABLE `booking_list` (
 
 LOCK TABLES `booking_list` WRITE;
 /*!40000 ALTER TABLE `booking_list` DISABLE KEYS */;
-INSERT INTO `booking_list`(date, charge_point_id, car_id, car_type_id) VALUES ('2024-02-08 08:00:00','FR3R3E10000849861',1,1),('2024-02-08 08:30:00','FR3R3E10000849861',2,2);
+INSERT INTO `booking_list` VALUES (1,'2024-02-08 08:00:00','FR3R3E10000849861',1),(2,'2024-02-08 08:30:00','FR3R3E10000849861',2),(3,'2024-02-08 08:30:00','FRROSE471',3),(4,'2024-02-08 09:00:00','FRROSE471',4),(5,'2024-02-08 09:30:00','FRROSE471',5),(6,'2024-02-08 08:30:00','FRROSE472',6),(7,'2024-02-08 09:00:00','FRROSE472',7),(8,'2024-02-08 09:30:00','FRROSE472',8);
 /*!40000 ALTER TABLE `booking_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +88,7 @@ CREATE TABLE `car` (
   KEY `car_ibfk_2` (`car_type_id`),
   CONSTRAINT `car_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `car_ibfk_2` FOREIGN KEY (`car_type_id`) REFERENCES `car_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +97,7 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
-INSERT INTO `car` VALUES (1,1,1),(2,2,1);
+INSERT INTO `car` VALUES (1,1,1),(2,2,1),(3,1,2),(4,2,2),(5,5,2),(6,7,2),(7,10,2),(8,3,2);
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,7 +240,7 @@ CREATE TABLE `person` (
   `status` varchar(80) DEFAULT 'user',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,7 +249,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,'Doe','John','john@example.com','Homme','1995-05-25','Lille',59800,'$argon2id$v=19$m=19456,t=2,p=1$kDR+OqkCsDijBJRvExPrBA$99v+M8tbuDqs8EnrScmo+pXipo5/JOzwAhyFAeBkPFA','user');
+INSERT INTO `person` VALUES (1,'Doe','John','john@example.com','Homme','1995-05-25','Lille',59800,'$argon2id$v=19$m=19456,t=2,p=1$kDR+OqkCsDijBJRvExPrBA$99v+M8tbuDqs8EnrScmo+pXipo5/JOzwAhyFAeBkPFA','user'),(2,'Doe','Jane','jane@example.com','Femme','1995-05-02','Lille',54212,'$argon2id$v=19$m=19456,t=2,p=1$ay05ICkL/N0slnnhmUzXHQ$OJ2S4mPQBn87P0rKVEu7VsCUs4H3bxXPYoCklb7ihbQ','user');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,7 +319,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `person` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +328,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1);
+INSERT INTO `user` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,4 +366,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-25 15:40:11
+-- Dump completed on 2024-01-30 22:28:20

@@ -36,6 +36,20 @@ class carManager extends AbstractManager {
     const [result] = await this.database.query(`SELECT * FROM car_type`);
     return result;
   }
+
+  async getAvailableCar(userId) {
+    const [result] = await this.database.query(
+      `SELECT car.*, car_type.brand, car_type.model
+    FROM car
+    JOIN car_type ON car.car_type_id = car_type.id
+    LEFT JOIN booking_list ON car.id = booking_list.car_id AND booking_list.car_id IS NOT NULL
+    WHERE car.user_id = ?
+      AND booking_list.car_id IS NULL;
+    `,
+      [userId]
+    );
+    return result;
+  }
 }
 
 module.exports = carManager;

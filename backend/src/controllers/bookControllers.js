@@ -1,13 +1,13 @@
 const tables = require("../tables");
 
 const booking = async (req, res) => {
-  const { date, chargePointId, carId } = req.body;
+  const { formattedDate, selectedStation, selectedVehicle } = req.body;
 
   try {
     const insertId = await tables.booking_list.create(
-      date,
-      chargePointId,
-      carId
+      formattedDate,
+      selectedVehicle,
+      selectedStation
     );
     res.status(201).json({ insertId });
   } catch (err) {

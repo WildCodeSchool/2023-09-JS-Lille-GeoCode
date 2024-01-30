@@ -39,6 +39,8 @@ router.get("/users/car", authorize, carControllers.getCarsOfUser);
 
 router.get("/car", carControllers.getCarsType);
 
+router.get("/users/:id/car", carControllers.getAvailableCar);
+
 router.post("/car", authorize, carControllers.createCar);
 
 router.delete("/car", carControllers.deleteCar);

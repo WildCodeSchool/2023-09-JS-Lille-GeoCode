@@ -39,4 +39,19 @@ const getCarsType = async (req, res) => {
   }
 };
 
-module.exports = { createCar, deleteCar, getCarsOfUser, getCarsType };
+const getAvailableCar = async (req, res) => {
+  try {
+    const cars = await tables.car.getAvailableCar();
+    res.status(201).json(cars);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+module.exports = {
+  createCar,
+  deleteCar,
+  getCarsOfUser,
+  getCarsType,
+  getAvailableCar,
+};

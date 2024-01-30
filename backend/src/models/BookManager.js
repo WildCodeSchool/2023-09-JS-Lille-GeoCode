@@ -7,10 +7,18 @@ class BookManager extends AbstractManager {
     super({ table: "booking_list" });
   }
 
-  async create(date, chargePointId, carId) {
+  async create(formattedDate, selectedVehicle, selectedStation) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (date, charge_point_id, car_id) values (?,?,?)`,
-      [date, chargePointId, carId]
+      `INSERT INTO booking_list (date, charge_point_id, car_id)
+      SELECT ?, cp.charge_point_id_fr, ?
+      FROM charge_point AS cp
+      LEFT JOIN booking_list AS bl
+      ON cp.charge_point_id_fr = bl.charge_point_id
+      AND bl.date = ?
+      WHERE cp.station_id = ?
+      AND bl.charge_point_id IS NULL
+      LIMIT 1;`,
+      [formattedDate, selectedVehicle, formattedDate, selectedStation]
     );
     return result;
   }

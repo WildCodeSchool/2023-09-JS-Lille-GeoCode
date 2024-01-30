@@ -5,10 +5,16 @@ import useStore from "../../store/AuthProvider";
 
 function ChargepointCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(null);
-  // const [selectedVehicle, setSelectedVehicle] = useState("");
   const [dateAvailable, setDateAvailable] = useState([]);
-  const { setOpenBooking, selectedStation } = useStore();
+  const {
+    setOpenBooking,
+    selectedStation,
+    carAvailableList,
+    setSelectedTime,
+    selectedTime,
+    selectedVehicle,
+    setSelectedVehicle,
+  } = useStore();
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -42,25 +48,15 @@ function ChargepointCalendar() {
 
     fetchTimeSlots();
   }, [selectedDate]);
-
-  const handleTimeSelect = (time) => {
-    setSelectedTime(time);
-  };
-
-  // const handleVehicleSelect = (vehicle) => {
-  //   setSelectedVehicle(vehicle);
-  // };
-
-  const isFormValid = selectedDate && selectedTime;
-  // && selectedVehicle;
+  const isFormValid = selectedDate && selectedTime && selectedVehicle;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      console.info("Réservation validée :", {
-        selectedDate,
-        selectedTime,
-        // selectedVehicle,
+      setOpenBooking({
+        page1: false,
+        page2: true,
+        page3: false,
       });
     }
   };
@@ -94,7 +90,7 @@ function ChargepointCalendar() {
             <select
               className="slot"
               id="selectTime"
-              onChange={(e) => handleTimeSelect(new Date(e.target.value))}
+              onChange={(e) => setSelectedTime(new Date(e.target.value))}
             >
               <option value="">Sélectionnez un créneau</option>
               {dateAvailable.map((time) => (
@@ -114,37 +110,34 @@ function ChargepointCalendar() {
               </p>
             )}
 
-            <label htmlFor="selectVehicle" className="selectVehicle">
-              Choisir un véhicule :
-            </label>
-            {/* <select
-              className="vehicle"
-              id="selectVehicle"
-              onChange={(e) => handleVehicleSelect(e.target.value)}
-            >
-              <option value="">Sélectionnez votre véhicule</option>
-              {user.vehicle.map((vehicle) => (
-                <option key={user.id} value={vehicle}>
-                  {vehicle}
-                </option>
-              ))}
-            </select> */}
+            {carAvailableList[0] ? (
+              <>
+                <label htmlFor="selectVehicle" className="selectVehicle">
+                  Choisir un véhicule :
+                </label>
+
+                <select
+                  className="vehicle"
+                  id="selectVehicle"
+                  onChange={(e) => setSelectedVehicle(e.target.value)}
+                >
+                  <option value="">Sélectionnez votre véhicule</option>
+                  {carAvailableList.map((vehicle) => (
+                    <option key={vehicle.id} value={vehicle.id}>
+                      {`${vehicle.brand} ${vehicle.model}`}
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : (
+              "Pas de voiture disponible"
+            )}
           </time>
         ) : (
           <p>Pas de créneau disponible</p>
         )}
         {isFormValid && (
-          <button
-            type="submit"
-            className="submitButton"
-            onClick={() => {
-              setOpenBooking({
-                page1: false,
-                page2: true,
-                page3: false,
-              });
-            }}
-          >
+          <button type="submit" className="submitButton">
             Valider la réservation
           </button>
         )}

@@ -1,8 +1,42 @@
 import "./ChargepointBook2.scss";
+import { format } from "date-fns";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import useStore from "../../store/AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
 
 function ChargepointBook2() {
+  const { selectedTime, selectedVehicle, selectedStation } = useStore();
+  const navigate = useNavigate();
+
+  const formattedDate = format(selectedTime, "yyyy-MM-dd HH:mm:ss", {
+    timeZone: "Europe/Paris",
+  });
+  const postBooking = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/booking`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            formattedDate,
+            selectedVehicle,
+            selectedStation,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <main className="ChargepointBook2TextContainer">
       <p className="ChargepointBook2Text">
@@ -18,11 +52,17 @@ function ChargepointBook2() {
         <button
           className="answerBtn"
           type="button"
-          onClick={() =>
+          onClick={() => {
+            postBooking(formattedDate, selectedVehicle);
             toast.success("Votre réservation est validée !", {
               theme: "colored",
-            })
-          }
+              onClose: () => {
+                setTimeout(() => {
+                  navigate("/connection");
+                }, 2000);
+              },
+            });
+          }}
         >
           Oui
         </button>
@@ -32,7 +72,14 @@ function ChargepointBook2() {
           onClick={() =>
             toast.error(
               "La réservation a été abandonnée, et non prise en compte !",
-              { theme: "colored" }
+              {
+                theme: "colored",
+                onClose: () => {
+                  setTimeout(() => {
+                    navigate("/connection");
+                  }, 2000);
+                },
+              }
             )
           }
         >

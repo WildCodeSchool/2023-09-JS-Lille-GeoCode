@@ -63,7 +63,7 @@ function Car() {
         <AddCarModal />
         <DeleteCarConfirmationModal carData={carData} counterCar={counterCar} />
       </footer>
-      <BackButton colorArrow={arrowDark} backButtonStyle="backButtonCar" />
+      <BackButton colorArrow={arrowDark} />
     </main>
   );
 }

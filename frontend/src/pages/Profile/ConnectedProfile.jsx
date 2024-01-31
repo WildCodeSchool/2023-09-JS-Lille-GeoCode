@@ -51,10 +51,7 @@ function Profile() {
         >
           Se déconnecter
         </button>
-        <BackButton
-          colorArrow={arrowDark}
-          backButtonStyle="backButtonProfile"
-        />
+        <BackButton colorArrow={arrowDark} />
       </nav>
     </main>
   );

@@ -38,8 +38,8 @@ function StationMiniCard({ stations }) {
         onClick={() => {
           setHandleModal(false);
           setOpenBooking({
-            page1: true,
-            page2: false,
+            page1: false,
+            page2: true,
             page3: false,
           });
         }}

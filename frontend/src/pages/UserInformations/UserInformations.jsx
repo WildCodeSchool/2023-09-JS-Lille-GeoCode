@@ -36,10 +36,7 @@ function UserInformations() {
         buttonStylization="style-button"
         destination="/editprofile"
       />
-      <BackButton
-        colorArrow={arrowDark}
-        backButtonStyle="backButton backButtonUserInfo"
-      />
+      <BackButton colorArrow={arrowDark} />
     </section>
   );
 }

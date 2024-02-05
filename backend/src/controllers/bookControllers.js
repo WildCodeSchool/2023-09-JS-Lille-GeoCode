@@ -23,7 +23,7 @@ const browse = async (req, res) => {
     const bookAvailable = await tables.booking_list.getAll();
     res.json(bookAvailable);
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -36,7 +36,7 @@ const getBookingUser = async (req, res) => {
     );
     res.status(201).json({ allBookingForUser });
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -46,7 +46,7 @@ const deleteReservation = async (req, res) => {
     const deleteResult = await tables.booking_list.delete(bookId);
     res.status(201).json({ deleteResult });
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -60,7 +60,7 @@ const getAllBookedDate = async (req, res) => {
     );
     res.status(201).json(result);
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 

@@ -46,16 +46,16 @@ function ChargepointBook2() {
           theme: "colored",
           onClose: () => {
             setTimeout(() => {
-              navigate("/connection");
+              navigate("/map");
             }, 2000);
           },
         });
       } else {
-        toast.error("La réservation a été échoué, et non prise en compte !", {
+        toast.error("La réservation a échoué, et n'est pas prise en compte !", {
           theme: "colored",
           onClose: () => {
             setTimeout(() => {
-              navigate("/connection");
+              navigate("/map");
             }, 2000);
           },
         });
@@ -109,7 +109,7 @@ function ChargepointBook2() {
                   theme: "colored",
                   onClose: () => {
                     setTimeout(() => {
-                      navigate("/connection");
+                      navigate("/map");
                     }, 2000);
                   },
                 }

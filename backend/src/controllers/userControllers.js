@@ -22,16 +22,16 @@ const read = async (req, res) => {
       res.json(connectedUser);
     }
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
-const getCurrentUser = async (req, res, next) => {
+const getCurrentUser = async (req, res) => {
   try {
     const [user] = await tables.person.getById(req.idUser);
     res.status(200).json(user);
   } catch (err) {
-    next(err);
+    res.sendStatus(500);
   }
 };
 
@@ -78,7 +78,7 @@ const updateUser = async (req, res) => {
     const updatedUser = await tables.person.updateUser(user, userId);
     res.status(204).json(updatedUser);
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 

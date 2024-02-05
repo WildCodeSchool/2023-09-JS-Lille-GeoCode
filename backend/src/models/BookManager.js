@@ -1,16 +1,34 @@
+const { format } = require("date-fns");
 const AbstractManager = require("./AbstractManager");
+const generateTimeSlots = require("../services/generateTimeSlots");
 
 class BookManager extends AbstractManager {
   constructor() {
     super({ table: "booking_list" });
   }
 
-  async create(date, chargePointId, carId) {
-    const [result] = await this.database.query(
-      `insert into ${this.table} (date, charge_point_id, car_id) values (?,?,?)`,
-      [date, chargePointId, carId]
-    );
-    return result;
+  async create(formattedDate, selectedVehicle, selectedStation) {
+    try {
+      const [result] = await this.database.query(
+        `INSERT INTO booking_list (date, charge_point_id, car_id)
+        SELECT ?, cp.charge_point_id_fr, ?
+        FROM charge_point AS cp
+        LEFT JOIN booking_list AS bl
+        ON cp.charge_point_id_fr = bl.charge_point_id
+        AND bl.date = ?
+        WHERE cp.station_id = ?
+        AND bl.charge_point_id IS NULL
+        LIMIT 1;`,
+        [formattedDate, selectedVehicle, formattedDate, selectedStation]
+      );
+
+      if (result && result.affectedRows > 0) {
+        return result;
+      }
+      throw new Error("Échec de la réservation.");
+    } catch (error) {
+      return console.error(error);
+    }
   }
 
   async getAll() {
@@ -36,6 +54,40 @@ class BookManager extends AbstractManager {
     );
     return result;
   }
-}
 
+  async getNotBookedDateByStationId(stationId, date) {
+    const dateArray = generateTimeSlots(date);
+    const dateAvailableArray = [];
+
+    await Promise.all(
+      dateArray.map(async (d) => {
+        const formattedDate = format(d, "yyyy-MM-dd HH:mm:ss", {
+          timeZone: "Europe/Paris",
+        });
+
+        try {
+          const [result] = await this.database.query(
+            `SELECT ((SELECT COUNT(charge_point_id_fr) 
+            FROM charge_point
+            WHERE station_id = ?) - (SELECT COUNT(charge_point_id_fr)
+            FROM booking_list
+            INNER JOIN charge_point 
+            ON charge_point_id_fr = charge_point_id
+            WHERE station_id = ?
+            AND date = ?)) AS result;`,
+            [stationId, stationId, formattedDate]
+          );
+
+          if (result[0].result) {
+            dateAvailableArray.push(formattedDate);
+          }
+        } catch (error) {
+          return console.error(error);
+        }
+        return null;
+      })
+    );
+    return dateAvailableArray;
+  }
+}
 module.exports = BookManager;

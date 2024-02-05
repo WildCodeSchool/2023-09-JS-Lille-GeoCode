@@ -79,7 +79,7 @@ function StationMiniCard({ stations }) {
           });
         }}
       >
-        Choisir
+        {stations.station_name}
       </button>
     </li>
   );

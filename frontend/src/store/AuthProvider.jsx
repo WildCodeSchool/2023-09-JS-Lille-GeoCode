@@ -19,9 +19,11 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [handleModal, setHandleModal] = useState(true);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [selectedStation, setSelectedStation] = useState(null);
   const [carAvailableList, setCarAvailableList] = useState(null);
+  const [stationInfo, setStationInfo] = useState();
   const [openBooking, setOpenBooking] = useState({
     page1: false,
     page2: false,
@@ -58,6 +60,10 @@ function AuthProvider({ children }) {
       setSelectedTime,
       selectedVehicle,
       setSelectedVehicle,
+      stationInfo,
+      setStationInfo,
+      selectedDate,
+      setSelectedDate,
     }),
     [
       auth,
@@ -67,6 +73,10 @@ function AuthProvider({ children }) {
       selectedStation,
       selectedTime,
       selectedVehicle,
+      stationInfo,
+      setStationInfo,
+      selectedDate,
+      setSelectedDate,
     ]
   );
 

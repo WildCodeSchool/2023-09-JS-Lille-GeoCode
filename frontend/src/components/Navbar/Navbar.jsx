@@ -13,7 +13,7 @@ import ChargepointBook from "../ChargepointBook/ChargepointBook";
 import ChargepointBook2 from "../ChargepointBook2/ChargepointBook2";
 import ChargepointCalendar from "../ChargepointCalendar/ChargepointCalendar";
 
-function Navbar({ stations, position }) {
+function Navbar({ stations, position, open, setOpen }) {
   const referencePoint = { latitude: position[0], longitude: position[1] };
 
   const stationsWithDistance = stations.map((station) => {
@@ -54,7 +54,7 @@ function Navbar({ stations, position }) {
           </Link>
         </li>
         <li className="navbar_element navbar_element_middle">
-          <Dialog.Root>
+          <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger
               onClick={() => {
                 setHandleModal(true);
@@ -108,6 +108,8 @@ function Navbar({ stations, position }) {
 }
 
 Navbar.propTypes = {
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
   stations: PropTypes.arrayOf(
     PropTypes.shape({
       charge_point_id_fr: PropTypes.string.isRequired,

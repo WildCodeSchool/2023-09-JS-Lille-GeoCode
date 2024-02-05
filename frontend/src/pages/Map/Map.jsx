@@ -9,6 +9,7 @@ import { PlaceKit } from "@placekit/autocomplete-react";
 import plugGreen from "../../assets/plug-icon-green.png";
 import "@placekit/autocomplete-js/dist/placekit-autocomplete.css";
 import Navbar from "../../components/Navbar/Navbar";
+import useStore from "../../store/AuthProvider";
 
 function Map() {
   const chargepoint = useLoaderData();
@@ -39,8 +40,10 @@ function Map() {
 
   const markers = stations.map((e) => ({
     coord: [e.y_latitude, e.x_longitude],
-    popUp: `${e.station_name}`,
+    stationName: `${e.station_name}`,
+    stationAdress: `${e.adress}`,
     id: `${e.station_id}`,
+    stationPlugType: `${e.plug_type}`,
   }));
 
   const customIcon = new Icon({
@@ -85,7 +88,8 @@ function Map() {
   }, []);
 
   const hasValidPosition = coords.lat !== 0 && coords.long !== 0;
-
+  const [open, setOpen] = useState(false);
+  const { setHandleModal, setOpenBooking, setSelectedStation } = useStore();
   return (
     <>
       <form role="search" className="searchBar">
@@ -109,16 +113,51 @@ function Map() {
           <MarkerClusterGroup>
             {markers.map((marker) => (
               <Marker key={marker.id} position={marker.coord} icon={customIcon}>
-                <Popup>{marker.popUp}</Popup>
+                <Popup>
+                  <article className="popUpContainer">
+                    <h2>{marker.stationName}</h2>
+                    <ul>
+                      <li className="popUpText">
+                        <span>Adresse</span> : {marker.stationAdress}
+                      </li>
+                      <li className="popUpText">
+                        <span>Prise</span> : {marker.stationPlugType}
+                      </li>
+                    </ul>
+                    <button
+                      type="button"
+                      className="markerButton"
+                      onClick={() => {
+                        setOpen(true);
+                        setHandleModal(false);
+                        setSelectedStation(marker.id);
+                        setOpenBooking({
+                          page1: true,
+                          page2: false,
+                          page3: false,
+                        });
+                      }}
+                    >
+                      Réserver
+                    </button>
+                  </article>
+                </Popup>
               </Marker>
             ))}
           </MarkerClusterGroup>
           {coords && (
             <Marker position={[coords.lat, coords.long]}>
-              <Popup>Vous êtes ici</Popup>
+              <Popup>
+                <strong>Vous êtes ici</strong>
+              </Popup>
             </Marker>
           )}
-          <Navbar stations={stations} position={[coords.lat, coords.long]} />
+          <Navbar
+            stations={stations}
+            position={[coords.lat, coords.long]}
+            open={open}
+            setOpen={setOpen}
+          />
         </MapContainer>
       )}
     </>

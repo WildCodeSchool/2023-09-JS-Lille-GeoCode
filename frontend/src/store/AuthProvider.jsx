@@ -16,7 +16,6 @@ const initialState = {
 
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
-  const [loading, setLoading] = useState(true);
   const [handleModal, setHandleModal] = useState(true);
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -36,8 +35,6 @@ function AuthProvider({ children }) {
       setAuth({ user: result });
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
   useEffect(() => {
@@ -80,11 +77,7 @@ function AuthProvider({ children }) {
     ]
   );
 
-  return loading ? (
-    <AuthContext.Provider value={memoizedValue}>
-      {children}
-    </AuthContext.Provider>
-  ) : (
+  return (
     <AuthContext.Provider value={memoizedValue}>
       {children}
     </AuthContext.Provider>

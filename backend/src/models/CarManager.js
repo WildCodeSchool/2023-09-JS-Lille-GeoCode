@@ -1,6 +1,6 @@
 const AbstractManager = require("./AbstractManager");
 
-class carManager extends AbstractManager {
+class CarManager extends AbstractManager {
   constructor() {
     super({ table: "car" });
   }
@@ -52,4 +52,4 @@ class carManager extends AbstractManager {
   }
 }
 
-module.exports = carManager;
+module.exports = CarManager;

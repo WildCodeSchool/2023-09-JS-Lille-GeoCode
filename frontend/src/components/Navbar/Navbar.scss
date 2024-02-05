@@ -2,7 +2,7 @@
 
 .navbar_list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -58,6 +58,9 @@
 }
 
 .dialogContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   top: 45%;
   left: 50%;

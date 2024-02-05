@@ -29,7 +29,7 @@ function Profile() {
           buttonStylization="style-button2"
         />
         <NavigationButton
-          destination="/"
+          destination="/mybookings"
           text="Mes réservations"
           buttonStylization="style-button2"
         />

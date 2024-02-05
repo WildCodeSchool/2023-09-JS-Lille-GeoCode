@@ -17,6 +17,7 @@ import UserInformations from "./pages/UserInformations/UserInformations";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import Profile from "./pages/Profile/Profile";
 import Car from "./pages/Car/Car";
+import MyBookingPage from "./pages/MyBookingPage/MyBookingPage";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
       <PublicRoute>
         <Subscribe />
       </PublicRoute>
+    ),
+  },
+  {
+    path: "/mybookings",
+    element: (
+      <PrivateRoute>
+        <MyBookingPage />
+      </PrivateRoute>
     ),
   },
   {

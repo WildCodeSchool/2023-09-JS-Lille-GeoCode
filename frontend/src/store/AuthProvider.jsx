@@ -16,7 +16,6 @@ const initialState = {
 
 function AuthProvider({ children }) {
   const [auth, setAuth] = useState(initialState);
-  const [loading, setLoading] = useState(true);
   const [handleModal, setHandleModal] = useState(true);
   const [openBooking, setOpenBooking] = useState({
     page1: false,
@@ -30,8 +29,6 @@ function AuthProvider({ children }) {
       setAuth({ user: result });
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
   useEffect(() => {
@@ -50,11 +47,7 @@ function AuthProvider({ children }) {
     [auth, handleModal, openBooking, setAuth]
   );
 
-  return loading ? (
-    <AuthContext.Provider value={memoizedValue}>
-      <p>chargement...</p>
-    </AuthContext.Provider>
-  ) : (
+  return (
     <AuthContext.Provider value={memoizedValue}>
       {children}
     </AuthContext.Provider>

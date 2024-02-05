@@ -1,0 +1,83 @@
+@import "../../variable.scss";
+
+.allBook {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.bookHead {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+}
+
+.stationName {
+  text-align: center;
+  width: 70vw;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.stationInfos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 75vw;
+  height: auto;
+  padding: 3vh;
+  margin: 1vh;
+  font-size: 1.2rem;
+}
+
+.plugList {
+  list-style-type: none;
+}
+
+.book {
+  display: flex;
+  font-size: 1.4rem;
+  width: 40vw;
+  height: 10vh;
+  margin-right: 10vw;
+}
+
+@media screen and (min-width: 600px) {
+  .allBook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bookHead {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6vh;
+  }
+
+  .bookTitle {
+    font-size: 5rem;
+  }
+
+  .stationName {
+    width: 45vw;
+    height: 10vh;
+    margin-top: 5vh;
+    font-size: 3rem;
+  }
+
+  .stationInfos {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: auto;
+    padding: 4vh;
+    font-size: 1.5rem;
+  }
+
+  .book {
+    height: 10vh;
+    width: 20vw;
+    margin-right: 22vw;
+  }
+}

@@ -7,7 +7,7 @@ const createCar = async (req, res) => {
     const insertId = await tables.car.create(selectedCar[0].id, userId);
     res.status(201).json({ insertId });
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -17,7 +17,7 @@ const deleteCar = async (req, res) => {
     const deleteId = await tables.car.delete(selectedCar.id);
     res.status(201).json({ deleteId });
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -27,7 +27,7 @@ const getCarsOfUser = async (req, res) => {
     const cars = await tables.car.getCarByUserId(userId);
     res.status(201).json(cars);
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 const getCarsType = async (req, res) => {
@@ -35,8 +35,24 @@ const getCarsType = async (req, res) => {
     const cars = await tables.car.getAllCars();
     res.status(201).json(cars);
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
-module.exports = { createCar, deleteCar, getCarsOfUser, getCarsType };
+const getAvailableCar = async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  try {
+    const cars = await tables.car.getAvailableCar(userId);
+    res.status(201).json(cars);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
+module.exports = {
+  createCar,
+  deleteCar,
+  getCarsOfUser,
+  getCarsType,
+  getAvailableCar,
+};

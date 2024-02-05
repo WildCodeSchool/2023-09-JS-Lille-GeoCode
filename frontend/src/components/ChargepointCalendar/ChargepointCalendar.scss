@@ -19,6 +19,16 @@
   width: 21rem;
   margin-top: 2vh;
 }
+.backButtonModal {
+  border: none;
+  background: none;
+  position: absolute;
+  bottom: 1vh;
+  left: 0;
+  img {
+    width: 10vw;
+  }
+}
 .titleCard {
   display: flex;
   justify-content: center;
@@ -129,7 +139,11 @@
     width: auto;
     padding-top: 0;
   }
-
+  .backButtonModal {
+    img {
+      width: 5vw;
+    }
+  }
   .selectedDateDisplay {
     margin-top: 0.1vh;
   }

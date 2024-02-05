@@ -1,32 +1,50 @@
 import "./ChargepointBook.scss";
-import ComboCCSplug from "../../assets/plug-type/ComboCCSplug.svg";
-import Type2plug from "../../assets/plug-type/ev-plug-type2.svg";
+import comboCCS from "../../assets/plug-type/ComboCCSplug.svg";
+import type2 from "../../assets/plug-type/ev-plug-type2.svg";
+import chademo from "../../assets/plug-type/ev-plug-chademo.svg";
 import useStore from "../../store/AuthProvider";
+import arrowDark from "../../assets/arrowBackDark.svg";
 
-const station = {
-  name: "Station République",
-  date: "27/05/2023",
-  time: "12:30",
-  adress: "10 rue république 59000 Lille",
-  chargePointAvailable: "7",
-  typePlug: [
-    { typeName: "Type 2", typeSRC: Type2plug, available: "3" },
-    { typeName: "Combo CCS", typeSRC: ComboCCSplug, available: "6" },
-  ],
-  powerPlug: "22",
-  accessibility: "PMR",
-};
 function ChargepointBook() {
-  const { setOpenBooking } = useStore();
+  const { setOpenBooking, stationInfo, selectedDate, selectedTime } =
+    useStore();
+
+  const station = stationInfo;
+
+  const plugImages = {
+    type2,
+    comboCCS,
+    Chademo: chademo,
+  };
+
   return (
     <>
-      <h2 className="stationName">{station.name}</h2>
+      <button
+        className="backButtonModal"
+        type="button"
+        onClick={() => {
+          setOpenBooking({
+            page1: true,
+            page2: false,
+            page3: false,
+          });
+        }}
+      >
+        <img src={arrowDark} alt="Retour en arrière" />
+      </button>
+      <h2 className="stationName">{station.station_name}</h2>
       <section className="stationInfos">
         <p className="date">
-          Date : <time className="dateChoose">{station.date}</time>
+          Date :{" "}
+          <time className="dateChoose">
+            {selectedDate.toLocaleDateString()}
+          </time>
         </p>
         <p className="time">
-          Horaire : <time className="timeChoose">{station.time}</time>
+          Horaire :{" "}
+          <time className="timeChoose">
+            {selectedTime.toLocaleTimeString()}
+          </time>
         </p>
         <p className="adressStation">
           Adresse :<span className="adressStationChoose">{station.adress}</span>
@@ -34,33 +52,17 @@ function ChargepointBook() {
         <p>Types de prises :</p>
         <ul className="plugList">
           <li>
-            <p className="typePlugItem">- {station.typePlug[0].typeName}</p>
+            <p className="typePlugItem">- {station.name}</p>
             <img
               className="imgPlug"
-              src={station.typePlug[0].typeSRC}
+              src={plugImages[station.name]}
               alt="logo d'une prise électrique de type 2"
             />
-            <p className="typePlugItem">
-              <span className="available">{station.typePlug[0].available}</span>
-              x disponible(s)
-            </p>
-          </li>
-          <li>
-            <p className="typePlugItem">- {station.typePlug[1].typeName}</p>
-            <img
-              className="imgPlug typePlugItem"
-              src={station.typePlug[1].typeSRC}
-              alt="logo d'une prise électrique de type Combo CCS"
-            />
-            <p className="typePlugItem">
-              <span className="available">{station.typePlug[1].available}</span>
-              x disponible(s)
-            </p>
           </li>
         </ul>
         <p className="chargepointPower">
           Puissance de la borne :
-          <span className="fullPower">{station.powerPlug}</span> kW
+          <span className="fullPower">{station.max_power}</span> kW
         </p>
         <p className="accessibility">
           Accessibilité :<span className="access">{station.accessibility}</span>

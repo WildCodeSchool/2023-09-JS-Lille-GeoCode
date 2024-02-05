@@ -82,8 +82,9 @@ class BookManager extends AbstractManager {
             dateAvailableArray.push(formattedDate);
           }
         } catch (error) {
-          console.error(error);
+          return console.error(error);
         }
+        return null;
       })
     );
     return dateAvailableArray;

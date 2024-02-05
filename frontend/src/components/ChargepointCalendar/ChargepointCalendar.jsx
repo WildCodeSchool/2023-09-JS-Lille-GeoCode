@@ -63,7 +63,7 @@ function ChargepointCalendar() {
   };
 
   return (
-    <div className="allElements">
+    <article className="allElements">
       <button
         className="backButtonModal"
         type="button"
@@ -158,7 +158,7 @@ function ChargepointCalendar() {
           </button>
         )}
       </form>
-    </div>
+    </article>
   );
 }
 

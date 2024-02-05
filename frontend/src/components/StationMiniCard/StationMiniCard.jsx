@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-// import { useState } from "react";
+import { useEffect } from "react";
 import NavbarStations from "../../assets/navbar_stations.svg";
 import "./StationMiniCard.scss";
 import type2 from "../../assets/plug-type/ev-plug-type2.svg";
@@ -14,7 +14,41 @@ function StationMiniCard({ stations }) {
     chademo,
   };
 
-  const { setHandleModal, setOpenBooking } = useStore();
+  const {
+    setHandleModal,
+    setOpenBooking,
+    setSelectedStation,
+    auth,
+    setCarAvailableList,
+  } = useStore();
+
+  useEffect(() => {
+    const fetchCarAvailable = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/${auth.user.id}/car`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await response.json();
+        setCarAvailableList(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchCarAvailable();
+  }, [auth.user.id]);
   return (
     <li className="station_mc">
       <img
@@ -36,6 +70,7 @@ function StationMiniCard({ stations }) {
         type="button"
         className="chooseStation"
         onClick={() => {
+          setSelectedStation(stations.station_id);
           setHandleModal(false);
           setOpenBooking({
             page1: false,
@@ -52,6 +87,7 @@ function StationMiniCard({ stations }) {
 
 StationMiniCard.propTypes = {
   stations: PropTypes.shape({
+    station_id: PropTypes.string.isRequired,
     station_name: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired,
     plug_type: PropTypes.string.isRequired,

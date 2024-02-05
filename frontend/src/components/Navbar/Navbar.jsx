@@ -37,7 +37,8 @@ function Navbar({ stations, position }) {
   stationsWithDistance.sort((a, b) => a.distance - b.distance);
 
   const nearestStations = stationsWithDistance.slice(0, 10);
-  const { handleModal, openBooking } = useStore();
+  const { handleModal, openBooking, setHandleModal, setOpenBooking } =
+    useStore();
 
   return (
     <nav className="navbar_container">
@@ -54,7 +55,16 @@ function Navbar({ stations, position }) {
         </li>
         <li className="navbar_element navbar_element_middle">
           <Dialog.Root>
-            <Dialog.Trigger>
+            <Dialog.Trigger
+              onClick={() => {
+                setHandleModal(true);
+                setOpenBooking({
+                  page1: false,
+                  page2: false,
+                  page3: false,
+                });
+              }}
+            >
               <img
                 className="navbar_img"
                 src={NavbarStations}

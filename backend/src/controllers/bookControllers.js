@@ -1,17 +1,20 @@
 const tables = require("../tables");
 
 const booking = async (req, res) => {
-  const { date, chargePointId, carId } = req.body;
+  const { formattedDate, selectedStation, selectedVehicle } = req.body;
 
   try {
     const insertId = await tables.booking_list.create(
-      date,
-      chargePointId,
-      carId
+      formattedDate,
+      selectedVehicle,
+      selectedStation
     );
     res.status(201).json({ insertId });
   } catch (err) {
     console.error(err);
+    res
+      .status(400)
+      .json({ error: "Une erreur s'est produite lors de la réservation." });
   }
 };
 
@@ -20,7 +23,7 @@ const browse = async (req, res) => {
     const bookAvailable = await tables.booking_list.getAll();
     res.json(bookAvailable);
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -33,7 +36,7 @@ const getBookingUser = async (req, res) => {
     );
     res.status(201).json({ allBookingForUser });
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
   }
 };
 
@@ -43,7 +46,21 @@ const deleteReservation = async (req, res) => {
     const deleteResult = await tables.booking_list.delete(bookId);
     res.status(201).json({ deleteResult });
   } catch (err) {
-    console.error(err);
+    res.sendStatus(500);
+  }
+};
+
+const getAllBookedDate = async (req, res) => {
+  const stationId = req.params.id;
+  const { selectedDate } = req.body;
+  try {
+    const result = await tables.booking_list.getNotBookedDateByStationId(
+      stationId,
+      selectedDate
+    );
+    res.status(201).json(result);
+  } catch (err) {
+    res.sendStatus(500);
   }
 };
 
@@ -52,4 +69,5 @@ module.exports = {
   getBookingUser,
   deleteReservation,
   booking,
+  getAllBookedDate,
 };

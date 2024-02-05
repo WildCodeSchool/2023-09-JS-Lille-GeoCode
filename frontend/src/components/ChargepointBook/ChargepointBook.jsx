@@ -2,6 +2,7 @@ import "./ChargepointBook.scss";
 import ComboCCSplug from "../../assets/plug-type/ComboCCSplug.svg";
 import Type2plug from "../../assets/plug-type/ev-plug-type2.svg";
 import useStore from "../../store/AuthProvider";
+import arrowDark from "../../assets/arrowBackDark.svg";
 
 const station = {
   name: "Station République",
@@ -20,6 +21,19 @@ function ChargepointBook() {
   const { setOpenBooking } = useStore();
   return (
     <>
+      <button
+        className="backButtonModal"
+        type="button"
+        onClick={() => {
+          setOpenBooking({
+            page1: true,
+            page2: false,
+            page3: false,
+          });
+        }}
+      >
+        <img src={arrowDark} alt="Retour en arrière" />
+      </button>
       <h2 className="stationName">{station.name}</h2>
       <section className="stationInfos">
         <p className="date">

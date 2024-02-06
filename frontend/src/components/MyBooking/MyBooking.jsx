@@ -1,71 +1,73 @@
 import "./MyBooking.scss";
-import Type2plug from "../../assets/plug-type/ev-plug-type2.svg";
-import ComboCCSplug from "../../assets/plug-type/ComboCCSplug.svg";
+import PropTypes from "prop-types";
+import type2 from "../../assets/plug-type/ev-plug-type2.svg";
+import comboCCS from "../../assets/plug-type/ComboCCSplug.svg";
+import chademo from "../../assets/plug-type/ev-plug-chademo.svg";
 import useStore from "../../store/AuthProvider";
 
-const station = {
-  name: "Station République",
-  date: "27/05/2023",
-  time: "12:30",
-  adress: "10 rue république 59000 Lille",
-  chargePointAvailable: "7",
-  typePlug: [
-    { typeName: "Type 2", typeSRC: Type2plug, available: "3" },
-    { typeName: "Combo CCS", typeSRC: ComboCCSplug, available: "6" },
-  ],
-  powerPlug: "22",
-  accessibility: "PMR",
+const plugImages = {
+  type2,
+  comboCCS,
+  chademo,
 };
-function setBook() {
+
+function MyBooking({ userBook, setDeleted, deleted }) {
   const { setOpenBooking } = useStore();
+
+  const deleteBooking = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/booking/${
+          userBook.bookId
+        }`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      setDeleted(!deleted);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   return (
     <section className="allBook">
       <section className="bookHead">
-        <h2 className="stationName">{station.name}</h2>
+        <h2 className="stationName">{userBook.station_name}</h2>
       </section>
       <section className="stationInfos">
         <p className="date">
-          Date : <time className="dateChoose">{station.date}</time>
+          Date :{" "}
+          <time className="dateChoose">
+            {new Date(userBook.date).toLocaleDateString()}
+          </time>
         </p>
         <p className="time">
-          Horaire : <time className="timeChoose">{station.time}</time>
+          Horaire :{" "}
+          <time className="timeChoose">
+            {new Date(userBook.date).toLocaleTimeString()}
+          </time>
         </p>
         <p className="adressStation">
-          Adresse :<span className="adressStationChoose">{station.adress}</span>
+          Adresse :
+          <span className="adressStationChoose">{userBook.adress}</span>
         </p>
         <p>Types de prises :</p>
         <ul className="plugList">
           <li>
-            <p className="typePlugItem">- {station.typePlug[0].typeName}</p>
-            <img
-              className="imgPlug"
-              src={station.typePlug[0].typeSRC}
-              alt="logo d'une prise électrique de type 2"
-            />
-            <p className="typePlugItem">
-              <span className="available">{station.typePlug[0].available}</span>
-              x disponible(s)
-            </p>
-          </li>
-          <li>
-            <p className="typePlugItem">- {station.typePlug[1].typeName}</p>
-            <img
-              className="imgPlug typePlugItem"
-              src={station.typePlug[1].typeSRC}
-              alt="logo d'une prise électrique de type Combo CCS"
-            />
-            <p className="typePlugItem">
-              <span className="available">{station.typePlug[1].available}</span>
-              x disponible(s)
-            </p>
+            <p className="typePlugItem">- {userBook.name}</p>
+            <img className="imgPlug" src={plugImages[userBook.name]} alt="" />
           </li>
         </ul>
         <p className="chargepointPower">
           Puissance de la borne :
-          <span className="fullPower">{station.powerPlug}</span> kW
-        </p>
-        <p className="accessibility">
-          Accessibilité :<span className="access">{station.accessibility}</span>
+          <span className="fullPower">{userBook.max_power}</span> kW
         </p>
       </section>
       <button
@@ -77,6 +79,7 @@ function setBook() {
             page2: false,
             page3: true,
           });
+          deleteBooking();
         }}
       >
         Annuler la réservation
@@ -85,4 +88,17 @@ function setBook() {
   );
 }
 
-export default setBook;
+MyBooking.propTypes = {
+  userBook: PropTypes.shape({
+    station_name: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    adress: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    max_power: PropTypes.number.isRequired,
+    bookId: PropTypes.number.isRequired,
+  }).isRequired,
+  deleted: PropTypes.bool.isRequired,
+  setDeleted: PropTypes.func.isRequired,
+};
+
+export default MyBooking;

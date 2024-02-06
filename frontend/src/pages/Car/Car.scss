@@ -22,6 +22,7 @@
   height: 30vh;
   background: $gradient90deg;
   border-bottom: $borderDark;
+  box-shadow: $boxShadow;
   z-index: -1;
 }
 .carModel {
@@ -80,22 +81,13 @@
   color: $colorLight;
   text-shadow: $textShadow;
   box-shadow: $boxShadow;
-  border: unset;
+  border: $borderDark;
 }
 
 .textInformationCar {
   text-align: center;
   margin-top: 10vh;
   font-size: 2rem;
-}
-
-.backButtonCar {
-  all: unset;
-  position: absolute;
-  bottom: 0;
-  img {
-    width: 15vw;
-  }
 }
 
 @media screen and (min-width: 600px) {
@@ -142,14 +134,6 @@
     width: 45vw;
     margin-left: 35vw;
     margin-top: -5vh;
-  }
-  .backButtonCar {
-    all: unset;
-    position: absolute;
-    bottom: 0;
-    img {
-      width: 7vw;
-    }
   }
 }
 

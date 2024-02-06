@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import type2 from "../../assets/plug-type/ev-plug-type2.svg";
 import comboCCS from "../../assets/plug-type/ComboCCSplug.svg";
 import chademo from "../../assets/plug-type/ev-plug-chademo.svg";
-import useStore from "../../store/AuthProvider";
+import DeleteBookingModal from "../DeleteBookingModal/DeleteBookingModal";
 
 const plugImages = {
   type2,
@@ -12,36 +12,10 @@ const plugImages = {
 };
 
 function MyBooking({ userBook, setDeleted, deleted }) {
-  const { setOpenBooking } = useStore();
-
-  const deleteBooking = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/booking/${
-          userBook.bookId
-        }`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      setDeleted(!deleted);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
   return (
     <section className="allBook">
-      <section className="bookHead">
-        <h2 className="stationName">{userBook.station_name}</h2>
-      </section>
-      <section className="stationInfos">
+      <section className="bookingStationInfos">
+        <h2 className="bookingName">{userBook.station_name}</h2>
         <p className="date">
           Date :{" "}
           <time className="dateChoose">
@@ -67,23 +41,14 @@ function MyBooking({ userBook, setDeleted, deleted }) {
         </ul>
         <p className="chargepointPower">
           Puissance de la borne :
-          <span className="fullPower">{userBook.max_power}</span> kW
+          <span className="fullPower"> {userBook.max_power}</span> kW
         </p>
+        <DeleteBookingModal
+          deleted={deleted}
+          setDeleted={setDeleted}
+          userBook={userBook}
+        />
       </section>
-      <button
-        type="button"
-        className="book"
-        onClick={() => {
-          setOpenBooking({
-            page1: false,
-            page2: false,
-            page3: true,
-          });
-          deleteBooking();
-        }}
-      >
-        Annuler la réservation
-      </button>
     </section>
   );
 }

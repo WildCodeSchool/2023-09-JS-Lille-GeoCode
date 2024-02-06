@@ -124,7 +124,7 @@ function Map() {
     };
 
     fetchCarAvailable();
-  }, [auth.user.id]);
+  }, [auth]);
 
   return (
     <>

@@ -22,6 +22,7 @@ function AuthProvider({ children }) {
   const [selectedVehicle, setSelectedVehicle] = useState("");
   const [selectedStation, setSelectedStation] = useState(null);
   const [carAvailableList, setCarAvailableList] = useState(null);
+  const [open, setOpen] = useState(false);
   const [stationInfo, setStationInfo] = useState();
   const [openBooking, setOpenBooking] = useState({
     page1: false,
@@ -61,6 +62,8 @@ function AuthProvider({ children }) {
       setStationInfo,
       selectedDate,
       setSelectedDate,
+      open,
+      setOpen,
     }),
     [
       auth,
@@ -74,6 +77,8 @@ function AuthProvider({ children }) {
       setStationInfo,
       selectedDate,
       setSelectedDate,
+      open,
+      setOpen,
     ]
   );
 

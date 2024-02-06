@@ -13,6 +13,8 @@ function ChargepointBook2() {
     setSelectedVehicle,
     selectedStation,
     setOpenBooking,
+    setOpen,
+    setHandleModal,
   } = useStore();
   const navigate = useNavigate();
 
@@ -46,7 +48,13 @@ function ChargepointBook2() {
           theme: "colored",
           onClose: () => {
             setTimeout(() => {
-              navigate("/map");
+              setOpen(false);
+              setHandleModal(true);
+              setOpenBooking({
+                page1: false,
+                page2: false,
+                page3: false,
+              });
             }, 2000);
           },
         });

@@ -85,3 +85,9 @@
   }
   opacity: 0;
 }
+
+@media screen and (min-width: 600px) {
+  .station_mc {
+    width: 35vw;
+  }
+}

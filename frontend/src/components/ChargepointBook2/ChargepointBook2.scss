@@ -55,15 +55,21 @@
 
 @media screen and (min-width: 600px) {
   .ChargepointBook2TextContainer {
-    width: auto;
+    width: 35vw;
     margin-top: 1vh;
   }
 
   .ChargepointBook2Text {
     width: 45vw;
+    font-size: 2rem;
+  }
+  .beCareful {
+    font-size: 2rem;
   }
 
   .answerBtn {
-    width: 10vw;
+    font-size: 2rem;
+    width: 11vw;
+    height: 6vh;
   }
 }

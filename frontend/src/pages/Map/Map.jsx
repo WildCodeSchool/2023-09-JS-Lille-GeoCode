@@ -12,6 +12,15 @@ import Navbar from "../../components/Navbar/Navbar";
 import useStore from "../../store/AuthProvider";
 
 function Map() {
+  const {
+    setHandleModal,
+    setOpenBooking,
+    setSelectedStation,
+    open,
+    setOpen,
+    auth,
+    setCarAvailableList,
+  } = useStore();
   const chargepoint = useLoaderData();
 
   const groupedData = {};
@@ -88,8 +97,35 @@ function Map() {
   }, []);
 
   const hasValidPosition = coords.lat !== 0 && coords.long !== 0;
-  const [open, setOpen] = useState(false);
-  const { setHandleModal, setOpenBooking, setSelectedStation } = useStore();
+
+  useEffect(() => {
+    const fetchCarAvailable = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/${auth.user.id}/car`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await response.json();
+        setCarAvailableList(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchCarAvailable();
+  }, [auth.user.id]);
+
   return (
     <>
       <form role="search" className="searchBar">

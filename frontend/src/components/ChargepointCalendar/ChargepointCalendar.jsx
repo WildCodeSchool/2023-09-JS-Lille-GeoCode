@@ -120,7 +120,7 @@ function ChargepointCalendar() {
           />
           {selectedDate && (
             <>
-              <time className="confirmDate">Votre date sélectionnée :</time>
+              <time className="confirmDate">Votre date sélectionnée : </time>
               <time className="selectedDateDisplay">
                 {selectedDate.toLocaleDateString()}
               </time>
@@ -148,13 +148,6 @@ function ChargepointCalendar() {
                 </option>
               ))}
             </select>
-
-            {selectedTime && (
-              <p className="confirmSlot">
-                Votre créneau horaire sélectionné :{" "}
-                {selectedTime.toLocaleTimeString()}
-              </p>
-            )}
 
             {carAvailableList?.[0] ? (
               <>

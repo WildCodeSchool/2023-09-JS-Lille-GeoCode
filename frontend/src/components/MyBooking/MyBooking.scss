@@ -12,13 +12,6 @@
   margin-top: 2vh;
 }
 
-.stationName {
-  text-align: center;
-  width: 70vw;
-  font-size: 1.5rem;
-  padding: 1rem;
-}
-
 .stationInfos {
   display: flex;
   flex-direction: column;
@@ -32,14 +25,6 @@
 
 .plugList {
   list-style-type: none;
-}
-
-.book {
-  display: flex;
-  font-size: 1.4rem;
-  width: 40vw;
-  height: 10vh;
-  margin-right: 10vw;
 }
 
 @media screen and (min-width: 600px) {
@@ -59,25 +44,12 @@
     font-size: 5rem;
   }
 
-  .stationName {
-    width: 45vw;
-    height: 10vh;
-    margin-top: 5vh;
-    font-size: 3rem;
-  }
-
   .stationInfos {
     display: flex;
     flex-direction: column;
-    width: 50vw;
+    width: 35vw;
     height: auto;
     padding: 4vh;
     font-size: 1.5rem;
-  }
-
-  .book {
-    height: 10vh;
-    width: 20vw;
-    margin-right: 22vw;
   }
 }

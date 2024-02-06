@@ -99,12 +99,14 @@
     font-size: 2.5rem;
     width: 32vw;
     height: auto;
+    padding: 2vw;
   }
 
   .stationInfos {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 5px;
     align-items: flex-start;
     padding: 1vh 2vw;
     font-size: 1.5rem;
@@ -112,11 +114,13 @@
   }
 
   .book {
-    display: flex;
-    justify-content: center;
-    font-size: 2.2rem;
-    width: 15vw;
+    font-size: 2rem;
     margin-top: 5vh;
     margin-left: 11vw;
+    height: 10vh;
+    width: 14vw;
+  }
+  abbr {
+    font-size: 1.1rem;
   }
 }

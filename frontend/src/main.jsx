@@ -95,11 +95,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/car",
-    element: (
-      <PrivateRoute>
-        <Car />
-      </PrivateRoute>
-    ),
+    element: <Car />,
     loader: async () => {
       try {
         const response = await fetch(

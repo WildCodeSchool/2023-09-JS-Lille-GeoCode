@@ -38,7 +38,7 @@
 }
 
 .popUpText {
-  font-size: 1rem;
+  font-size: 1.2rem;
   list-style: none;
   margin-block: 0.5rem;
   span {
@@ -47,6 +47,7 @@
   }
 }
 .markerButton {
+  font-size: 1.5rem;
   background: $gradient180deg;
   border-radius: $borderButton;
   color: $colorLight;

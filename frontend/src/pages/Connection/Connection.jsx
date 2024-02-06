@@ -18,6 +18,8 @@ function Connection() {
     }),
     password: Joi.string().min(5).max(255).required().messages({
       "string.empty": "Le mot de passe est requis",
+      "string.min":
+        "Le mot de passe doit contenir au moins {#limit} caractères",
     }),
   }).required();
 

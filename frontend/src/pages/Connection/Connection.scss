@@ -32,14 +32,22 @@
   .containerSubmit {
     grid-area: submit;
   }
+  gap: 5px;
+  input,
+  select {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
   .connectionForm {
     grid-template-rows: 1.5rem 2rem 1.9rem 1.5rem 2rem 1.9rem;
     margin: 40vh 35vw;
     .submit {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       width: 17vw;
     }
   }

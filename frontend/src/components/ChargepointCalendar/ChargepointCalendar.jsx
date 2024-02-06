@@ -5,7 +5,6 @@ import useStore from "../../store/AuthProvider";
 import arrowDark from "../../assets/arrowBackDark.svg";
 
 function ChargepointCalendar() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [dateAvailable, setDateAvailable] = useState([]);
   const {
     setHandleModal,
@@ -16,12 +15,14 @@ function ChargepointCalendar() {
     selectedTime,
     selectedVehicle,
     setSelectedVehicle,
+    setStationInfo,
+    selectedDate,
+    setSelectedDate,
   } = useStore();
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
   useEffect(() => {
     const fetchTimeSlots = async () => {
       try {
@@ -50,6 +51,35 @@ function ChargepointCalendar() {
 
     fetchTimeSlots();
   }, [selectedDate]);
+
+  useEffect(() => {
+    const fetchStationById = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/station/${selectedStation}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const stationData = await response.json();
+
+        setStationInfo(stationData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchStationById();
+  }, [selectedStation]);
+
   const isFormValid = selectedDate && selectedTime && selectedVehicle;
   const handleSubmit = (e) => {
     e.preventDefault();

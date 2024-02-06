@@ -51,4 +51,5 @@ class CarManager extends AbstractManager {
     return result;
   }
 }
+
 module.exports = CarManager;

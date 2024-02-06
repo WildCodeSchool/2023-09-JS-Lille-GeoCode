@@ -34,7 +34,7 @@ const getBookingUser = async (req, res) => {
     const allBookingForUser = await tables.booking_list.getBookingForUser(
       userId
     );
-    res.status(201).json({ allBookingForUser });
+    res.status(201).json(allBookingForUser);
   } catch (err) {
     res.sendStatus(500);
   }

@@ -73,13 +73,13 @@ function StationMiniCard({ stations }) {
           setSelectedStation(stations.station_id);
           setHandleModal(false);
           setOpenBooking({
-            page1: false,
-            page2: true,
+            page1: true,
+            page2: false,
             page3: false,
           });
         }}
       >
-        Choisir
+        {stations.station_name}
       </button>
     </li>
   );

@@ -15,6 +15,20 @@ class chargePointManager extends AbstractManager {
 
     return rows;
   }
+
+  async readOne(id) {
+    const [rows] = await this.database.query(
+      `SELECT station.*, c.*, pt.*
+      FROM ${this.table} AS c
+      INNER JOIN station ON c.station_id = station.station_id_fr
+      INNER JOIN list_plug_type as lpt ON  lpt.charge_point_id=c.charge_point_id_fr
+      INNER JOIN plug_type as pt ON pt.id=lpt.plug_type_id
+      WHERE station_id = ?;`,
+      [id]
+    );
+
+    return rows[0];
+  }
 }
 
 module.exports = chargePointManager;

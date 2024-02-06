@@ -54,7 +54,7 @@
   height: 5vh;
   color: $colorLight;
   text-shadow: $textShadow;
-  border: unset;
+  border: $borderDark;
   box-shadow: $boxShadow;
 }
 .carButtonDelete:hover {

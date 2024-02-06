@@ -9,6 +9,7 @@
   background: $gradient90deg;
   z-index: -1;
   border-bottom: $borderDark;
+  box-shadow: $boxShadow;
 }
 
 .viewport_userinformations {
@@ -105,10 +106,6 @@
   grid-area: 8 / 3 / 9 / 4;
 }
 
-.backButtonUserInfo {
-  grid-area: 11 / 1 / 12 / 2;
-}
-
 .viewport_userinformations .style-button {
   grid-area: 10 / 1 / 11 / 5;
   background: $gradient180deg;
@@ -116,7 +113,8 @@
   height: 4rem;
   box-shadow: $boxShadow_inv;
   color: $colorLight;
-  border: none;
+  border: $borderDark;
+  text-shadow: $textShadow;
 }
 
 @media screen and (min-width: 700px) {

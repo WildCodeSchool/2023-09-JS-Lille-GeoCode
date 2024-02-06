@@ -40,7 +40,7 @@
   }
 
   .titleSize {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: $colorLight;
     text-shadow: $textShadow;
   }
@@ -54,9 +54,10 @@
 
 .style-button2 {
   @include navigationButtonGradient90($gradient90deg, 80vw, 6vh, 1.6rem, 4vh);
-  border: 2.4px solid $colorDark;
+  border: $borderDark;
   border-radius: 8px 48px;
   box-shadow: 0px 4px 4px 0px $colorDark;
+  text-shadow: $textShadow;
   color: $colorLight;
   align-items: flex-end;
   padding: 1vw;
@@ -71,11 +72,4 @@
     display: flex;
     justify-content: center;
   }
-}
-
-.backButtonProfile {
-  all: unset;
-  position: absolute;
-  bottom: 0;
-  left: 20vw;
 }

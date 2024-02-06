@@ -1,4 +1,6 @@
 import NavigationButton from "../Home/NavigationButton";
+import BackButton from "../../components/BackButton/BackButton";
+import arrowDark from "../../assets/arrowBackDark.svg";
 import "./VisitorProfile.scss";
 
 function VisitorProfile() {
@@ -19,6 +21,7 @@ function VisitorProfile() {
         text="Nous contacter"
         buttonStylization="style-button2"
       />
+      <BackButton colorArrow={arrowDark} />
     </nav>
   );
 }

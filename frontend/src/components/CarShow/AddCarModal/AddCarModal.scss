@@ -57,7 +57,7 @@ fieldset {
   height: 2rem;
   color: $colorLight;
   box-shadow: $boxShadow;
-  border: unset;
+  border: $borderDark;
 }
 
 .closeButton {

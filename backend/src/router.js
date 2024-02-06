@@ -51,7 +51,7 @@ router.get("/bookAvailable", bookControllers.browse);
 router.get("/station/:id", chargePointControllers.getOne);
 // Route to get reservation
 
-router.get("/users/:id/booking", authorize, bookControllers.getBookingUser);
+router.get("/users/:id/booking", bookControllers.getBookingUser);
 
 router.delete(
   "/users/booking/:id",

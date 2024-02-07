@@ -75,7 +75,6 @@
   }
   .selectGender {
     grid-area: inputGender;
-    margin-top: 0.5vh;
   }
   .errorgender {
     grid-area: errorsGender;
@@ -147,7 +146,7 @@
 .inputSubscribe,
 .selectGender {
   margin-top: 1vh;
-  padding: 0.4rem;
+  padding: 0 0.4rem;
   border: double 1.5px transparent;
   border-radius: 30px;
   background-image: linear-gradient($colorLight, $colorLight), $gradient180deg;

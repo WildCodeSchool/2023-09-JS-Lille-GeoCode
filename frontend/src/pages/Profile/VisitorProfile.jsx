@@ -16,12 +16,7 @@ function VisitorProfile() {
         text="Se connecter"
         buttonStylization="style-button2"
       />
-      <NavigationButton
-        destination="/contact"
-        text="Nous contacter"
-        buttonStylization="style-button2"
-      />
-      <BackButton colorArrow={arrowDark} />
+      <BackButton destination="/map" colorArrow={arrowDark} />
     </nav>
   );
 }

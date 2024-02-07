@@ -6,7 +6,6 @@
   justify-content: center;
   margin-block: 1vh;
   padding-bottom: 2vh;
-  border-bottom: 1px solid $colorDark;
 }
 
 .bookingStationInfos {
@@ -42,4 +41,39 @@
 }
 
 @media screen and (min-width: 600px) {
+  .allBook {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-block: 1vh;
+    padding-bottom: 2vh;
+  }
+  .bookingStationInfos {
+    width: 40vw;
+  }
+  .bookCancel {
+    padding: 1vh 2vw;
+    width: 20vw;
+    margin-left: 15vw;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .allBook {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-block: 1vh;
+    padding-bottom: 2vh;
+  }
+  .bookingStationInfos {
+    width: 30vw;
+  }
+  .bookCancel {
+    padding: 1vh 2vw;
+    width: 12vw;
+    margin-left: 15vw;
+  }
 }

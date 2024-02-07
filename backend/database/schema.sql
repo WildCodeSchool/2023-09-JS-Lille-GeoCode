@@ -32,14 +32,11 @@ CREATE TABLE `booking_list` (
   PRIMARY KEY (`id`),
   KEY `car_id` (`car_id`),
   KEY `charge_point_id` (`charge_point_id`),
-  CONSTRAINT `booking_list_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
-  CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`)
+  CONSTRAINT `booking_list_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `booking_list_ibfk_2` FOREIGN KEY (`charge_point_id`) REFERENCES `charge_point` (`charge_point_id_fr`),
+  CONSTRAINT `fk_car_id` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `booking_list`
---
 
 --
 -- Table structure for table `car`
@@ -61,10 +58,6 @@ CREATE TABLE `car` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `car`
---
-
---
 -- Table structure for table `car_type`
 --
 
@@ -80,10 +73,6 @@ CREATE TABLE `car_type` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `car_type`
---
 
 --
 -- Table structure for table `charge_point`
@@ -105,10 +94,6 @@ CREATE TABLE `charge_point` (
   CONSTRAINT `charge_point_ibfk_1` FOREIGN KEY (`station_id`) REFERENCES `station` (`station_id_fr`)
 ) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `charge_point`
---
 
 --
 -- Table structure for table `form`
@@ -134,15 +119,6 @@ CREATE TABLE `form` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `form`
---
-
-LOCK TABLES `form` WRITE;
-/*!40000 ALTER TABLE `form` DISABLE KEYS */;
-/*!40000 ALTER TABLE `form` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `list_plug_type`
 --
 
@@ -160,10 +136,6 @@ CREATE TABLE `list_plug_type` (
   CONSTRAINT `list_plug_type_ibfk_2` FOREIGN KEY (`plug_type_id`) REFERENCES `plug_type` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `list_plug_type`
---
 
 --
 -- Table structure for table `person`
@@ -189,10 +161,6 @@ CREATE TABLE `person` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `person`
---
-
---
 -- Table structure for table `plug_type`
 --
 
@@ -206,9 +174,6 @@ CREATE TABLE `plug_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `plug_type`
---
 --
 -- Table structure for table `station`
 --
@@ -229,10 +194,6 @@ CREATE TABLE `station` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `station`
---
-
---
 -- Table structure for table `user`
 --
 
@@ -249,10 +210,6 @@ CREATE TABLE `user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
---
-
---
 -- Table structure for table `visitor`
 --
 
@@ -267,15 +224,6 @@ CREATE TABLE `visitor` (
   CONSTRAINT `visitor_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `person` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `visitor`
---
-
-LOCK TABLES `visitor` WRITE;
-/*!40000 ALTER TABLE `visitor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `visitor` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -286,4 +234,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-30 22:28:20
+-- Dump completed on 2024-02-07 12:36:39

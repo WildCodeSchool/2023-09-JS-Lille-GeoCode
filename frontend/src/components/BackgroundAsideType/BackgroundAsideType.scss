@@ -15,7 +15,6 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   width: 93vw;
-  overflow-y: scroll;
 }
 
 .background {
@@ -29,7 +28,6 @@
   flex-direction: column;
   justify-content: space-between;
   width: 11vw;
-  overflow: hidden;
 }
 
 @media screen and (min-width: 600px) {

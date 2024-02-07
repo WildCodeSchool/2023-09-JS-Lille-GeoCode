@@ -20,6 +20,7 @@ function Map() {
     setOpen,
     auth,
     setCarAvailableList,
+    carAvailableList,
   } = useStore();
   const chargepoint = useLoaderData();
 
@@ -124,7 +125,7 @@ function Map() {
     };
 
     fetchCarAvailable();
-  }, [auth]);
+  }, [auth, carAvailableList]);
 
   return (
     <>

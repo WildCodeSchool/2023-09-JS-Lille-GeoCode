@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import NavigationButton from "../Home/NavigationButton";
 import BackButton from "../../components/BackButton/BackButton";
 import "./ConnectedProfile.scss";
-import profilePict from "../../assets/Louise.png";
+import profilePict from "../../assets/user.png";
 import arrowDark from "../../assets/arrowBackDark.svg";
 import { logout } from "../../services/auth";
 import useStore from "../../store/AuthProvider";

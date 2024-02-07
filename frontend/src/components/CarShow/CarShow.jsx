@@ -20,7 +20,12 @@ function CarShow({ carData, counterCar, setcounterCar }) {
           type="button"
           onClick={() => setcounterCar(counterCar - 1)}
         >
-          <img className="nextCarButton nextCarMirror" src={button} alt="" />
+          <img
+            className="nextCarButton nextCarMirror"
+            src={button}
+            alt=""
+            draggable="false"
+          />
           <p className="nextCarText">Voiture</p>
           <p className="nextCarText">précédente</p>
         </button>
@@ -48,7 +53,12 @@ function CarShow({ carData, counterCar, setcounterCar }) {
           type="button"
           onClick={() => setcounterCar(counterCar + 1)}
         >
-          <img className="nextCarButton" src={button} alt="" />
+          <img
+            className="nextCarButton"
+            src={button}
+            alt=""
+            draggable="false"
+          />
           <p className="nextCarText">Voiture</p>
           <p className="nextCarText">suivante</p>
         </button>

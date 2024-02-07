@@ -27,7 +27,8 @@
   border-radius: 41px 100% 100% 100%;
   margin: 2vh 0 0 2vh;
   box-shadow: $boxShadow_inv;
-  border: 1px solid $colorPrimary;
+  border: 1px solid $colorDark;
+  background-color: $colorLight;
   grid-area: 1 / 1 / 4 / 4;
   justify-self: start;
   align-self: start;
@@ -121,5 +122,8 @@
   .viewport_userinformations {
     margin-right: 30vw;
     margin-left: 30vw;
+    p {
+      font-size: 1.5rem;
+    }
   }
 }

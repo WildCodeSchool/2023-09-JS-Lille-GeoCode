@@ -6,7 +6,7 @@ import AddressIcon from "../../assets/address-21a89a.png";
 import GenderIcon from "../../assets/gender-mark-2-21a89a.png";
 import EmailIcon from "../../assets/email-21a89a.png";
 import BirthdayIcon from "../../assets/birthday-cake-21a89a.png";
-import userPicturePath from "../../assets/louiseampere.jpg";
+import userPicturePath from "../../assets/user.png";
 import arrowDark from "../../assets/arrowBackDark.svg";
 import NavigationButton from "../Home/NavigationButton";
 

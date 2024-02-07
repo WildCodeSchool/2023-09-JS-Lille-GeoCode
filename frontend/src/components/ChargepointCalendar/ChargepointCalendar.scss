@@ -9,16 +9,14 @@
   width: 82vw;
   padding: 1vw;
   margin: O;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
-.allElementsCalendar {
-  border: none;
-  padding: 0;
-  margin: 0;
-  height: 5vh;
-  width: 21rem;
-  margin-top: 2vh;
-}
 .backButtonModal {
   border: none;
   background: none;
@@ -49,9 +47,6 @@
 }
 
 .selectedDateDisplay {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
   margin-bottom: 1vh;
 }
 .confirmDate {
@@ -60,8 +55,6 @@
 .selectDate,
 .confirmDate,
 .confirmSlot {
-  display: flex;
-  justify-content: center;
   font-family: $fontFamily;
   color: $colorDark;
   font-size: 1rem;
@@ -84,7 +77,7 @@
 .confirmDate,
 .selectTime,
 .selectVehicle {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 .confirmSlot {
   font-family: $fontFamily;
@@ -95,22 +88,16 @@
 
 #selectTime,
 #selectVehicle {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   border: double 1.5px transparent;
   border-radius: 30px;
   background-image: linear-gradient($colorLight, $colorLight), $gradient180deg;
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  height: 2vh;
   width: 80vw;
   text-align: center;
 }
-#selectTime {
-  font-size: 0.8rem;
-  text-align: center;
-  height: 2vh;
-  width: 80vw;
-}
+
 .submitButton {
   display: flex;
   align-items: center;
@@ -132,6 +119,9 @@
 }
 
 .timeVehicule {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   margin-top: 1vh;
 }
 @media screen and (min-width: 600px) {
@@ -150,22 +140,16 @@
 
   .titleCard {
     width: 30vw;
-    height: 5vh;
+    height: 6vh;
     margin: 0;
     margin-bottom: 1vh;
     padding: 0;
   }
 
-  .react-calendar,
-  .selectDate {
-    width: 30vw;
-    margin-left: 3vw;
-  }
-
   .submitButton {
     height: 5vh;
-    font-size: 1rem;
-    padding: 1vw;
+    font-size: 1.2rem;
+    padding: 1.5vw;
     margin-top: 2vh;
   }
 
@@ -191,7 +175,16 @@
   }
 
   .allElementsCalendar {
-    width: 35vw;
-    margin: 0;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .react-calendar {
+    width: 40rem;
+  }
+  .confirmDate {
+    margin-top: 2vh;
   }
 }

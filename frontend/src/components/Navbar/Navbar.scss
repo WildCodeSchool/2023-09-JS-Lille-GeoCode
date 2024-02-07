@@ -100,5 +100,24 @@
 @media screen and (min-width: 800px) {
   .dialogContent {
     width: 40vw;
+    margin-right: 0;
+  }
+
+  .stationInfos {
+    width: 35vw;
+  }
+  .book {
+    margin-right: 0;
+    width: 15vw;
+  }
+
+  .navbar_list {
+    width: 30rem;
+    height: 4.5rem;
+  }
+
+  .navbar_img {
+    height: auto;
+    width: 35%;
   }
 }

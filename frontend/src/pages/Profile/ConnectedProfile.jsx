@@ -51,7 +51,7 @@ function Profile() {
         >
           Se déconnecter
         </button>
-        <BackButton colorArrow={arrowDark} />
+        <BackButton destination="/map" colorArrow={arrowDark} />
       </nav>
     </main>
   );

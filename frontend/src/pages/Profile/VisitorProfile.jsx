@@ -21,7 +21,7 @@ function VisitorProfile() {
         text="Nous contacter"
         buttonStylization="style-button2"
       />
-      <BackButton colorArrow={arrowDark} />
+      <BackButton destination="/map" colorArrow={arrowDark} />
     </nav>
   );
 }

@@ -33,11 +33,6 @@ function Profile() {
           text="Mes réservations"
           buttonStylization="style-button2"
         />
-        <NavigationButton
-          destination="/contact"
-          text="Nous contacter"
-          buttonStylization="style-button2"
-        />
         <button
           type="button"
           className="style-button2"

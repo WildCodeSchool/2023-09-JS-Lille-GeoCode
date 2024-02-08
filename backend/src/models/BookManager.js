@@ -95,6 +95,9 @@ class BookManager extends AbstractManager {
         return null;
       })
     );
+
+    dateAvailableArray.sort((a, b) => new Date(a) - new Date(b));
+
     return dateAvailableArray;
   }
 }

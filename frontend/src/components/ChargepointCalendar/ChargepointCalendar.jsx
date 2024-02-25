@@ -117,6 +117,7 @@ function ChargepointCalendar() {
             className="calendar"
             onChange={handleDateChange}
             value={selectedDate}
+            minDate={new Date()}
           />
           {selectedDate && (
             <>
@@ -139,14 +140,16 @@ function ChargepointCalendar() {
               onChange={(e) => setSelectedTime(new Date(e.target.value))}
             >
               <option value="">Sélectionnez un créneau</option>
-              {dateAvailable.map((time) => (
-                <option key={time} value={time}>
-                  {new Date(time).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </option>
-              ))}
+              {dateAvailable
+                .filter((time) => new Date(time) > new Date()) // Filtrer les créneaux horaires passés
+                .map((time) => (
+                  <option key={time} value={time}>
+                    {new Date(time).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </option>
+                ))}
             </select>
 
             {carAvailableList?.[0] ? (

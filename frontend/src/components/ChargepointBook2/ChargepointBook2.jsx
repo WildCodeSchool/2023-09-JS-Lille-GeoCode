@@ -45,7 +45,6 @@ function ChargepointBook2() {
       if (response.ok) {
         setSelectedVehicle(null);
         toast.success("Votre réservation est validée !", {
-          theme: "colored",
           onClose: () => {
             setTimeout(() => {
               setOpen(false);
@@ -55,16 +54,15 @@ function ChargepointBook2() {
                 page2: false,
                 page3: false,
               });
-            }, 2000);
+            }, 3000);
           },
         });
       } else {
         toast.error("La réservation a échoué, et n'est pas prise en compte !", {
-          theme: "colored",
           onClose: () => {
             setTimeout(() => {
               navigate("/map");
-            }, 2000);
+            }, 3000);
           },
         });
       }
@@ -114,11 +112,10 @@ function ChargepointBook2() {
               toast.error(
                 "La réservation a été abandonnée, et non prise en compte !",
                 {
-                  theme: "colored",
                   onClose: () => {
                     setTimeout(() => {
                       navigate("/map");
-                    }, 2000);
+                    }, 3000);
                   },
                 }
               )
@@ -127,16 +124,16 @@ function ChargepointBook2() {
             Non
           </button>
           <ToastContainer
-            position="top-center"
-            autoClose={4000}
+            position="top-right"
+            autoClose={2500}
             hideProgressBar={false}
             newestOnTop={false}
-            closeOnClick
+            closeOnClick={false}
             rtl={false}
             pauseOnFocusLoss
-            draggable
+            draggable={false}
             pauseOnHover
-            theme="light"
+            theme="colored"
           />
         </footer>
       </main>

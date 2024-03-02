@@ -7,7 +7,6 @@ import arrowDark from "../../assets/arrowBackDark.svg";
 function ChargepointCalendar() {
   const [dateAvailable, setDateAvailable] = useState([]);
   const {
-    setHandleModal,
     setOpenBooking,
     selectedStation,
     carAvailableList,
@@ -86,8 +85,9 @@ function ChargepointCalendar() {
     if (isFormValid) {
       setOpenBooking({
         page1: false,
-        page2: true,
-        page3: false,
+        page2: false,
+        page3: true,
+        page4: false,
       });
     }
   };
@@ -99,11 +99,11 @@ function ChargepointCalendar() {
         type="button"
         onClick={() => {
           setOpenBooking({
-            page1: false,
+            page1: true,
             page2: false,
             page3: false,
+            page4: false,
           });
-          setHandleModal(true);
         }}
       >
         <img src={arrowDark} alt="Retour en arrière" />

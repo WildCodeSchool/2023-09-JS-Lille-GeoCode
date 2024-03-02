@@ -14,7 +14,6 @@ function ChargepointBook2() {
     selectedStation,
     setOpenBooking,
     setOpen,
-    setHandleModal,
   } = useStore();
   const navigate = useNavigate();
 
@@ -48,11 +47,11 @@ function ChargepointBook2() {
           onClose: () => {
             setTimeout(() => {
               setOpen(false);
-              setHandleModal(true);
               setOpenBooking({
-                page1: false,
+                page1: true,
                 page2: false,
                 page3: false,
+                page4: false,
               });
             }, 3000);
           },
@@ -77,9 +76,10 @@ function ChargepointBook2() {
         type="button"
         onClick={() => {
           setOpenBooking({
-            page1: true,
-            page2: false,
+            page1: false,
+            page2: true,
             page3: false,
+            page4: false,
           });
         }}
       >
